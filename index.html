@@ -679,6 +679,13 @@
             text-decoration: none;
         }
 
+        .btn-download-file.disabled {
+            background: #1e293b;
+            color: #64748b;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
         .invoices-container {
             display: flex;
             flex-direction: column;
@@ -720,9 +727,18 @@
             font-size: 1.05rem;
         }
 
-        .invoice-status {
+        .invoice-status-paid {
             background: rgba(16, 185, 129, 0.1);
             color: #10b981;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .invoice-status-pending {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
             padding: 4px 10px;
             border-radius: 6px;
             font-size: 0.78rem;
@@ -1195,7 +1211,7 @@
         }
 
         .btn-confirm-payment {
-            background: #10b981;
+            background: #2563eb;
             color: white;
             border: none;
             width: 100%;
@@ -1208,7 +1224,7 @@
         }
 
         .btn-confirm-payment:hover {
-            background: #059669;
+            background: #1d4ed8;
         }
 
         footer {
@@ -1378,7 +1394,7 @@
                     <div class="client-banner-icon"><i class="fa-solid fa-box-open"></i></div>
                     <div class="client-banner-text">
                         <h2>Seus Produtos</h2>
-                        <p>Gerencie e baixe todos os produtos adquiridos</p>
+                        <p>Gerencie e baixe todos os produtos adquiridos (disponíveis após confirmação do pagamento)</p>
                     </div>
                 </div>
                 <div class="products-grid" id="clientProductsGrid">
@@ -1449,10 +1465,10 @@
 
             <div class="client-tab-pane" id="tab-invoices">
                 <div class="client-banner">
-                    <div class="client-banner-icon" style="background: #10b981;"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                    <div class="client-banner-icon" style="background: #f59e0b;"><i class="fa-solid fa-file-invoice-dollar"></i></div>
                     <div class="client-banner-text">
                         <h2>Faturas & Histórico</h2>
-                        <p>Consulte o registo de todas as suas compras e pagamentos</p>
+                        <p>Consulte o registo de todas as suas compras e estados de pagamento</p>
                     </div>
                 </div>
                 <div class="invoices-container" id="invoicesContainer">
@@ -1690,20 +1706,22 @@
                 detailsContainer.innerHTML = `
                     <div class="instruction-box">
                         <h4><i class="fa-brands fa-paypal" style="color: #0070ba;"></i> Pagamento PayPal</h4>
-                        <p>Vais concluir o pagamento seguro de <span class="highlight-data">${total}</span> através da sua conta PayPal.</p>
+                        <p>Envie o montante de <span class="highlight-data">${total}</span> para o nosso email PayPal: <span class="highlight-data">payments@sourcecode.store</span></p>
+                        <p style="margin-top:8px; font-size:0.78rem; color:#94a3b8;">Após efetuar o pagamento, clique no botão abaixo para submeter o pedido para validação.</p>
                     </div>
-                    <button class="btn-confirm-payment" onclick="finalizeCartPurchase('PayPal')">Confirmar Pagamento PayPal</button>
+                    <button class="btn-confirm-payment" onclick="finalizeCartPurchase('PayPal')">Já Enviei o Pagamento (Submeter Pedido)</button>
                 `;
             } else if (method === 'mbway') {
                 detailsContainer.innerHTML = `
                     <div class="instruction-box">
-                        <h4><i class="fa-solid fa-mobile-screen-button" style="color: #ff6600;"></i> Validação MB Way</h4>
-                        <p>Insere o teu número de telemóvel associado:</p>
+                        <h4><i class="fa-solid fa-mobile-screen-button" style="color: #ff6600;"></i> Instruções MB Way</h4>
+                        <p>Envie <span class="highlight-data">${total}</span> para o número: <span class="highlight-data">912 345 678</span></p>
                         <div class="form-group-license" style="margin-top: 10px;">
+                            <label style="font-size:0.78rem; color:#94a3b8; margin-bottom:4px; display:block;">O seu telemóvel MB Way:</label>
                             <input type="text" id="mbwayPhoneInput" placeholder="Ex: 912345678" style="width:100%; background:#030712; border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:10px; color:#fff; font-family:'JetBrains Mono';">
                         </div>
                     </div>
-                    <button class="btn-confirm-payment" onclick="validateMbWayAndPay()">Validar e Pagar por MB Way</button>
+                    <button class="btn-confirm-payment" onclick="validateMbWayAndPay()">Submeter Pedido MB Way</button>
                 `;
             } else if (method === 'transfer') {
                 detailsContainer.innerHTML = `
@@ -1711,6 +1729,7 @@
                         <h4><i class="fa-solid fa-building-columns" style="color: #10b981;"></i> Transferência Bancária</h4>
                         <p>IBAN: <span class="highlight-data">PT50 0000 0000 0000 0000 0001 9</span></p>
                         <p style="margin-top: 6px;">Montante: <span class="highlight-data">${total}</span></p>
+                        <p style="margin-top:8px; font-size:0.78rem; color:#94a3b8;">Submeta o pedido após realizar a transferência para a validação manual.</p>
                     </div>
                     <button class="btn-confirm-payment" onclick="finalizeCartPurchase('Transferência Bancária')">Já Efetuei a Transferência</button>
                 `;
@@ -1720,7 +1739,7 @@
         function validateMbWayAndPay() {
             const phoneInput = document.getElementById('mbwayPhoneInput').value.trim();
             if (!phoneInput || phoneInput.length < 9) {
-                alert('Por favor, insere um número de telemóvel MB Way válido com pelo menos 9 dígitos.');
+                alert('Por favor, insere um número de telemóvel válido com pelo menos 9 dígitos.');
                 return;
             }
             finalizeCartPurchase('MB Way');
@@ -1732,7 +1751,7 @@
             let total = cart.reduce((acc, item) => acc + item.price, 0).toFixed(2) + '€';
 
             cart.forEach(item => {
-                clientData.products.push({ name: item.name });
+                clientData.products.push({ name: item.name, status: 'Pendente' });
             });
 
             clientData.invoices.push({ 
@@ -1740,7 +1759,8 @@
                 name: `Compra de ${cart.length} produto(s)`, 
                 price: total, 
                 date: currentDate,
-                method: methodName
+                method: methodName,
+                status: 'Pendente'
             });
 
             localStorage.setItem('client_purchases', JSON.stringify(clientData));
@@ -1750,7 +1770,7 @@
             updateCartBadge();
 
             closeCartModal();
-            alert(`Pagamento registado com sucesso via ${methodName}! Os produtos já estão disponíveis na tua área de cliente.`);
+            alert(`Pedido submetido com sucesso! O pagamento via ${methodName} encontra-se em análise. O acesso aos produtos será libertado após confirmação.`);
             
             hideAllViews();
             document.getElementById('clientDashboardView').classList.add('active');
@@ -1818,8 +1838,8 @@
                     grid.innerHTML += `
                         <div class="client-product-card">
                             <h4><i class="fa-solid fa-box" style="color: #3b82f6;"></i> ${prod.name}</h4>
-                            <a href="#" class="btn-download-file" onclick="alert('A descarregar ficheiro seguro...')">
-                                <i class="fa-solid fa-download"></i> Descarregar Script
+                            <a href="#" class="btn-download-file disabled">
+                                <i class="fa-solid fa-clock"></i> A Aguardar Confirmação
                             </a>
                         </div>
                     `;
@@ -1837,7 +1857,7 @@
                             </div>
                             <div class="invoice-right">
                                 <span class="invoice-price">${inv.price}</span>
-                                <span class="invoice-status">Pago</span>
+                                <span class="invoice-status-pending">Pendente</span>
                             </div>
                         </div>
                     `;
