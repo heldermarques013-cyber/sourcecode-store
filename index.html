@@ -991,7 +991,7 @@
             color: #94a3b8;
         }
 
-        /* Modal */
+        /* Modais (Login e Checkout) */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -1020,7 +1020,7 @@
             padding: 40px;
             border-radius: 16px;
             width: 100%;
-            max-width: 400px;
+            max-width: 450px;
             text-align: center;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
             position: relative;
@@ -1064,6 +1064,123 @@
             gap: 10px;
             cursor: pointer;
             text-decoration: none;
+        }
+
+        /* Estilos específicos para o Checkout */
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        .payment-option-card {
+            background: #030712;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 14px 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: all 0.2s;
+        }
+
+        .payment-option-card:hover {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .payment-option-card i {
+            font-size: 1.4rem;
+            color: #3b82f6;
+            width: 25px;
+            text-align: center;
+        }
+
+        .payment-option-info h5 {
+            color: #fff;
+            font-size: 0.95rem;
+            margin-bottom: 2px;
+        }
+
+        .payment-option-info p {
+            color: #94a3b8;
+            font-size: 0.78rem;
+            margin: 0;
+        }
+
+        .checkout-product-summary {
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px dashed rgba(59, 130, 246, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .checkout-product-summary span {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .checkout-product-summary .price {
+            color: #3b82f6;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+        }
+
+        /* Instruções de Pagamento Manual (MB Way / Transferência) */
+        .instruction-box {
+            background: #030712;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: left;
+            margin-top: 15px;
+        }
+
+        .instruction-box h4 {
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .instruction-box p {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+        }
+
+        .highlight-data {
+            font-family: 'JetBrains Mono', monospace;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .btn-confirm-payment {
+            background: #10b981;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-confirm-payment:hover {
+            background: #059669;
         }
 
         footer {
@@ -1173,7 +1290,7 @@
                         </div>
                         <div class="store-card-footer">
                             <span class="store-card-price">14.99€</span>
-                            <button class="btn-buy" onclick="buyProduct('SC-Core Protection System', '14.99€')">Comprar Agora</button>
+                            <button class="btn-buy" onclick="initiateCheckout('SC-Core Protection System', '14.99€')">Comprar Agora</button>
                         </div>
                     </div>
                 </div>
@@ -1188,7 +1305,7 @@
                         </div>
                         <div class="store-card-footer">
                             <span class="store-card-price">24.99€</span>
-                            <button class="btn-buy" onclick="buyProduct('Advanced Admin HUD', '24.99€')">Comprar Agora</button>
+                            <button class="btn-buy" onclick="initiateCheckout('Advanced Admin HUD', '24.99€')">Comprar Agora</button>
                         </div>
                     </div>
                 </div>
@@ -1203,7 +1320,7 @@
                         </div>
                         <div class="store-card-footer">
                             <span class="store-card-price">19.99€</span>
-                            <button class="btn-buy" onclick="buyProduct('Garage System v3', '19.99€')">Comprar Agora</button>
+                            <button class="btn-buy" onclick="initiateCheckout('Garage System v3', '19.99€')">Comprar Agora</button>
                         </div>
                     </div>
                 </div>
@@ -1387,6 +1504,51 @@
         </div>
     </div>
 
+    <!-- Modal de Checkout / Pagamento -->
+    <div class="modal-overlay" id="checkoutModal">
+        <div class="modal-box" style="max-width: 480px;">
+            <button class="modal-close" onclick="closeCheckoutModal()"><i class="fa-solid fa-xmark"></i></button>
+            <h3>Finalizar Compra</h3>
+            <p>Escolhe o método de pagamento pretendido para concluir o pedido.</p>
+
+            <div class="checkout-product-summary">
+                <span id="checkoutProductName">Produto Selecionado</span>
+                <span class="price" id="checkoutProductPrice">0.00€</span>
+            </div>
+
+            <div id="paymentMethodsStep">
+                <div class="payment-options">
+                    <div class="payment-option-card" onclick="selectPaymentMethod('paypal')">
+                        <i class="fa-brands fa-paypal" style="color: #0070ba;"></i>
+                        <div class="payment-option-info">
+                            <h5>PayPal</h5>
+                            <p>Pagamento seguro e imediato via conta ou cartão.</p>
+                        </div>
+                    </div>
+
+                    <div class="payment-option-card" onclick="selectPaymentMethod('mbway')">
+                        <i class="fa-solid fa-mobile-screen-button" style="color: #ff6600;"></i>
+                        <div class="payment-option-info">
+                            <h5>MB Way</h5>
+                            <p>Autorização rápida diretamente na app do telemóvel.</p>
+                        </div>
+                    </div>
+
+                    <div class="payment-option-card" onclick="selectPaymentMethod('transfer')">
+                        <i class="fa-solid fa-building-columns" style="color: #10b981;"></i>
+                        <div class="payment-option-info">
+                            <h5>Transferência Bancária</h5>
+                            <p>Dados de IBAN para pagamento manual direto.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detalhes / Ecrã dinâmico pós-seleção -->
+            <div id="paymentDetailsContainer" style="display: none;"></div>
+        </div>
+    </div>
+
     <footer>
         <p>&copy; 2026 SourceCode Store. Todos os direitos reservados.</p>
         <p>Design Exclusivo v3.5</p>
@@ -1395,6 +1557,7 @@
     <script>
         let currentDiscordId = "745441462472147007";
         let currentUsername = "Cliente";
+        let selectedProductForCheckout = null;
 
         // Gerar chave aleatória única
         function generateUniqueKey() {
@@ -1407,7 +1570,6 @@
             return `${part1}-${part2}-${part3}-${part4}-KEY`;
         }
 
-        // Obter ou criar dados de licença exclusivos para o utilizador atual
         function getClientLicenseData(discordId, username) {
             let storageKey = 'user_license_' + discordId;
             let licenseData = JSON.parse(localStorage.getItem(storageKey));
@@ -1423,13 +1585,12 @@
                 };
                 localStorage.setItem(storageKey, JSON.stringify(licenseData));
             } else {
-                licenseData.username = username; // Atualizar nome caso mude
+                licenseData.username = username;
                 localStorage.setItem(storageKey, JSON.stringify(licenseData));
             }
             return licenseData;
         }
 
-        // Atualizar interface de licenças
         function updateLicenseUI(data) {
             document.getElementById('detailUser').textContent = data.username;
             document.getElementById('detailKey').textContent = data.key;
@@ -1465,7 +1626,6 @@
             let storageKey = 'user_license_' + currentDiscordId;
             let licenseData = JSON.parse(localStorage.getItem(storageKey)) || getClientLicenseData(currentDiscordId, currentUsername);
 
-            // Gerar nova chave única ao revalidar
             licenseData.key = generateUniqueKey();
             localStorage.setItem(storageKey, JSON.stringify(licenseData));
             
@@ -1541,7 +1701,8 @@
             item.addEventListener('click', () => switchTab(item.getAttribute('data-target')));
         });
 
-        function buyProduct(productName, productPrice) {
+        // Funções de Checkout por Métodos
+        function initiateCheckout(productName, productPrice) {
             const token = localStorage.getItem('discord_token');
             if (!token) {
                 alert('Tens de fazer login com o Discord antes de efetuar uma compra!');
@@ -1549,15 +1710,81 @@
                 return;
             }
 
+            selectedProductForCheckout = { name: productName, price: productPrice };
+            
+            document.getElementById('checkoutProductName').textContent = productName;
+            document.getElementById('checkoutProductPrice').textContent = productPrice;
+            
+            // Resetar visualização do modal de checkout
+            document.getElementById('paymentMethodsStep').style.display = 'block';
+            document.getElementById('paymentDetailsContainer').style.display = 'none';
+            document.getElementById('paymentDetailsContainer').innerHTML = '';
+
+            document.getElementById('checkoutModal').classList.add('active');
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').classList.remove('active');
+        }
+
+        function selectPaymentMethod(method) {
+            const detailsContainer = document.getElementById('paymentDetailsContainer');
+            document.getElementById('paymentMethodsStep').style.display = 'none';
+            detailsContainer.style.display = 'block';
+
+            if (method === 'paypal') {
+                detailsContainer.innerHTML = `
+                    <div class="instruction-box">
+                        <h4><i class="fa-brands fa-paypal" style="color: #0070ba;"></i> Redirecionamento PayPal</h4>
+                        <p>Vais ser encaminhado para concluir o pagamento seguro de <span class="highlight-data">${selectedProductForCheckout.price}</span> através da tua conta PayPal.</p>
+                        <p style="font-size: 0.78rem; color: #94a3b8; margin-top: 10px;">A licença será associada automaticamente após a confirmação.</p>
+                    </div>
+                    <button class="btn-confirm-payment" onclick="finalizeSuccessfulPurchase('PayPal')">Pagar com PayPal agora</button>
+                `;
+            } else if (method === 'mbway') {
+                detailsContainer.innerHTML = `
+                    <div class="instruction-box">
+                        <h4><i class="fa-solid fa-mobile-screen-button" style="color: #ff6600;"></i> Instruções MB Way</h4>
+                        <p>Insere o teu número de telemóvel associado à aplicação MB Way:</p>
+                        <div class="form-group-license" style="margin-top: 10px;">
+                            <input type="text" id="mbwayPhoneInput" placeholder="Ex: 912345678" style="width:100%; background:#030712; border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:10px; color:#fff; font-family:'JetBrains Mono';">
+                        </div>
+                        <p style="font-size: 0.78rem; color: #94a3b8; margin-top: 5px;">Irás receber uma notificação no telemóvel para aceitar o pagamento de <span class="highlight-data">${selectedProductForCheckout.price}</span>.</p>
+                    </div>
+                    <button class="btn-confirm-payment" onclick="finalizeSuccessfulPurchase('MB Way')">Avançar Pagamento MB Way</button>
+                `;
+            } else if (method === 'transfer') {
+                detailsContainer.innerHTML = `
+                    <div class="instruction-box">
+                        <h4><i class="fa-solid fa-building-columns" style="color: #10b981;"></i> Transferência Bancária</h4>
+                        <p>Efetua a transferência no valor exato de <span class="highlight-data">${selectedProductForCheckout.price}</span> para os dados abaixo:</p>
+                        <p style="margin-top: 10px;"><strong>Banco:</strong> Revolut / Millenium</p>
+                        <p><strong>Titular:</strong> SourceCode Store</p>
+                        <p><strong>IBAN:</strong> <span class="highlight-data">PT50 0000 0000 0000 0000 0001 9</span></p>
+                        <p style="font-size: 0.78rem; color: #94a3b8; margin-top: 10px;">O pedido ficará pendente de validação de comprovativo ou validação automática.</p>
+                    </div>
+                    <button class="btn-confirm-payment" onclick="finalizeSuccessfulPurchase('Transferência Bancária')">Já Efetuei a Transferência</button>
+                `;
+            }
+        }
+
+        function finalizeSuccessfulPurchase(methodName) {
             const invoiceId = 'INV-' + Math.floor(100000 + Math.random() * 900000);
             const currentDate = new Date().toLocaleDateString('pt-PT');
 
-            clientData.products.push({ name: productName });
-            clientData.invoices.push({ id: invoiceId, name: productName, price: productPrice, date: currentDate });
+            clientData.products.push({ name: selectedProductForCheckout.name });
+            clientData.invoices.push({ 
+                id: invoiceId, 
+                name: selectedProductForCheckout.name, 
+                price: selectedProductForCheckout.price, 
+                date: currentDate,
+                method: methodName
+            });
 
             localStorage.setItem('client_purchases', JSON.stringify(clientData));
 
-            alert(`Compra de "${productName}" efetuada com sucesso! Fatura gerada na tua Área do Cliente.`);
+            closeCheckoutModal();
+            alert(`Compra de "${selectedProductForCheckout.name}" registada com sucesso via ${methodName}! Fatura gerada.`);
             
             hideAllViews();
             clientDashboardView.classList.add('active');
@@ -1590,12 +1817,12 @@
                         <div class="invoice-item">
                             <div class="invoice-info">
                                 <h4>${inv.name}</h4>
-                                <span>ID: ${inv.id} • Data: ${inv.date}</span>
+                                <span>ID: ${inv.id} • Data: ${inv.date} • ${inv.method || 'Digital'}</span>
                             </div>
                             <div class="invoice-right">
                                 <span class="invoice-price">${inv.price}</span>
                                 <span class="invoice-status">Pago</span>
-                                <button class="btn-download-invoice" onclick="downloadInvoicePaper('${inv.id}', '${inv.name}', '${inv.price}', '${inv.date}')">
+                                <button class="btn-download-invoice" onclick="downloadInvoicePaper('${inv.id}', '${inv.name}', '${inv.price}', '${inv.date}', '${inv.method || 'Digital'}')">
                                     <i class="fa-solid fa-file-arrow-down"></i> Baixar Fatura
                                 </button>
                             </div>
@@ -1605,7 +1832,7 @@
             }
         }
 
-        function downloadInvoicePaper(invoiceId, productName, productPrice, invoiceDate) {
+        function downloadInvoicePaper(invoiceId, productName, productPrice, invoiceDate, paymentMethod) {
             const printWindow = window.open('', '_blank');
             
             const invoiceHTML = `
@@ -1786,7 +2013,7 @@
                             <div class="client-section">
                                 <h3>Dados do Comprador:</h3>
                                 <p><strong>Cliente:</strong> ${currentUsername}</p>
-                                <p><strong>Método de Pagamento:</strong> Processado via Gateway Digital</p>
+                                <p><strong>Método de Pagamento:</strong> ${paymentMethod}</p>
                             </div>
 
                             <table>
@@ -1829,7 +2056,7 @@
                             </div>
 
                             <div class="invoice-footer">
-                                <p>Processamento eletrónico de furação simplificada • Obrigado pela preferência!</p>
+                                <p>Processamento eletrónico de faturação simplificada • Obrigado pela preferência!</p>
                                 <p>SourceCode Store © 2026 - Todos os direitos reservados</p>
                             </div>
                         </div>
@@ -1903,7 +2130,6 @@
                         
                         profileWrapper.style.display = 'block';
 
-                        // Carregar dados de licença exclusivos deste utilizador
                         let licenseData = getClientLicenseData(currentDiscordId, currentUsername);
                         updateLicenseUI(licenseData);
 
