@@ -1283,7 +1283,7 @@
                             </div>
                         </div>
 
-                        <button class="btn-save-config" onclick="alert('Configurações salvas com sucesso!')">
+                        <button class="btn-save-config" onclick="saveServerConfig()">
                             <i class="fa-solid fa-floppy-disk"></i> Salvar Configurações
                         </button>
                     </div>
@@ -1299,22 +1299,22 @@
                         </div>
                         <div class="detail-row">
                             <span class="detail-label">Chave da Licença:</span>
-                            <span class="detail-value">71M-L3K-I4E-VDB-RFMAPPER</span>
+                            <span class="detail-value" id="detailKey">71M-L3K-I4E-VDB-RFMAPPER</span>
                         </div>
                         <div class="detail-row">
                             <span class="detail-label">IP Configurado:</span>
-                            <span class="detail-value">127.0.0.1</span>
+                            <span class="detail-value" id="detailIp">127.0.0.1</span>
                         </div>
                         <div class="detail-row">
                             <span class="detail-label">Porta Configurada:</span>
-                            <span class="detail-value">22003</span>
+                            <span class="detail-value" id="detailPort">22003</span>
                         </div>
                         <div class="detail-row">
                             <span class="detail-label">Status da Conta:</span>
                             <span class="detail-value status-badge-active">Ativa</span>
                         </div>
 
-                        <button class="btn-revalidate" onclick="alert('Licença revalidada com sucesso!')">
+                        <button class="btn-revalidate" onclick="revalidateLicense()">
                             <i class="fa-solid fa-rotate"></i> Revalidar Licença
                         </button>
                     </div>
@@ -1393,12 +1393,90 @@
     </footer>
 
     <script>
+        let currentDiscordId = "745441462472147007";
+        let currentUsername = "Cliente";
+
+        // Gerar chave aleatória única
+        function generateUniqueKey() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let part1 = '', part2 = '', part3 = '', part4 = '';
+            for(let i=0; i<3; i++) part1 += chars.charAt(Math.floor(Math.random() * chars.length));
+            for(let i=0; i<3; i++) part2 += chars.charAt(Math.floor(Math.random() * chars.length));
+            for(let i=0; i<3; i++) part3 += chars.charAt(Math.floor(Math.random() * chars.length));
+            for(let i=0; i<3; i++) part4 += chars.charAt(Math.floor(Math.random() * chars.length));
+            return `${part1}-${part2}-${part3}-${part4}-KEY`;
+        }
+
+        // Obter ou criar dados de licença exclusivos para o utilizador atual
+        function getClientLicenseData(discordId, username) {
+            let storageKey = 'user_license_' + discordId;
+            let licenseData = JSON.parse(localStorage.getItem(storageKey));
+
+            if (!licenseData) {
+                licenseData = {
+                    user: discordId,
+                    username: username,
+                    key: generateUniqueKey(),
+                    ip: "127.0.0.1",
+                    port: "22003",
+                    status: "Ativa"
+                };
+                localStorage.setItem(storageKey, JSON.stringify(licenseData));
+            } else {
+                licenseData.username = username; // Atualizar nome caso mude
+                localStorage.setItem(storageKey, JSON.stringify(licenseData));
+            }
+            return licenseData;
+        }
+
+        // Atualizar interface de licenças
+        function updateLicenseUI(data) {
+            document.getElementById('detailUser').textContent = data.username;
+            document.getElementById('detailKey').textContent = data.key;
+            document.getElementById('detailIp').textContent = data.ip;
+            document.getElementById('detailPort').textContent = data.port;
+
+            document.getElementById('serverIpInput').value = data.ip;
+            document.getElementById('serverPortInput').value = data.port;
+
+            const snippetBox = document.getElementById('codeSnippetBox');
+            snippetBox.innerHTML = `
+                configLicense = {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;["User"] = "${data.user}",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;["Key"] = "${data.key}"<br>
+                }
+            `;
+        }
+
+        function saveServerConfig() {
+            let storageKey = 'user_license_' + currentDiscordId;
+            let licenseData = JSON.parse(localStorage.getItem(storageKey)) || getClientLicenseData(currentDiscordId, currentUsername);
+
+            licenseData.ip = document.getElementById('serverIpInput').value;
+            licenseData.port = document.getElementById('serverPortInput').value;
+
+            localStorage.setItem(storageKey, JSON.stringify(licenseData));
+            updateLicenseUI(licenseData);
+
+            alert('Configurações salvas e aplicadas aos detalhes da licença com sucesso!');
+        }
+
+        function revalidateLicense() {
+            let storageKey = 'user_license_' + currentDiscordId;
+            let licenseData = JSON.parse(localStorage.getItem(storageKey)) || getClientLicenseData(currentDiscordId, currentUsername);
+
+            // Gerar nova chave única ao revalidar
+            licenseData.key = generateUniqueKey();
+            localStorage.setItem(storageKey, JSON.stringify(licenseData));
+            
+            updateLicenseUI(licenseData);
+            alert('Licença revalidada com sucesso! Uma nova chave única foi gerada.');
+        }
+
         let clientData = JSON.parse(localStorage.getItem('client_purchases')) || {
             products: [],
             invoices: []
         };
-
-        let currentUsername = "Cliente";
 
         const modal = document.getElementById('loginModal');
         const openBtn = document.getElementById('openLoginModal');
@@ -1527,7 +1605,6 @@
             }
         }
 
-        // Função para abrir a fatura no formato de "Papel A4" impressor / PDF
         function downloadInvoicePaper(invoiceId, productName, productPrice, invoiceDate) {
             const printWindow = window.open('', '_blank');
             
@@ -1766,7 +1843,9 @@
         }
 
         function copySnippet() {
-            const snippetText = `configLicense = {\n    ["User"] = "745441462472147007",\n    ["Key"] = "71M-L3K-I4E-VDB-RFMAPPER"\n}`;
+            let storageKey = 'user_license_' + currentDiscordId;
+            let licenseData = JSON.parse(localStorage.getItem(storageKey)) || getClientLicenseData(currentDiscordId, currentUsername);
+            const snippetText = `configLicense = {\n    ["User"] = "${licenseData.user}",\n    ["Key"] = "${licenseData.key}"\n}`;
             navigator.clipboard.writeText(snippetText).then(() => {
                 alert('Configuração copiada para a área de transferência!');
             });
@@ -1806,7 +1885,6 @@
                         const dropdownUsername = document.getElementById('dropdownUsername');
                         const clientAvatarMini = document.getElementById('clientAvatarMini');
                         const clientNameMini = document.getElementById('clientNameMini');
-                        const detailUser = document.getElementById('detailUser');
 
                         let avatarUrl = 'https://cdn.discordapp.com/embed/avatars/0.png';
                         if (userData.avatar) {
@@ -1817,19 +1895,32 @@
                         clientAvatarMini.src = avatarUrl;
 
                         currentUsername = userData.global_name || userData.username;
+                        currentDiscordId = userData.id;
+
                         nameSpan.textContent = currentUsername;
                         dropdownUsername.textContent = currentUsername;
                         clientNameMini.textContent = currentUsername;
-                        detailUser.textContent = currentUsername;
                         
                         profileWrapper.style.display = 'block';
+
+                        // Carregar dados de licença exclusivos deste utilizador
+                        let licenseData = getClientLicenseData(currentDiscordId, currentUsername);
+                        updateLicenseUI(licenseData);
+
                         renderClientData();
                     } else {
                         localStorage.removeItem('discord_token');
+                        let defaultData = getClientLicenseData(currentDiscordId, currentUsername);
+                        updateLicenseUI(defaultData);
                     }
                 } catch (error) {
                     console.error('Erro:', error);
+                    let defaultData = getClientLicenseData(currentDiscordId, currentUsername);
+                    updateLicenseUI(defaultData);
                 }
+            } else {
+                let defaultData = getClientLicenseData(currentDiscordId, currentUsername);
+                updateLicenseUI(defaultData);
             }
         });
     </script>
