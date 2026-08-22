@@ -944,71 +944,6 @@
             margin-top: 15px;
         }
 
-        .quick-actions-section h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 18px;
-            position: relative;
-            padding-left: 12px;
-        }
-
-        .quick-actions-section h3::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 4px;
-            bottom: 4px;
-            width: 4px;
-            background: #3b82f6;
-            border-radius: 4px;
-        }
-
-        .quick-actions-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .quick-action-card {
-            background: #0b1120;
-            border: 1px solid rgba(59, 130, 246, 0.15);
-            border-radius: 14px;
-            padding: 22px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .quick-action-card:hover {
-            border-color: rgba(59, 130, 246, 0.4);
-        }
-
-        .qa-icon-wrapper {
-            width: 42px;
-            height: 42px;
-            border-radius: 10px;
-            background: rgba(59, 130, 246, 0.1);
-            color: #3b82f6;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-        }
-
-        .quick-action-card h4 {
-            font-size: 0.95rem;
-            color: #fff;
-            font-weight: 700;
-        }
-
-        .quick-action-card p {
-            font-size: 0.81rem;
-            color: #94a3b8;
-        }
-
         /* Modais */
         .modal-overlay {
             position: fixed;
@@ -1016,7 +951,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(2, 6, 23, 0.8);
+            background: rgba(2, 6, 23, 0.85);
             backdrop-filter: blur(8px);
             display: flex;
             align-items: center;
@@ -1035,10 +970,10 @@
         .modal-box {
             background: #0b1120;
             border: 1px solid rgba(59, 130, 246, 0.2);
-            padding: 40px;
-            border-radius: 16px;
+            padding: 35px;
+            border-radius: 18px;
             width: 100%;
-            max-width: 480px;
+            max-width: 520px;
             text-align: center;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
             position: relative;
@@ -1053,18 +988,6 @@
             color: #64748b;
             font-size: 1.2rem;
             cursor: pointer;
-        }
-
-        .modal-box h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .modal-box p {
-            color: #94a3b8;
-            font-size: 0.9rem;
-            margin-bottom: 25px;
         }
 
         .discord-login-action {
@@ -1082,9 +1005,89 @@
             gap: 10px;
             cursor: pointer;
             text-decoration: none;
+            margin-top: 15px;
         }
 
-        /* Estilos do Carrinho & Checkout */
+        /* Estilos Customizados do Carrinho Exatamente Iguais à Imagem */
+        .cart-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .cart-modal-header h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin: 0;
+        }
+
+        .cart-modal-items-badge {
+            background: #1e293b;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #38bdf8;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        .cart-empty-state-box {
+            background: #060b19;
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            border-radius: 14px;
+            padding: 40px 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-empty-icon {
+            font-size: 2.8rem;
+            color: #3b82f6;
+            margin-bottom: 18px;
+        }
+
+        .cart-empty-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .cart-empty-desc {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            line-height: 1.5;
+            margin-bottom: 24px;
+            max-width: 340px;
+        }
+
+        .btn-go-to-store {
+            background: transparent;
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            color: #38bdf8;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-go-to-store:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: #3b82f6;
+            color: #fff;
+        }
+
+        /* Itens e Checkout Preenchido */
         .cart-items-list {
             max-height: 250px;
             overflow-y: auto;
@@ -1122,6 +1125,24 @@
             color: #ef4444;
             cursor: pointer;
             font-size: 0.9rem;
+        }
+
+        .checkout-product-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #030712;
+            padding: 14px 18px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+            font-weight: 700;
+        }
+
+        .checkout-product-summary .price {
+            color: #3b82f6;
+            font-family: 'JetBrains Mono';
+            font-size: 1.1rem;
         }
 
         .payment-options {
@@ -1246,7 +1267,6 @@
             <a href="#">Parcerias</a>
         </nav>
         <div class="header-actions">
-            <!-- Botão Carrinho com o Contador -->
             <div class="cart-btn-wrapper" id="openCartModal" title="Ver Carrinho">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <div class="cart-badge" id="cartBadge">0</div>
@@ -1476,61 +1496,26 @@
         <div class="modal-box">
             <button class="modal-close" id="closeLoginModal"><i class="fa-solid fa-xmark"></i></button>
             <h3>Autenticação</h3>
-            <p>Entra na tua conta para gerires as tuas licenças e painel.</p>
+            <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 25px;">Entra na tua conta para gerires as tuas licenças e painel.</p>
             <a href="https://discord.com/oauth2/authorize?client_id=1540416706931851274&response_type=token&redirect_uri=https%3A%2F%2Fsourcecode-store-git-main-helder6.vercel.app%2F&scope=identify+email" class="discord-login-action">
                 <i class="fa-brands fa-discord"></i> Entrar com o Discord
             </a>
         </div>
     </div>
 
-    <!-- Modal do Carrinho / Pagamento -->
+    <!-- Modal do Carrinho Personalizado -->
     <div class="modal-overlay" id="cartModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeCartModal()"><i class="fa-solid fa-xmark"></i></button>
-            <h3>O teu Carrinho</h3>
-            <p>Revisa os itens selecionados antes de avançar para o pagamento.</p>
-
-            <div class="cart-items-list" id="cartItemsList">
-                <!-- Itens inseridos dinamicamente -->
+            
+            <div class="cart-modal-header">
+                <h3>Seu Carrinho</h3>
+                <span class="cart-modal-items-badge" id="cartModalItemsBadge">0 items</span>
             </div>
 
-            <div class="checkout-product-summary" id="cartTotalSummary" style="display:none;">
-                <span>Total a Pagar:</span>
-                <span class="price" id="cartTotalPrice">0.00€</span>
-            </div>
+            <!-- Conteúdo Dinâmico do Carrinho -->
+            <div id="cartDynamicContent"></div>
 
-            <div id="cartActionsStep" style="display:none;">
-                <button class="btn-main" style="width:100%; justify-content:center;" onclick="proceedToCheckoutMethods()">Proceder ao Pagamento</button>
-            </div>
-
-            <div id="paymentMethodsStep" style="display: none; margin-top: 15px;">
-                <h4 style="color:#fff; font-size:0.95rem; margin-bottom:10px; text-align:left;">Escolha o método:</h4>
-                <div class="payment-options">
-                    <div class="payment-option-card" onclick="selectPaymentMethod('paypal')">
-                        <i class="fa-brands fa-paypal" style="color: #0070ba;"></i>
-                        <div class="payment-option-info">
-                            <h5>PayPal</h5>
-                            <p>Pagamento seguro via conta ou cartão.</p>
-                        </div>
-                    </div>
-                    <div class="payment-option-card" onclick="selectPaymentMethod('mbway')">
-                        <i class="fa-solid fa-mobile-screen-button" style="color: #ff6600;"></i>
-                        <div class="payment-option-info">
-                            <h5>MB Way</h5>
-                            <p>Autorização rápida na app do telemóvel.</p>
-                        </div>
-                    </div>
-                    <div class="payment-option-card" onclick="selectPaymentMethod('transfer')">
-                        <i class="fa-solid fa-building-columns" style="color: #10b981;"></i>
-                        <div class="payment-option-info">
-                            <h5>Transferência Bancária</h5>
-                            <p>Dados de IBAN para pagamento manual.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="paymentDetailsContainer" style="display: none;"></div>
         </div>
     </div>
 
@@ -1626,6 +1611,8 @@
         function updateCartBadge() {
             const badge = document.getElementById('cartBadge');
             badge.textContent = cart.length;
+            const modalBadge = document.getElementById('cartModalItemsBadge');
+            if(modalBadge) modalBadge.textContent = `${cart.length} items`;
         }
 
         document.getElementById('openCartModal').addEventListener('click', () => {
@@ -1638,27 +1625,28 @@
         }
 
         function renderCartModal() {
-            const list = document.getElementById('cartItemsList');
-            const summary = document.getElementById('cartTotalSummary');
-            const actionsStep = document.getElementById('cartActionsStep');
-            const paymentMethodsStep = document.getElementById('paymentMethodsStep');
-            const detailsContainer = document.getElementById('paymentDetailsContainer');
-
-            paymentMethodsStep.style.display = 'none';
-            detailsContainer.style.display = 'none';
+            updateCartBadge();
+            const container = document.getElementById('cartDynamicContent');
 
             if (cart.length === 0) {
-                list.innerHTML = `<p style="color:#64748b; text-align:center; padding:20px;">O teu carrinho está vazio.</p>`;
-                summary.style.display = 'none';
-                actionsStep.style.display = 'none';
+                container.innerHTML = `
+                    <div class="cart-empty-state-box">
+                        <div class="cart-empty-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                        <div class="cart-empty-title">Seu carrinho está vazio</div>
+                        <div class="cart-empty-desc">Explore nossa loja e adicione produtos incríveis para começar sua jornada!</div>
+                        <button class="btn-go-to-store" onclick="closeCartModal(); hideAllViews(); storeProductsView.classList.add('active');">
+                            <i class="fa-solid fa-arrow-left"></i> Ir para a Loja
+                        </button>
+                    </div>
+                `;
                 return;
             }
 
-            list.innerHTML = '';
             let total = 0;
+            let itemsHtml = `<div class="cart-items-list">`;
             cart.forEach((item, index) => {
                 total += item.price;
-                list.innerHTML += `
+                itemsHtml += `
                     <div class="cart-item-row">
                         <div class="cart-item-info">
                             <h5>${item.name}</h5>
@@ -1668,16 +1656,50 @@
                     </div>
                 `;
             });
+            itemsHtml += `</div>`;
 
-            document.getElementById('cartTotalPrice').textContent = total.toFixed(2) + '€';
-            summary.style.display = 'flex';
-            actionsStep.style.display = 'block';
+            container.innerHTML = `
+                ${itemsHtml}
+                <div class="checkout-product-summary">
+                    <span>Total a Pagar:</span>
+                    <span class="price">${total.toFixed(2)}€</span>
+                </div>
+                <div id="cartActionsStep">
+                    <button class="btn-main" style="width:100%; justify-content:center;" onclick="proceedToCheckoutMethods()">Proceder ao Pagamento</button>
+                </div>
+                <div id="paymentMethodsStep" style="display: none; margin-top: 15px;">
+                    <h4 style="color:#fff; font-size:0.95rem; margin-bottom:10px; text-align:left;">Escolha o método:</h4>
+                    <div class="payment-options">
+                        <div class="payment-option-card" onclick="selectPaymentMethod('paypal')">
+                            <i class="fa-brands fa-paypal" style="color: #0070ba;"></i>
+                            <div class="payment-option-info">
+                                <h5>PayPal</h5>
+                                <p>Pagamento seguro via conta ou cartão.</p>
+                            </div>
+                        </div>
+                        <div class="payment-option-card" onclick="selectPaymentMethod('mbway')">
+                            <i class="fa-solid fa-mobile-screen-button" style="color: #ff6600;"></i>
+                            <div class="payment-option-info">
+                                <h5>MB Way</h5>
+                                <p>Autorização rápida na app do telemóvel.</p>
+                            </div>
+                        </div>
+                        <div class="payment-option-card" onclick="selectPaymentMethod('transfer')">
+                            <i class="fa-solid fa-building-columns" style="color: #10b981;"></i>
+                            <div class="payment-option-info">
+                                <h5>Transferência Bancária</h5>
+                                <p>Dados de IBAN para pagamento manual.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="paymentDetailsContainer" style="display: none;"></div>
+            `;
         }
 
         function removeFromCart(index) {
             cart.splice(index, 1);
             localStorage.setItem('store_cart', JSON.stringify(cart));
-            updateCartBadge();
             renderCartModal();
         }
 
@@ -1731,7 +1753,6 @@
             }
         }
 
-        // Validação correta do MB Way (exige número de telemóvel)
         function validateMbWayAndPay() {
             const phoneInput = document.getElementById('mbwayPhoneInput').value.trim();
             if (!phoneInput || phoneInput.length < 9) {
@@ -1760,7 +1781,6 @@
 
             localStorage.setItem('client_purchases', JSON.stringify(clientData));
             
-            // Limpar carrinho
             cart = [];
             localStorage.removeItem('store_cart');
             updateCartBadge();
