@@ -473,10 +473,9 @@
         /* Conteúdo da Área do Cliente */
         .client-content {
             padding: 40px;
-            max-width: 1000px;
+            max-width: 1100px;
         }
 
-        /* Abas Internas da Área do Cliente */
         .client-tab-pane {
             display: none;
         }
@@ -527,7 +526,6 @@
             gap: 25px;
         }
 
-        /* Mensagens de estado vazio */
         .no-products {
             grid-column: 1 / -1;
             text-align: center;
@@ -548,156 +546,278 @@
             font-size: 0.95rem;
         }
 
-        .product-card {
+        /* === NOVO LAYOUT DA ABA DE LICENÇAS (EXATAMENTE COMO NA IMAGEM) === */
+        .licenses-grid-top {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        .panel-box {
             background: #0b1120;
-            border: 1px solid rgba(59, 130, 246, 0.15);
-            border-radius: 14px;
-            overflow: hidden;
+            border: 1px solid rgba(59, 130, 246, 0.18);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .panel-header-flex {
             display: flex;
-            flex-direction: column;
-            transition: transform 0.2s, border-color 0.2s;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-        }
-
-        .product-card:hover {
-            transform: translateY(-3px);
-            border-color: rgba(59, 130, 246, 0.4);
-        }
-
-        .product-card-img {
-            width: 100%;
-            height: 140px;
-            object-fit: cover;
-            border-bottom: 1px solid rgba(59, 130, 246, 0.15);
-        }
-
-        .product-card-body {
-            padding: 18px;
-            display: flex;
-            flex-direction: column;
             justify-content: space-between;
-            flex-grow: 1;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
 
-        .product-card-title {
-            font-size: 0.95rem;
+        .panel-header-flex h3 {
+            font-size: 1.1rem;
             font-weight: 700;
             color: #fff;
-            margin-bottom: 15px;
-            line-height: 1.4;
+            position: relative;
+            padding-left: 12px;
         }
 
-        .btn-download {
+        .panel-header-flex h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 4px;
+            bottom: 4px;
+            width: 4px;
             background: #3b82f6;
-            color: white;
+            border-radius: 4px;
+        }
+
+        .btn-panel-copy {
+            background: transparent;
             border: none;
-            width: 100%;
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            cursor: pointer;
-            transition: background 0.2s;
-            text-decoration: none;
-        }
-
-        .btn-download:hover {
-            background: #2563eb;
-        }
-
-        /* Estilo da Tabela / Lista de Licenças */
-        .licenses-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .license-card {
-            background: #0b1120;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 12px;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .license-info h4 {
-            font-size: 1rem;
-            color: #fff;
-            margin-bottom: 5px;
-        }
-
-        .license-key-box {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: #3b82f6;
-            background: rgba(59, 130, 246, 0.1);
-            padding: 6px 12px;
-            border-radius: 6px;
-            display: inline-block;
-            border: 1px dashed rgba(59, 130, 246, 0.3);
-        }
-
-        .btn-copy {
-            background: #1e293b;
-            color: #cbd5e1;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-size: 0.85rem;
+            color: #94a3b8;
+            font-size: 0.82rem;
             font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 6px;
-            transition: all 0.2s;
+            transition: color 0.2s;
         }
 
-        .btn-copy:hover {
+        .btn-panel-copy:hover {
+            color: #fff;
+        }
+
+        .code-snippet-box {
+            background: #030712;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            color: #60a5fa;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .form-group-license {
+            margin-bottom: 15px;
+        }
+
+        .form-group-license label {
+            display: block;
+            font-size: 0.82rem;
+            color: #94a3b8;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .input-with-icon {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-with-icon input {
+            width: 100%;
+            background: #030712;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 11px 14px;
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-with-icon input:focus {
+            border-color: #3b82f6;
+        }
+
+        .input-with-icon i {
+            position: absolute;
+            right: 14px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .btn-save-config {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            transition: transform 0.2s;
+            margin-top: 20px;
+        }
+
+        .btn-save-config:hover {
+            transform: translateY(-1px);
+        }
+
+        /* Detalhes da Licença (Lado Direito) */
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 0.88rem;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+            margin-bottom: 15px;
+        }
+
+        .detail-label {
+            color: #94a3b8;
+        }
+
+        .detail-value {
+            color: #fff;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .status-badge-active {
+            color: #10b981;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-badge-active::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #10b981;
+        }
+
+        .btn-revalidate {
+            background: #1e293b;
+            color: #cbd5e1;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            width: 100%;
+            padding: 11px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 15px;
+        }
+
+        .btn-revalidate:hover {
             background: #3b82f6;
             color: white;
             border-color: #3b82f6;
         }
 
-        .protection-guide {
-            margin-top: 30px;
+        /* Ações Rápidas (Embaixo) */
+        .quick-actions-section h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 18px;
+            position: relative;
+            padding-left: 12px;
+        }
+
+        .quick-actions-section h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 4px;
+            bottom: 4px;
+            width: 4px;
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+
+        .quick-actions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .quick-action-card {
             background: #0b1120;
             border: 1px solid rgba(59, 130, 246, 0.15);
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 14px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            cursor: pointer;
+            transition: transform 0.2s, border-color 0.2s;
+            text-decoration: none;
         }
 
-        .protection-guide h4 {
-            color: #fff;
-            font-size: 1rem;
-            margin-bottom: 10px;
+        .quick-action-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .qa-icon-wrapper {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            font-size: 1.1rem;
         }
 
-        .protection-guide p {
+        .quick-action-card h4 {
+            font-size: 0.95rem;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .quick-action-card p {
+            font-size: 0.81rem;
             color: #94a3b8;
-            font-size: 0.88rem;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-
-        .protection-guide pre {
-            background: #030712;
-            padding: 15px;
-            border-radius: 8px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: #60a5fa;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            overflow-x: auto;
+            line-height: 1.4;
         }
 
         /* Modal */
@@ -820,19 +940,16 @@
                 <div class="cart-badge">0</div>
             </div>
             
-            <!-- Botão de Login Normal -->
             <button class="login-btn" id="openLoginModal">
                 <i class="fa-solid fa-right-to-bracket"></i> Login
             </button>
 
-            <!-- Wrapper do Utilizador Logado com Menu Dropdown -->
             <div class="user-profile-wrapper" id="userProfileWrapper">
                 <div class="user-profile" id="userProfileBtn">
                     <img src="" alt="Avatar" class="user-avatar" id="userAvatar">
                     <span class="user-name" id="userName">Nome</span>
                 </div>
 
-                <!-- Painel Flutuante / Dropdown -->
                 <div class="user-dropdown" id="userDropdown">
                     <div class="dropdown-header">
                         <div class="dropdown-username" id="dropdownUsername">helderm.</div>
@@ -890,8 +1007,8 @@
                 </div>
             </div>
             <nav class="client-nav">
-                <button class="client-nav-item active" data-target="tab-products"><i class="fa-solid fa-box"></i> Produtos</button>
-                <button class="client-nav-item" data-target="tab-licenses"><i class="fa-solid fa-key"></i> Licenças</button>
+                <button class="client-nav-item" data-target="tab-products"><i class="fa-solid fa-box"></i> Produtos</button>
+                <button class="client-nav-item active" data-target="tab-licenses"><i class="fa-solid fa-key"></i> Licenças</button>
                 <button class="client-nav-item" data-target="tab-invoices"><i class="fa-solid fa-file-invoice-dollar"></i> Faturas</button>
             </nav>
         </aside>
@@ -900,7 +1017,7 @@
         <main class="client-content">
             
             <!-- ABA 1: PRODUTOS -->
-            <div class="client-tab-pane active" id="tab-products">
+            <div class="client-tab-pane" id="tab-products">
                 <div class="client-banner">
                     <div class="client-banner-icon">
                         <i class="fa-solid fa-box-open"></i>
@@ -919,38 +1036,109 @@
                 </div>
             </div>
 
-            <!-- ABA 2: LICENÇAS -->
-            <div class="client-tab-pane" id="tab-licenses">
-                <div class="client-banner">
-                    <div class="client-banner-icon" style="background: #4f46e5;">
-                        <i class="fa-solid fa-key"></i>
-                    </div>
-                    <div class="client-banner-text">
-                        <h2>Suas Licenças & Proteção</h2>
-                        <p>Copie a sua chave de acesso para configurar dentro do script</p>
-                    </div>
-                </div>
-
-                <div class="licenses-container" id="clientLicensesList">
-                    <!-- Licença de Exemplo (ficará dinâmica depois) -->
-                    <div class="license-card">
-                        <div class="license-info">
-                            <h4>Sistema de Proteção Geral</h4>
-                            <span class="license-key-box" id="key-sample">SC-KEY-98F2A1-PROTECTED</span>
+            <!-- ABA 2: LICENÇAS (NOVO LAYOUT) -->
+            <div class="client-tab-pane active" id="tab-licenses">
+                
+                <div class="licenses-grid-top">
+                    <!-- Configuração da Licença (Esquerda) -->
+                    <div class="panel-box">
+                        <div class="panel-header-flex">
+                            <h3>Configuração da Licença</h3>
+                            <button class="btn-panel-copy" onclick="copySnippet()">
+                                <i class="fa-solid fa-copy"></i> Copiar
+                            </button>
                         </div>
-                        <button class="btn-copy" onclick="copyKey('SC-KEY-98F2A1-PROTECTED')">
-                            <i class="fa-solid fa-copy"></i> Copiar Chave
+
+                        <div class="code-snippet-box" id="codeSnippetBox">
+                            configLicense = {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;["User"] = "745441462472147007",<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;["Key"] = "71M-L3K-I4E-VDB-RFMAPPER"<br>
+                            }
+                        </div>
+
+                        <div class="form-group-license">
+                            <label>IP do Servidor</label>
+                            <div class="input-with-icon">
+                                <input type="text" value="127.0.0.1" id="serverIpInput">
+                                <i class="fa-solid fa-globe"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group-license">
+                            <label>Porta do Servidor</label>
+                            <div class="input-with-icon">
+                                <input type="text" value="22003" id="serverPortInput">
+                            </div>
+                        </div>
+
+                        <button class="btn-save-config" onclick="alert('Configurações salvas com sucesso!')">
+                            <i class="fa-solid fa-floppy-disk"></i> Salvar Configurações
+                        </button>
+                    </div>
+
+                    <!-- Detalhes da Licença (Direita) -->
+                    <div class="panel-box">
+                        <div class="panel-header-flex">
+                            <h3>Detalhes da Licença</h3>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="detail-label">Usuário:</span>
+                            <span class="detail-value" id="detailUser">helderm.</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Chave da Licença:</span>
+                            <span class="detail-value">71M-L3K-I4E-VDB-RFMAPPER</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">IP Configurado:</span>
+                            <span class="detail-value">127.0.0.1</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Porta Configurada:</span>
+                            <span class="detail-value">22003</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Status da Conta:</span>
+                            <span class="detail-value status-badge-active">Ativa</span>
+                        </div>
+
+                        <button class="btn-revalidate" onclick="alert('Licença revalidada com sucesso!')">
+                            <i class="fa-solid fa-rotate"></i> Revalidar Licença
                         </button>
                     </div>
                 </div>
 
-                <div class="protection-guide">
-                    <h4><i class="fa-solid fa-shield-halved" style="color: #3b82f6;"></i> Como configurar no script?</h4>
-                    <p>Aceda ao ficheiro de configuração do script descarregado (ex: <code>config.lua</code>) e insira os seus dados de utilizador e chave de licença exatamente como no exemplo abaixo:</p>
-                    <pre>Config = {}
-Config.ClientUser = "helderm."
-Config.LicenseKey = "SC-KEY-98F2A1-PROTECTED"</pre>
+                <!-- Ações Rápidas (Embaixo) -->
+                <div class="quick-actions-section">
+                    <h3>Ações Rápidas</h3>
+                    <div class="quick-actions-grid">
+                        <a href="#" class="quick-action-card" onclick="switchTab('tab-products')">
+                            <div class="qa-icon-wrapper">
+                                <i class="fa-solid fa-download"></i>
+                            </div>
+                            <h4>Download</h4>
+                            <p>Faça o download dos produtos adquiridos.</p>
+                        </a>
+
+                        <a href="#" class="quick-action-card">
+                            <div class="qa-icon-wrapper" style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6;">
+                                <i class="fa-solid fa-headset"></i>
+                            </div>
+                            <h4>Suporte</h4>
+                            <p>Entre em contato com nossa equipe.</p>
+                        </a>
+
+                        <a href="#" class="quick-action-card">
+                            <div class="qa-icon-wrapper" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">
+                                <i class="fa-solid fa-book-open"></i>
+                            </div>
+                            <h4>Tutoriais</h4>
+                            <p>Aprenda a instalar e configurar sua licença.</p>
+                        </a>
+                    </div>
                 </div>
+
             </div>
 
             <!-- ABA 3: FATURAS -->
@@ -1031,21 +1219,35 @@ Config.LicenseKey = "SC-KEY-98F2A1-PROTECTED"</pre>
         const clientNavItems = document.querySelectorAll('.client-nav-item');
         const clientTabPanes = document.querySelectorAll('.client-tab-pane');
 
+        function switchTab(targetId) {
+            clientNavItems.forEach(nav => {
+                if(nav.getAttribute('data-target') === targetId) {
+                    nav.classList.add('active');
+                } else {
+                    nav.classList.remove('active');
+                }
+            });
+            clientTabPanes.forEach(pane => {
+                if(pane.id === targetId) {
+                    pane.classList.add('active');
+                } else {
+                    pane.classList.remove('active');
+                }
+            });
+        }
+
         clientNavItems.forEach(item => {
             item.addEventListener('click', () => {
-                clientNavItems.forEach(nav => nav.classList.remove('active'));
-                clientTabPanes.forEach(pane => pane.classList.remove('active'));
-
-                item.classList.add('active');
                 const targetId = item.getAttribute('data-target');
-                document.getElementById(targetId).classList.add('active');
+                switchTab(targetId);
             });
         });
 
-        // Função para Copiar Chave
-        function copyKey(keyText) {
-            navigator.clipboard.writeText(keyText).then(() => {
-                alert('Chave de licença copiada com sucesso!');
+        // Função para Copiar o Snippet de Código
+        function copySnippet() {
+            const snippetText = `configLicense = {\n    ["User"] = "745441462472147007",\n    ["Key"] = "71M-L3K-I4E-VDB-RFMAPPER"\n}`;
+            navigator.clipboard.writeText(snippetText).then(() => {
+                alert('Configuração copiada para a área de transferência!');
             });
         }
 
@@ -1121,6 +1323,7 @@ Config.LicenseKey = "SC-KEY-98F2A1-PROTECTED"</pre>
                         const dropdownUsername = document.getElementById('dropdownUsername');
                         const clientAvatarMini = document.getElementById('clientAvatarMini');
                         const clientNameMini = document.getElementById('clientNameMini');
+                        const detailUser = document.getElementById('detailUser');
 
                         let avatarUrl = 'https://cdn.discordapp.com/embed/avatars/0.png';
                         if (userData.avatar) {
@@ -1134,6 +1337,7 @@ Config.LicenseKey = "SC-KEY-98F2A1-PROTECTED"</pre>
                         nameSpan.textContent = displayName;
                         dropdownUsername.textContent = displayName;
                         clientNameMini.textContent = displayName;
+                        detailUser.textContent = displayName;
                         
                         profileWrapper.style.display = 'block';
                     } else {
