@@ -393,20 +393,6 @@
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(12px);
-            animation: fadeInBox 0.8s ease-out;
-        }
-
-        .hero-infobox::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100px;
-            height: 100px;
-            background: rgba(59, 130, 246, 0.2);
-            filter: blur(40px);
-            border-radius: 50%;
-            z-index: 0;
         }
 
         .infobox-left {
@@ -491,12 +477,7 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
 
-        @keyframes fadeInBox {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* NOTIFICAÇÕES TOAST FUTURÍSTICAS DE CANTO */
+        /* TOAST NOTIFICATIONS */
         #toast-container {
             position: fixed;
             bottom: 24px;
@@ -524,721 +505,212 @@
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
         }
 
-        .futuristic-toast.show {
-            transform: translateX(0);
-            opacity: 1;
-        }
+        .futuristic-toast.show { transform: translateX(0); opacity: 1; }
+        .futuristic-toast.hide { transform: translateX(110%); opacity: 0; }
 
-        .futuristic-toast.hide {
-            transform: translateX(110%);
-            opacity: 0;
-        }
-
-        .toast-content-wrapper {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-        }
-
+        .toast-content-wrapper { display: flex; align-items: flex-start; gap: 14px; }
         .toast-icon-box {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            flex-shrink: 0;
+            width: 36px; height: 36px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
         }
+        .futuristic-toast.success .toast-icon-box { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .futuristic-toast.error .toast-icon-box { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+        .futuristic-toast.info .toast-icon-box { background: rgba(59, 130, 246, 0.15); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.3); }
 
-        .futuristic-toast.success .toast-icon-box {
-            background: rgba(16, 185, 129, 0.15);
-            color: #10b981;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-        }
+        .toast-texts h5 { color: #fff; font-size: 0.95rem; font-weight: 700; margin-bottom: 3px; }
+        .toast-texts p { color: #94a3b8; font-size: 0.82rem; line-height: 1.4; margin: 0; }
+        .toast-progress-bar { position: absolute; bottom: 0; left: 0; height: 3px; width: 100%; }
+        .futuristic-toast.success .toast-progress-bar { background: #10b981; }
+        .futuristic-toast.error .toast-progress-bar { background: #ef4444; }
+        .futuristic-toast.info .toast-progress-bar { background: #3b82f6; }
 
-        .futuristic-toast.error .toast-icon-box {
-            background: rgba(239, 68, 68, 0.15);
-            color: #ef4444;
-            border: 1px solid rgba(239, 68, 68, 0.3);
-        }
-
-        .futuristic-toast.info .toast-icon-box {
-            background: rgba(59, 130, 246, 0.15);
-            color: #3b82f6;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-        }
-
-        .toast-texts h5 {
-            color: #fff;
-            font-size: 0.95rem;
-            font-weight: 700;
-            margin-bottom: 3px;
-        }
-
-        .toast-texts p {
-            color: #94a3b8;
-            font-size: 0.82rem;
-            line-height: 1.4;
-            margin: 0;
-        }
-
-        .toast-progress-bar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 3px;
-            width: 100%;
-        }
-
-        .futuristic-toast.success .toast-progress-bar { background: #10b981; box-shadow: 0 0 10px #10b981; }
-        .futuristic-toast.error .toast-progress-bar { background: #ef4444; box-shadow: 0 0 10px #ef4444; }
-        .futuristic-toast.info .toast-progress-bar { background: #3b82f6; box-shadow: 0 0 10px #3b82f6; }
-
-        @keyframes progressShrink {
-            from { width: 100%; }
-            to { width: 0%; }
-        }
-
-        .toast-progress-bar.animate {
-            animation: progressShrink 4s linear forwards;
-        }
+        @keyframes progressShrink { from { width: 100%; } to { width: 0%; } }
+        .toast-progress-bar.animate { animation: progressShrink 4s linear forwards; }
 
         /* Loja */
-        .store-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 50px 6%;
-            width: 100%;
-        }
-
+        .store-container { max-width: 1200px; margin: 0 auto; padding: 50px 6%; width: 100%; }
         .store-header { margin-bottom: 40px; }
         .store-header h2 { font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
         .store-header p { color: #94a3b8; }
-
-        .store-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-        }
+        .store-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
 
         .store-card {
-            background: #0b1120;
-            border: 1px solid rgba(59, 130, 246, 0.15);
-            border-radius: 16px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.2s, border-color 0.2s;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            background: #0b1120; border: 1px solid rgba(59, 130, 246, 0.15);
+            border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;
+            transition: transform 0.2s, border-color 0.2s; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
         }
-
-        .store-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(59, 130, 246, 0.4);
-        }
-
-        .store-card-img {
-            width: 100%;
-            height: 160px;
-            background: #1e293b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #3b82f6;
-            font-size: 2.5rem;
-        }
-
-        .store-card-body {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            flex-grow: 1;
-        }
-
+        .store-card:hover { transform: translateY(-4px); border-color: rgba(59, 130, 246, 0.4); }
+        .store-card-img { width: 100%; height: 160px; background: #1e293b; display: flex; align-items: center; justify-content: center; color: #3b82f6; font-size: 2.5rem; }
+        .store-card-body { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
         .store-card-title { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
         .store-card-desc { font-size: 0.85rem; color: #94a3b8; margin-bottom: 20px; line-height: 1.4; }
-
-        .store-card-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: auto;
-        }
-
-        .store-card-price {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: #3b82f6;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .btn-buy {
-            background: #2563eb;
-            color: white;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
+        .store-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
+        .store-card-price { font-size: 1.2rem; font-weight: 800; color: #3b82f6; font-family: 'JetBrains Mono', monospace; }
+        .btn-buy { background: #2563eb; color: white; border: none; padding: 10px 16px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: background 0.2s; }
         .btn-buy:hover { background: #1d4ed8; }
 
         /* Área do Cliente */
-        .client-dashboard-view {
-            display: none;
-            min-height: calc(100vh - 75px);
-            background-color: #030712;
-        }
-
-        .client-dashboard-view.active {
-            display: grid;
-            grid-template-columns: 260px 1fr;
-        }
-
-        .client-sidebar {
-            background: #060b19;
-            border-right: 1px solid rgba(59, 130, 246, 0.12);
-            padding: 30px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .client-user-mini {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .client-user-mini img {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
+        .client-dashboard-view { display: none; min-height: calc(100vh - 75px); background-color: #030712; }
+        .client-dashboard-view.active { display: grid; grid-template-columns: 260px 1fr; }
+        .client-sidebar { background: #060b19; border-right: 1px solid rgba(59, 130, 246, 0.12); padding: 30px 20px; display: flex; flex-direction: column; gap: 25px; }
+        .client-user-mini { display: flex; align-items: center; gap: 12px; padding-bottom: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+        .client-user-mini img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; }
         .client-user-info .c-name { font-weight: 700; font-size: 0.95rem; color: #fff; }
-        .client-user-info .c-role {
-            font-size: 0.75rem;
-            color: #3b82f6;
-            background: rgba(59, 130, 246, 0.1);
-            padding: 2px 8px;
-            border-radius: 10px;
-            display: inline-block;
-            margin-top: 3px;
-        }
-
+        .client-user-info .c-role { font-size: 0.75rem; color: #3b82f6; background: rgba(59, 130, 246, 0.1); padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 3px; }
         .client-nav { display: flex; flex-direction: column; gap: 8px; }
-
-        .client-nav-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 16px;
-            color: #94a3b8;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border-radius: 10px;
-            transition: all 0.2s;
-            background: none;
-            border: none;
-            width: 100%;
-            text-align: left;
-            cursor: pointer;
-        }
-
+        .client-nav-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: #94a3b8; text-decoration: none; font-size: 0.9rem; font-weight: 600; border-radius: 10px; transition: all 0.2s; background: none; border: none; width: 100%; text-align: left; cursor: pointer; }
         .client-nav-item:hover { color: #fff; background: rgba(255, 255, 255, 0.03); }
         .client-nav-item.active { color: #ffffff; background: #1e293b; border-left: 4px solid #3b82f6; }
-
         .client-content { padding: 40px; max-width: 1100px; }
         .client-tab-pane { display: none; }
         .client-tab-pane.active { display: block; }
-
-        .client-banner {
-            background: linear-gradient(135deg, #111c33 0%, #0b1329 100%);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 16px;
-            padding: 30px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 35px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .client-banner-icon {
-            width: 55px;
-            height: 55px;
-            background: #2563eb;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
-        }
-
+        .client-banner { background: linear-gradient(135deg, #111c33 0%, #0b1329 100%); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 16px; padding: 30px; display: flex; align-items: center; gap: 20px; margin-bottom: 35px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
+        .client-banner-icon { width: 55px; height: 55px; background: #2563eb; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; }
         .client-banner-text h2 { font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: 5px; }
         .client-banner-text p { color: #94a3b8; font-size: 0.9rem; }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 25px;
-        }
-
-        .no-products {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 50px 20px;
-            background: #0b1120;
-            border: 1px dashed rgba(59, 130, 246, 0.2);
-            border-radius: 14px;
-            color: #64748b;
-        }
-
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; }
+        .no-products { grid-column: 1 / -1; text-align: center; padding: 50px 20px; background: #0b1120; border: 1px dashed rgba(59, 130, 246, 0.2); border-radius: 14px; color: #64748b; }
         .no-products i { font-size: 2.5rem; margin-bottom: 12px; color: #3b82f6; }
         .no-products p { font-size: 0.95rem; }
-
-        .client-product-card {
-            background: #0b1120;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 12px;
-            padding: 18px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
+        .client-product-card { background: #0b1120; border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
         .client-product-card h4 { color: #fff; font-size: 1rem; }
-
-        .btn-download-file {
-            background: #3b82f6;
-            color: white;
-            border: none;
-            padding: 8px;
-            border-radius: 6px;
-            font-size: 0.82rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            text-decoration: none;
-        }
-
-        .btn-download-file.disabled {
-            background: #1e293b;
-            color: #64748b;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
+        .btn-download-file { background: #3b82f6; color: white; border: none; padding: 8px; border-radius: 6px; font-size: 0.82rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; }
+        .btn-download-file.disabled { background: #1e293b; color: #64748b; cursor: not-allowed; pointer-events: none; }
         .invoices-container { display: flex; flex-direction: column; gap: 12px; }
-
-        .invoice-item {
-            background: #0b1120;
-            border: 1px solid rgba(59, 130, 246, 0.15);
-            border-radius: 12px;
-            padding: 18px 22px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
+        .invoice-item { background: #0b1120; border: 1px solid rgba(59, 130, 246, 0.15); border-radius: 12px; padding: 18px 22px; display: flex; justify-content: space-between; align-items: center; }
         .invoice-info h4 { color: #fff; font-size: 0.95rem; margin-bottom: 4px; }
         .invoice-info span { color: #94a3b8; font-size: 0.8rem; font-family: 'JetBrains Mono', monospace; }
         .invoice-right { display: flex; align-items: center; gap: 20px; }
         .invoice-price { color: #3b82f6; font-weight: 800; font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; }
-        
-        .invoice-status-pending {
-            background: rgba(245, 158, 11, 0.1);
-            color: #f59e0b;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.78rem;
-            font-weight: 700;
-        }
-
-        .licenses-grid-top {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-bottom: 35px;
-        }
-
-        .panel-box {
-            background: #0b1120;
-            border: 1px solid rgba(59, 130, 246, 0.18);
-            border-radius: 16px;
-            padding: 28px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .panel-header-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .panel-header-flex h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #fff;
-            position: relative;
-            padding-left: 12px;
-        }
-
-        .panel-header-flex h3::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 4px; bottom: 4px;
-            width: 4px;
-            background: #3b82f6;
-            border-radius: 4px;
-        }
-
-        .btn-panel-copy {
-            background: transparent;
-            border: none;
-            color: #94a3b8;
-            font-size: 0.82rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: color 0.2s;
-        }
-
+        .invoice-status-pending { background: rgba(245, 158, 11, 0.1); color: #f59e0b; padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; font-weight: 700; }
+        .licenses-grid-top { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 35px; }
+        .panel-box { background: #0b1120; border: 1px solid rgba(59, 130, 246, 0.18); border-radius: 16px; padding: 28px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); }
+        .panel-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+        .panel-header-flex h3 { font-size: 1.1rem; font-weight: 700; color: #fff; position: relative; padding-left: 12px; }
+        .panel-header-flex h3::before { content: ''; position: absolute; left: 0; top: 4px; bottom: 4px; width: 4px; background: #3b82f6; border-radius: 4px; }
+        .btn-panel-copy { background: transparent; border: none; color: #94a3b8; font-size: 0.82rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; }
         .btn-panel-copy:hover { color: #fff; }
-
-        .code-snippet-box {
-            background: #030712;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 16px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.82rem;
-            color: #60a5fa;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
+        .code-snippet-box { background: #030712; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 16px; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: #60a5fa; line-height: 1.6; margin-bottom: 20px; }
         .form-group-license { margin-bottom: 15px; }
         .form-group-license label { display: block; font-size: 0.82rem; color: #94a3b8; margin-bottom: 6px; font-weight: 600; }
-
         .input-with-icon { position: relative; display: flex; align-items: center; }
-        .input-with-icon input {
-            width: 100%;
-            background: #030712;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 8px;
-            padding: 11px 14px;
-            color: #fff;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
+        .input-with-icon input { width: 100%; background: #030712; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 11px 14px; color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; outline: none; }
         .input-with-icon input:focus { border-color: #3b82f6; }
         .input-with-icon i { position: absolute; right: 14px; color: #64748b; font-size: 0.9rem; }
-
-        .btn-save-config {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-            margin-top: 20px;
-        }
-
-        .detail-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            font-size: 0.88rem;
-        }
-
+        .btn-save-config { background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; margin-top: 20px; }
+        .detail-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.04); font-size: 0.88rem; }
         .detail-row:last-child { border-bottom: none; margin-bottom: 15px; }
         .detail-label { color: #94a3b8; }
         .detail-value { color: #fff; font-weight: 600; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
-
         .status-badge-active { color: #10b981; display: inline-flex; align-items: center; gap: 6px; }
-        .status-badge-active::before {
-            content: '';
-            width: 7px;
-            height: 7px;
-            background: #10b981;
-            border-radius: 50%;
-            box-shadow: 0 0 8px #10b981;
-        }
+        .status-badge-active::before { content: ''; width: 7px; height: 7px; background: #10b981; border-radius: 50%; box-shadow: 0 0 8px #10b981; }
+        .btn-revalidate { background: #1e293b; color: #cbd5e1; border: 1px solid rgba(255, 255, 255, 0.08); width: 100%; padding: 11px; border-radius: 8px; font-weight: 600; font-size: 0.88rem; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; margin-top: 15px; }
 
-        .btn-revalidate {
-            background: #1e293b;
-            color: #cbd5e1;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            width: 100%;
-            padding: 11px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.88rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-
-        /* Modais */
+        /* MODAIS */
         .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(2, 6, 23, 0.85);
-            backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(2, 6, 23, 0.85); backdrop-filter: blur(8px);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
         }
-
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
 
         .modal-box {
-            background: #0b1120;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            padding: 35px;
-            border-radius: 18px;
-            width: 100%;
-            max-width: 520px;
-            text-align: center;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
-            position: relative;
+            background: #0b1120; border: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 30px; border-radius: 18px; width: 100%; max-width: 480px;
+            text-align: center; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+            position: relative; max-height: 90vh; overflow-y: auto;
+        }
+        .modal-close { position: absolute; top: 15px; right: 15px; background: none; border: none; color: #64748b; font-size: 1.2rem; cursor: pointer; }
+
+        /* ESTILO DO CARRINHO EXATO SOLICITADO */
+        .cart-modal-top-title {
+            color: #fff; font-size: 1.2rem; font-weight: 700; text-align: left; margin-bottom: 20px;
         }
 
-        .modal-close {
-            position: absolute;
-            top: 15px; right: 15px;
-            background: none; border: none;
-            color: #64748b; font-size: 1.2rem; cursor: pointer;
+        .cart-empty-box-style {
+            padding: 35px 20px; text-align: center; color: #94a3b8; font-size: 0.95rem;
         }
+        .cart-empty-box-style i { font-size: 3rem; color: #3b82f6; margin-bottom: 15px; display: block; }
 
-        .discord-login-action {
-            background: #5865F2;
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 14px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            cursor: pointer;
-            text-decoration: none;
-            margin-top: 15px;
+        .coupon-row {
+            display: flex; gap: 10px; margin-bottom: 18px;
         }
-
-        .cart-modal-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 25px;
+        .coupon-input {
+            flex: 1; background: #030712; border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px; padding: 12px 14px; color: #fff; font-size: 0.85rem; outline: none;
+            font-family: 'JetBrains Mono', monospace; text-transform: uppercase;
         }
-
-        .cart-modal-header h3 { font-size: 1.5rem; font-weight: 800; color: #fff; margin: 0; }
-
-        .cart-modal-items-badge {
-            background: #1e293b;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            color: #38bdf8;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 3px 10px;
-            border-radius: 20px;
+        .coupon-input:focus { border-color: #3b82f6; }
+        .btn-apply-coupon {
+            background: #1e293b; color: #fff; border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0 18px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: background 0.2s;
         }
+        .btn-apply-coupon:hover { background: #3b82f6; }
 
-        .cart-empty-state-box {
-            background: #060b19;
-            border: 1px solid rgba(59, 130, 246, 0.15);
-            border-radius: 14px;
-            padding: 40px 25px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        .cart-total-row {
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; text-align: left;
         }
+        .cart-total-row span:first-child { font-weight: 700; font-size: 1.1rem; color: #fff; }
+        .cart-total-row .total-val { font-weight: 800; font-size: 1.25rem; color: #38bdf8; font-family: 'JetBrains Mono', monospace; }
 
-        .cart-empty-icon { font-size: 2.8rem; color: #3b82f6; margin-bottom: 18px; }
-        .cart-empty-title { font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
-        .cart-empty-desc { font-size: 0.85rem; color: #94a3b8; line-height: 1.5; margin-bottom: 24px; max-width: 340px; }
-
-        .btn-go-to-store {
-            background: transparent;
-            border: 1px solid rgba(59, 130, 246, 0.4);
-            color: #38bdf8;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.88rem;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s;
+        .nif-input {
+            width: 100%; background: #030712; border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px; padding: 12px 14px; color: #fff; font-size: 0.85rem; outline: none;
+            margin-bottom: 16px; font-family: 'Outfit', sans-serif;
         }
+        .nif-input:focus { border-color: #3b82f6; }
 
-        .btn-go-to-store:hover {
-            background: rgba(59, 130, 246, 0.1);
-            border-color: #3b82f6;
-            color: #fff;
+        .store-balance-box {
+            background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;
         }
-
-        .cart-items-list {
-            max-height: 250px;
-            overflow-y: auto;
-            margin-bottom: 20px;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+        .store-balance-info { font-size: 0.88rem; font-weight: 600; color: #cbd5e1; }
+        .store-balance-val { font-family: 'JetBrains Mono', monospace; color: #10b981; font-weight: 700; }
+        
+        .btn-store-balance-pay {
+            background: linear-gradient(135deg, #10b981, #059669); color: white; border: none;
+            width: 100%; padding: 12px; border-radius: 8px; font-weight: 700; font-size: 0.92rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3); margin-bottom: 16px; transition: transform 0.2s;
         }
+        .btn-store-balance-pay:hover { transform: translateY(-1px); }
 
-        .cart-item-row {
-            background: #030712;
-            padding: 12px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid rgba(255,255,255,0.05);
+        .btn-paypal-checkout {
+            background: #ffc439; color: #003087; border: none; width: 100%; padding: 14px;
+            border-radius: 8px; font-weight: 800; font-size: 1.05rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+            box-shadow: 0 4px 15px rgba(255, 196, 57, 0.25); margin-bottom: 12px; transition: background 0.2s;
         }
+        .btn-paypal-checkout:hover { background: #f4b82b; }
+        .btn-paypal-checkout span { font-style: italic; font-weight: 900; letter-spacing: -0.5px; }
 
-        .cart-item-info h5 { color: #fff; font-size: 0.9rem; }
-        .cart-item-info span { color: #3b82f6; font-family: 'JetBrains Mono'; font-size: 0.85rem; }
-
-        .btn-remove-item {
-            background: none; border: none; color: #ef4444; cursor: pointer; font-size: 0.9rem;
+        .btn-card-checkout {
+            background: #1e293b; color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%; padding: 13px; border-radius: 8px; font-weight: 600; font-size: 0.92rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+            transition: background 0.2s, border-color 0.2s; margin-bottom: 15px;
         }
+        .btn-card-checkout:hover { background: #334155; border-color: #3b82f6; }
 
-        .checkout-product-summary {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #030712;
-            padding: 14px 18px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            border: 1px solid rgba(255,255,255,0.05);
-            font-weight: 700;
+        .powered-by-paypal {
+            font-size: 0.75rem; color: #64748b; text-align: center; margin-top: 5px;
         }
+        .powered-by-paypal span { color: #0070ba; font-weight: 700; font-style: italic; }
 
-        .checkout-product-summary .price { color: #3b82f6; font-family: 'JetBrains Mono'; font-size: 1.1rem; }
-
-        .payment-options {
-            display: flex; flex-direction: column; gap: 12px; margin-top: 15px; text-align: left;
+        .cart-items-list-mini {
+            max-height: 160px; overflow-y: auto; margin-bottom: 15px; text-align: left; display: flex; flex-direction: column; gap: 8px;
         }
-
-        .payment-option-card {
-            background: #030712;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 10px;
-            padding: 14px 18px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            transition: all 0.2s;
+        .cart-item-row-mini {
+            background: #030712; padding: 10px 12px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255,255,255,0.04);
         }
-
-        .payment-option-card:hover {
-            border-color: #3b82f6;
-            background: rgba(59, 130, 246, 0.05);
-        }
-
-        .payment-option-card i { font-size: 1.4rem; color: #3b82f6; width: 25px; text-align: center; }
-        .payment-option-info h5 { color: #fff; font-size: 0.95rem; margin-bottom: 2px; }
-        .payment-option-info p { color: #94a3b8; font-size: 0.78rem; margin: 0; }
-
-        .instruction-box {
-            background: #030712;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: left;
-            margin-top: 15px;
-        }
-
-        .instruction-box h4 {
-            color: #fff; font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
-        }
-
-        .instruction-box p { font-size: 0.85rem; color: #cbd5e1; margin-bottom: 8px; }
-
-        .highlight-data {
-            font-family: 'JetBrains Mono', monospace;
-            color: #38bdf8;
-            background: rgba(56, 189, 248, 0.1);
-            padding: 2px 6px;
-            border-radius: 4px;
-        }
-
-        .btn-confirm-payment {
-            background: #2563eb;
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: bold;
-            margin-top: 20px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .btn-confirm-payment:hover { background: #1d4ed8; }
+        .cart-item-row-mini h5 { color: #fff; font-size: 0.85rem; }
+        .cart-item-row-mini span { color: #3b82f6; font-family: 'JetBrains Mono'; font-size: 0.82rem; }
+        .btn-remove-mini { background: none; border: none; color: #ef4444; cursor: pointer; font-size: 0.85rem; }
 
         footer {
-            padding: 25px 8%;
-            background-color: #010409;
-            border-top: 1px solid rgba(59, 130, 246, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            color: #64748b;
+            padding: 25px 8%; background-color: #010409; border-top: 1px solid rgba(59, 130, 246, 0.1);
+            display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: #64748b;
         }
     </style>
 </head>
@@ -1319,7 +791,6 @@
                     </div>
                 </div>
 
-                <!-- Infobox Holográfica -->
                 <div class="hero-infobox">
                     <div class="infobox-left">
                         <div class="infobox-icon-box">
@@ -1514,21 +985,16 @@
         </div>
     </div>
 
-    <!-- Modal do Carrinho -->
+    <!-- Modal do Carrinho Estilo Exacto Pedido -->
     <div class="modal-overlay" id="cartModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeCartModal()"><i class="fa-solid fa-xmark"></i></button>
-            
-            <div class="cart-modal-header">
-                <h3>Seu Carrinho</h3>
-                <span class="cart-modal-items-badge" id="cartModalItemsBadge">0 items</span>
-            </div>
-
+            <div class="cart-modal-top-title">O seu Carrinho</div>
             <div id="cartDynamicContent"></div>
         </div>
     </div>
 
-    <!-- Container das Notificações Flutuantes -->
+    <!-- Container Toast -->
     <div id="toast-container"></div>
 
     <footer>
@@ -1540,75 +1006,52 @@
         let currentDiscordId = "745441462472147007";
         let currentUsername = "Cliente";
         let cart = JSON.parse(localStorage.getItem('store_cart')) || [];
+        let storeBalance = 0.00; // Saldo simulado da loja
 
-        /* SISTEMA DE NOTIFICAÇÃO FUTURÍSTICO (TOAST) */
         function showToast(title, message, type = 'success') {
             const container = document.getElementById('toast-container');
-            
             let iconClass = 'fa-solid fa-circle-check';
             if (type === 'error') iconClass = 'fa-solid fa-circle-xmark';
             if (type === 'info') iconClass = 'fa-solid fa-circle-info';
 
             const toast = document.createElement('div');
             toast.className = `futuristic-toast ${type}`;
-            
             toast.innerHTML = `
                 <div class="toast-content-wrapper">
-                    <div class="toast-icon-box">
-                        <i class="${iconClass}"></i>
-                    </div>
-                    <div class="toast-texts">
-                        <h5>${title}</h5>
-                        <p>${message}</p>
-                    </div>
+                    <div class="toast-icon-box"><i class="${iconClass}"></i></div>
+                    <div class="toast-texts"><h5>${title}</h5><p>${message}</p></div>
                 </div>
                 <div class="toast-progress-bar animate"></div>
             `;
-
             container.appendChild(toast);
-
-            setTimeout(() => {
-                toast.classList.add('show');
-            }, 10);
-
+            setTimeout(() => toast.classList.add('show'), 10);
             setTimeout(() => {
                 toast.classList.remove('show');
                 toast.classList.add('hide');
-                setTimeout(() => {
-                    toast.remove();
-                }, 400);
+                setTimeout(() => toast.remove(), 400);
             }, 4000);
         }
 
         function generateUniqueKey() {
             const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-            let part1 = '', part2 = '', part3 = '', part4 = '';
-            for(let i=0; i<3; i++) part1 += chars.charAt(Math.floor(Math.random() * chars.length));
-            for(let i=0; i<3; i++) part2 += chars.charAt(Math.floor(Math.random() * chars.length));
-            for(let i=0; i<3; i++) part3 += chars.charAt(Math.floor(Math.random() * chars.length));
-            for(let i=0; i<3; i++) part4 += chars.charAt(Math.floor(Math.random() * chars.length));
-            return `${part1}-${part2}-${part3}-${part4}-KEY`;
+            let p = ['', '', '', ''];
+            for(let i=0; i<4; i++) {
+                for(let j=0; j<3; j++) p[i] += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return `${p[0]}-${p[1]}-${p[2]}-${p[3]}-KEY`;
         }
 
         function getClientLicenseData(discordId, username) {
             let storageKey = 'user_license_' + discordId;
-            let licenseData = JSON.parse(localStorage.getItem(storageKey));
-
-            if (!licenseData) {
-                licenseData = {
-                    user: discordId,
-                    username: username,
-                    key: generateUniqueKey(),
-                    ip: "127.0.0.1",
-                    port: "22003",
-                    status: "Ativa"
-                };
-                localStorage.setItem(storageKey, JSON.stringify(licenseData));
+            let data = JSON.parse(localStorage.getItem(storageKey));
+            if (!data) {
+                data = { user: discordId, username: username, key: generateUniqueKey(), ip: "127.0.0.1", port: "22003", status: "Ativa" };
+                localStorage.setItem(storageKey, JSON.stringify(data));
             } else {
-                licenseData.username = username;
-                localStorage.setItem(storageKey, JSON.stringify(licenseData));
+                data.username = username;
+                localStorage.setItem(storageKey, JSON.stringify(data));
             }
-            return licenseData;
+            return data;
         }
 
         function updateLicenseUI(data) {
@@ -1618,7 +1061,6 @@
             document.getElementById('detailPort').textContent = data.port;
             document.getElementById('serverIpInput').value = data.ip;
             document.getElementById('serverPortInput').value = data.port;
-            
             document.getElementById('codeSnippetBox').innerHTML = `
                 configLicense = {<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;["User"] = "${data.user}",<br>
@@ -1629,46 +1071,40 @@
 
         function saveServerConfig() {
             let storageKey = 'user_license_' + currentDiscordId;
-            let licenseData = JSON.parse(localStorage.getItem(storageKey)) || getClientLicenseData(currentDiscordId, currentUsername);
-            licenseData.ip = document.getElementById('serverIpInput').value;
-            licenseData.port = document.getElementById('serverPortInput').value;
-            localStorage.setItem(storageKey, JSON.stringify(licenseData));
-            updateLicenseUI(licenseData);
-            showToast("Configurações Salvas", "As tuas definições de IP e Porta foram atualizadas com sucesso.", "success");
+            let data = JSON.parse(localStorage.getItem(storageKey)) || getClientLicenseData(currentDiscordId, currentUsername);
+            data.ip = document.getElementById('serverIpInput').value;
+            data.port = document.getElementById('serverPortInput').value;
+            localStorage.setItem(storageKey, JSON.stringify(data));
+            updateLicenseUI(data);
+            showToast("Configurações Salvas", "Definições atualizadas com sucesso.", "success");
         }
 
         function revalidateLicense() {
             let storageKey = 'user_license_' + currentDiscordId;
-            let licenseData = JSON.parse(localStorage.getItem(storageKey)) || getClientLicenseData(currentDiscordId, currentUsername);
-            licenseData.key = generateUniqueKey();
-            localStorage.setItem(storageKey, JSON.stringify(licenseData));
-            updateLicenseUI(licenseData);
-            showToast("Licença Revalidada", "Uma nova chave de licença foi gerada com sucesso.", "success");
+            let data = JSON.parse(localStorage.getItem(storageKey)) || getClientLicenseData(currentDiscordId, currentUsername);
+            data.key = generateUniqueKey();
+            localStorage.setItem(storageKey, JSON.stringify(data));
+            updateLicenseUI(data);
+            showToast("Licença Revalidada", "Nova chave gerada com sucesso.", "success");
         }
 
         function copySnippet() {
             const codeText = `configLicense = {\n    ["User"] = "${currentDiscordId}",\n    ["Key"] = "${document.getElementById('detailKey').textContent}"\n}`;
             navigator.clipboard.writeText(codeText);
-            showToast("Copiado!", "Snippet de configuração copiado para a área de transferência.", "info");
+            showToast("Copiado!", "Snippet copiado para a área de transferência.", "info");
         }
 
-        let clientData = JSON.parse(localStorage.getItem('client_purchases')) || {
-            products: [],
-            invoices: []
-        };
+        let clientData = JSON.parse(localStorage.getItem('client_purchases')) || { products: [], invoices: [] };
 
         function addToCart(name, price) {
             cart.push({ name, price });
             localStorage.setItem('store_cart', JSON.stringify(cart));
             updateCartBadge();
-            showToast("Produto Adicionado", `"${name}" foi adicionado ao seu carrinho com sucesso.`, "success");
+            showToast("Produto Adicionado", `"${name}" foi adicionado ao seu carrinho.`, "success");
         }
 
         function updateCartBadge() {
-            const badge = document.getElementById('cartBadge');
-            badge.textContent = cart.length;
-            const modalBadge = document.getElementById('cartModalItemsBadge');
-            if(modalBadge) modalBadge.textContent = `${cart.length} items`;
+            document.getElementById('cartBadge').textContent = cart.length;
         }
 
         document.getElementById('openCartModal').addEventListener('click', () => {
@@ -1686,79 +1122,91 @@
 
             if (cart.length === 0) {
                 container.innerHTML = `
-                    <div class="cart-empty-state-box">
-                        <div class="cart-empty-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-                        <div class="cart-empty-title">Seu carrinho está vazio</div>
-                        <div class="cart-empty-desc">Explore nossa loja e adicione produtos incríveis para começar sua jornada!</div>
-                        <button class="btn-go-to-store" onclick="closeCartModal(); hideAllViews(); storeProductsView.classList.add('active');">
-                            <i class="fa-solid fa-arrow-left"></i> Ir para a Loja
-                        </button>
+                    <div class="cart-empty-box-style">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        O seu carrinho está vazio
                     </div>
                 `;
                 return;
             }
 
-            let total = 0;
-            let itemsHtml = `<div class="cart-items-list">`;
+            let total = cart.reduce((acc, item) => acc + item.price, 0);
+
+            let itemsListHtml = `<div class="cart-items-list-mini">`;
             cart.forEach((item, index) => {
-                total += item.price;
-                itemsHtml += `
-                    <div class="cart-item-row">
-                        <div class="cart-item-info">
-                            <h5>${item.name}</h5>
+                itemsListHtml += `
+                    <div class="cart-item-row-mini">
+                        <h5>${item.name}</h5>
+                        <div>
                             <span>${item.price.toFixed(2)}€</span>
+                            <button class="btn-remove-mini" onclick="removeFromCart(${index})"><i class="fa-solid fa-trash"></i></button>
                         </div>
-                        <button class="btn-remove-item" onclick="removeFromCart(${index})"><i class="fa-solid fa-trash"></i></button>
                     </div>
                 `;
             });
-            itemsHtml += `</div>`;
+            itemsListHtml += `</div>`;
 
             container.innerHTML = `
-                ${itemsHtml}
-                <div class="checkout-product-summary">
-                    <span>Total a Pagar:</span>
-                    <span class="price">${total.toFixed(2)}€</span>
+                ${itemsListHtml}
+                <div class="coupon-row">
+                    <input type="text" class="coupon-input" id="couponCodeInput" placeholder="CUPOM DE DESCONTO">
+                    <button class="btn-apply-coupon" onclick="applyCoupon()">Aplicar</button>
                 </div>
-                <div id="paymentMethodsStep">
-                    <h4 style="color:#fff; font-size:0.95rem; margin-bottom:10px; text-align:left;">Escolha o método de pagamento:</h4>
-                    <div class="payment-options">
-                        <div class="payment-option-card" onclick="selectPaymentMethod('paypal')">
-                            <i class="fa-brands fa-paypal" style="color: #0070ba;"></i>
-                            <div class="payment-option-info">
-                                <h5>PayPal</h5>
-                                <p>Pagamento seguro via conta ou cartão.</p>
-                            </div>
-                        </div>
-                        <div class="payment-option-card" onclick="selectPaymentMethod('mbway')">
-                            <i class="fa-solid fa-mobile-screen-button" style="color: #ff6600;"></i>
-                            <div class="payment-option-info">
-                                <h5>MB Way</h5>
-                                <p>Autorização rápida na app do telemóvel.</p>
-                            </div>
-                        </div>
-                        <div class="payment-option-card" onclick="selectPaymentMethod('transfer')">
-                            <i class="fa-solid fa-building-columns" style="color: #10b981;"></i>
-                            <div class="payment-option-info">
-                                <h5>Transferência Bancária</h5>
-                                <p>Dados de IBAN para pagamento manual.</p>
-                            </div>
-                        </div>
-                    </div>
+                
+                <div class="cart-total-row">
+                    <span>Total:</span>
+                    <span class="total-val">${total.toFixed(2)}€</span>
                 </div>
-                <div id="paymentDetailsContainer" style="display: none;"></div>
+
+                <input type="text" class="nif-input" id="clientNifInput" placeholder="NIF do Cliente (Opcional)">
+
+                <div class="store-balance-box">
+                    <span class="store-balance-info">Saldo Cartão da Loja:</span>
+                    <span class="store-balance-val">${storeBalance.toFixed(2)}€</span>
+                </div>
+
+                <button class="btn-store-balance-pay" onclick="payWithStoreBalance(${total})">
+                    <i class="fa-solid fa-wallet"></i> Pagar com Saldo da Loja
+                </button>
+
+                <button class="btn-paypal-checkout" onclick="handleCheckout('PayPal')">
+                    <span>Pay</span>pal
+                </button>
+
+                <button class="btn-card-checkout" onclick="handleCheckout('Cartão de Débito/Crédito')">
+                    <i class="fa-solid fa-credit-card"></i> Cartão de débito ou crédito
+                </button>
+
+                <div class="powered-by-paypal">
+                    Powered by <span>PayPal</span>
+                </div>
             `;
         }
 
         function removeFromCart(index) {
-            const removedItem = cart[index];
             cart.splice(index, 1);
             localStorage.setItem('store_cart', JSON.stringify(cart));
             renderCartModal();
-            showToast("Item Removido", `"${removedItem.name}" foi removido do carrinho.`, "info");
         }
 
-        function selectPaymentMethod(method) {
+        function applyCoupon() {
+            const code = document.getElementById('couponCodeInput').value.trim();
+            if(!code) {
+                showToast("Cupom Vazio", "Insira um código de cupom válido.", "error");
+                return;
+            }
+            showToast("Cupom Inválido", "O cupom inserido não existe ou expirou.", "error");
+        }
+
+        function payWithStoreBalance(total) {
+            if(storeBalance < total) {
+                showToast("Saldo Insuficiente", "Não tem saldo suficiente no cartão da loja para esta compra.", "error");
+                return;
+            }
+            finalizePurchase('Saldo da Loja');
+        }
+
+        function handleCheckout(method) {
             const token = localStorage.getItem('discord_token');
             if (!token) {
                 closeCartModal();
@@ -1766,60 +1214,14 @@
                 showToast("Erro de Acesso!", "Você precisa estar logado para realizar essa ação.", "error");
                 return;
             }
-
-            const detailsContainer = document.getElementById('paymentDetailsContainer');
-            document.getElementById('paymentMethodsStep').style.display = 'none';
-            detailsContainer.style.display = 'block';
-
-            let total = cart.reduce((acc, item) => acc + item.price, 0).toFixed(2) + '€';
-
-            if (method === 'paypal') {
-                detailsContainer.innerHTML = `
-                    <div class="instruction-box">
-                        <h4><i class="fa-brands fa-paypal" style="color: #0070ba;"></i> Pagamento PayPal</h4>
-                        <p>Envie o montante de <span class="highlight-data">${total}</span> para o nosso email PayPal: <span class="highlight-data">payments@sourcecode.store</span></p>
-                        <p style="margin-top:8px; font-size:0.78rem; color:#94a3b8;">Após efetuar o pagamento, clique no botão abaixo para submeter o pedido para validação.</p>
-                    </div>
-                    <button class="btn-confirm-payment" onclick="finalizeCartPurchase('PayPal')">Já Enviei o Pagamento (Submeter Pedido)</button>
-                `;
-            } else if (method === 'mbway') {
-                detailsContainer.innerHTML = `
-                    <div class="instruction-box">
-                        <h4><i class="fa-solid fa-mobile-screen-button" style="color: #ff6600;"></i> Instruções MB Way</h4>
-                        <p>Envie <span class="highlight-data">${total}</span> para o número: <span class="highlight-data">912 345 678</span></p>
-                        <div class="form-group-license" style="margin-top: 10px;">
-                            <label style="font-size:0.78rem; color:#94a3b8; margin-bottom:4px; display:block;">O seu telemóvel MB Way:</label>
-                            <input type="text" id="mbwayPhoneInput" placeholder="Ex: 912345678" style="width:100%; background:#030712; border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:10px; color:#fff; font-family:'JetBrains Mono';">
-                        </div>
-                    </div>
-                    <button class="btn-confirm-payment" onclick="validateMbWayAndPay()">Submeter Pedido MB Way</button>
-                `;
-            } else if (method === 'transfer') {
-                detailsContainer.innerHTML = `
-                    <div class="instruction-box">
-                        <h4><i class="fa-solid fa-building-columns" style="color: #10b981;"></i> Transferência Bancária</h4>
-                        <p>IBAN: <span class="highlight-data">PT50 0000 0000 0000 0000 0001 9</span></p>
-                        <p style="margin-top: 6px;">Montante: <span class="highlight-data">${total}</span></p>
-                        <p style="margin-top:8px; font-size:0.78rem; color:#94a3b8;">Submeta o pedido após realizar a transferência para a validação manual.</p>
-                    </div>
-                    <button class="btn-confirm-payment" onclick="finalizeCartPurchase('Transferência Bancária')">Já Efetuei a Transferência</button>
-                `;
-            }
+            finalizePurchase(method);
         }
 
-        function validateMbWayAndPay() {
-            const phoneInput = document.getElementById('mbwayPhoneInput').value.trim();
-            if (!phoneInput || phoneInput.length < 9) {
-                showToast("Dados Inválidos", "Por favor, insira um número de telemóvel MB Way válido.", "error");
-                return;
-            }
-            finalizeCartPurchase('MB Way');
-        }
-
-        function finalizeCartPurchase(methodName) {
+        function finalizePurchase(methodName) {
             const invoiceId = 'INV-' + Math.floor(100000 + Math.random() * 900000);
             const currentDate = new Date().toLocaleDateString('pt-PT');
             let total = cart.reduce((acc, item) => acc + item.price, 0).toFixed(2) + '€';
+            let nif = document.getElementById('clientNifInput')?.value || 'N/A';
 
             cart.forEach(item => {
                 clientData.products.push({ name: item.name, status: 'Pendente' });
@@ -1827,7 +1229,7 @@
 
             clientData.invoices.push({ 
                 id: invoiceId, 
-                name: `Compra de ${cart.length} produto(s)`, 
+                name: `Compra de ${cart.length} produto(s) [NIF: ${nif}]`, 
                 price: total, 
                 date: currentDate,
                 method: methodName,
@@ -1835,13 +1237,12 @@
             });
 
             localStorage.setItem('client_purchases', JSON.stringify(clientData));
-            
             cart = [];
             localStorage.removeItem('store_cart');
             updateCartBadge();
 
             closeCartModal();
-            showToast("Pedido Registado!", `Pagamento via ${methodName} submetido para análise.`, "success");
+            showToast("Pedido Concluído!", `Pagamento processado via ${methodName}.`, "success");
             
             hideAllViews();
             document.getElementById('clientDashboardView').classList.add('active');
@@ -1857,9 +1258,7 @@
         });
 
         window.addEventListener('click', () => {
-            if (userDropdown.classList.contains('active')) {
-                userDropdown.classList.remove('active');
-            }
+            if (userDropdown.classList.contains('active')) userDropdown.classList.remove('active');
         });
 
         const modalLogin = document.getElementById('loginModal');
@@ -1950,7 +1349,7 @@
             if (accessToken) {
                 localStorage.setItem('discord_token', accessToken);
                 window.history.replaceState(null, '', window.location.pathname);
-                showToast("Autenticado!", "Sua conta do Discord foi vinculada com sucesso.", "success");
+                showToast("Autenticado!", "Conta do Discord vinculada com sucesso.", "success");
             }
 
             const token = localStorage.getItem('discord_token');
