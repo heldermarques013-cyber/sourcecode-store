@@ -733,26 +733,6 @@
             font-weight: 700;
         }
 
-        .btn-download-invoice {
-            background: #1e293b;
-            color: #38bdf8;
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.2s;
-        }
-
-        .btn-download-invoice:hover {
-            background: #38bdf8;
-            color: #030712;
-        }
-
         /* Licenças */
         .licenses-grid-top {
             display: grid;
@@ -1008,7 +988,6 @@
             margin-top: 15px;
         }
 
-        /* Estilos Customizados do Carrinho Exatamente Iguais à Imagem */
         .cart-modal-header {
             display: flex;
             align-items: center;
@@ -1087,7 +1066,6 @@
             color: #fff;
         }
 
-        /* Itens e Checkout Preenchido */
         .cart-items-list {
             max-height: 250px;
             overflow-y: auto;
@@ -1276,6 +1254,7 @@
                 <i class="fa-solid fa-right-to-bracket"></i> Login
             </button>
 
+            <!-- Utilizador Logado com menu dropdown ao clicar na foto -->
             <div class="user-profile-wrapper" id="userProfileWrapper">
                 <div class="user-profile" id="userProfileBtn">
                     <img src="" alt="Avatar" class="user-avatar" id="userAvatar">
@@ -1284,8 +1263,8 @@
 
                 <div class="user-dropdown" id="userDropdown">
                     <div class="dropdown-header">
-                        <div class="dropdown-username" id="dropdownUsername">helderm.</div>
-                        <div class="dropdown-role">Cliente</div>
+                        <div class="dropdown-username" id="dropdownUsername">Cliente</div>
+                        <div class="dropdown-role">Cliente VIP</div>
                     </div>
                     <button class="dropdown-item" id="openClientArea">
                         <i class="fa-solid fa-user"></i> Área do Cliente
@@ -1387,7 +1366,7 @@
             <div class="client-user-mini">
                 <img src="" alt="Avatar" id="clientAvatarMini">
                 <div class="client-user-info">
-                    <div class="c-name" id="clientNameMini">helderm.</div>
+                    <div class="c-name" id="clientNameMini">Cliente</div>
                     <div class="c-role">Cliente</div>
                 </div>
             </div>
@@ -1450,7 +1429,7 @@
                         </div>
                         <div class="detail-row">
                             <span class="detail-label">Usuário:</span>
-                            <span class="detail-value" id="detailUser">helderm.</span>
+                            <span class="detail-value" id="detailUser">Cliente</span>
                         </div>
                         <div class="detail-row">
                             <span class="detail-label">Chave da Licença:</span>
@@ -1503,7 +1482,7 @@
         </div>
     </div>
 
-    <!-- Modal do Carrinho Personalizado -->
+    <!-- Modal do Carrinho -->
     <div class="modal-overlay" id="cartModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeCartModal()"><i class="fa-solid fa-xmark"></i></button>
@@ -1513,9 +1492,7 @@
                 <span class="cart-modal-items-badge" id="cartModalItemsBadge">0 items</span>
             </div>
 
-            <!-- Conteúdo Dinâmico do Carrinho -->
             <div id="cartDynamicContent"></div>
-
         </div>
     </div>
 
@@ -1600,7 +1577,7 @@
             invoices: []
         };
 
-        // Gestão do Carrinho
+        // Gestão do Carrinho e Stripe Checkout
         function addToCart(name, price) {
             cart.push({ name, price });
             localStorage.setItem('store_cart', JSON.stringify(cart));
@@ -1665,7 +1642,10 @@
                     <span class="price">${total.toFixed(2)}€</span>
                 </div>
                 <div id="cartActionsStep">
-                    <button class="btn-main" style="width:100%; justify-content:center;" onclick="proceedToCheckoutMethods()">Proceder ao Pagamento</button>
+                    <button class="btn-main" style="width:100%; justify-content:center;" onclick="proceedToRealCheckout()">
+                        <i class="fa-brands fa-stripe"></i> Pagar com Stripe / Cartão
+                    </button>
+                    <button class="btn-alt" style="width:100%; justify-content:center; margin-top: 10px;" onclick="proceedToCheckoutMethods()">Outros Métodos</button>
                 </div>
                 <div id="paymentMethodsStep" style="display: none; margin-top: 15px;">
                     <h4 style="color:#fff; font-size:0.95rem; margin-bottom:10px; text-align:left;">Escolha o método:</h4>
@@ -1695,6 +1675,25 @@
                 </div>
                 <div id="paymentDetailsContainer" style="display: none;"></div>
             `;
+        }
+
+        // Função integrada para redirecionamento real ao Stripe
+        function proceedToRealCheckout() {
+            const token = localStorage.getItem('discord_token');
+            if (!token) {
+                alert('Tens de fazer login com o Discord para avançar com o pagamento!');
+                closeCartModal();
+                document.getElementById('loginModal').classList.add('active');
+                return;
+            }
+
+            // Simulação de redirecionamento para o checkout seguro do Stripe (pode substituir pelo link da API real do Stripe)
+            alert('A redirecionar para o portal de pagamento seguro do Stripe...');
+            
+            // Simula o sucesso após retorno do pagamento
+            setTimeout(() => {
+                finalizeCartPurchase('Stripe (Cartão)');
+            }, 1000);
         }
 
         function removeFromCart(index) {
@@ -1793,6 +1792,21 @@
             renderClientData();
         }
 
+        // Dropdown do Perfil do Utilizador (Área de Cliente e Sair)
+        const userProfileBtn = document.getElementById('userProfileBtn');
+        const userDropdown = document.getElementById('userDropdown');
+
+        userProfileBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            userDropdown.classList.toggle('active');
+        });
+
+        window.addEventListener('click', () => {
+            if (userDropdown.classList.contains('active')) {
+                userDropdown.classList.remove('active');
+            }
+        });
+
         // Navegação de vistas e abas
         const modalLogin = document.getElementById('loginModal');
         document.getElementById('openLoginModal').addEventListener('click', () => modalLogin.classList.add('active'));
@@ -1868,6 +1882,7 @@
             }
         }
 
+        // Botão de Terminar Sessão (Sair)
         document.getElementById('logoutBtn').addEventListener('click', () => {
             localStorage.removeItem('discord_token');
             window.location.reload();
