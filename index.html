@@ -110,7 +110,6 @@
             font-size: 1.1rem;
         }
 
-        /* Badge do Carrinho */
         .cart-badge {
             position: absolute;
             top: -6px;
@@ -149,7 +148,6 @@
             transform: translateY(-1px);
         }
 
-        /* Utilizador Logado */
         .user-profile-wrapper {
             position: relative;
             display: none;
@@ -255,7 +253,6 @@
             color: #ef4444;
         }
 
-        /* Views */
         .main-view, .store-products-view {
             display: none;
         }
@@ -381,7 +378,7 @@
             font-weight: bold;
         }
 
-        /* === LOJA DE PRODUTOS === */
+        /* Loja */
         .store-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -489,7 +486,7 @@
             background: #1d4ed8;
         }
 
-        /* === ÁREA DO CLIENTE === */
+        /* Área do Cliente */
         .client-dashboard-view {
             display: none;
             min-height: calc(100vh - 75px);
@@ -682,7 +679,6 @@
             text-decoration: none;
         }
 
-        /* Lista de Faturas */
         .invoices-container {
             display: flex;
             flex-direction: column;
@@ -733,7 +729,6 @@
             font-weight: 700;
         }
 
-        /* Licenças */
         .licenses-grid-top {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1254,7 +1249,7 @@
                 <i class="fa-solid fa-right-to-bracket"></i> Login
             </button>
 
-            <!-- Utilizador Logado com menu dropdown ao clicar na foto -->
+            <!-- Utilizador Logado -->
             <div class="user-profile-wrapper" id="userProfileWrapper">
                 <div class="user-profile" id="userProfileBtn">
                     <img src="" alt="Avatar" class="user-avatar" id="userAvatar">
@@ -1311,7 +1306,7 @@
         <div class="store-container">
             <div class="store-header">
                 <h2>Catálogo de Scripts & Módulos</h2>
-                <p>Adicione ferramentas ao carrinho e proteja-as com licença integrada.</p>
+                <p>Adicione ferramentas ao carrinho e escolha o seu método de pagamento preferido.</p>
             </div>
 
             <div class="store-grid">
@@ -1577,7 +1572,6 @@
             invoices: []
         };
 
-        // Gestão do Carrinho e Stripe Checkout
         function addToCart(name, price) {
             cart.push({ name, price });
             localStorage.setItem('store_cart', JSON.stringify(cart));
@@ -1641,14 +1635,8 @@
                     <span>Total a Pagar:</span>
                     <span class="price">${total.toFixed(2)}€</span>
                 </div>
-                <div id="cartActionsStep">
-                    <button class="btn-main" style="width:100%; justify-content:center;" onclick="proceedToRealCheckout()">
-                        <i class="fa-brands fa-stripe"></i> Pagar com Stripe / Cartão
-                    </button>
-                    <button class="btn-alt" style="width:100%; justify-content:center; margin-top: 10px;" onclick="proceedToCheckoutMethods()">Outros Métodos</button>
-                </div>
-                <div id="paymentMethodsStep" style="display: none; margin-top: 15px;">
-                    <h4 style="color:#fff; font-size:0.95rem; margin-bottom:10px; text-align:left;">Escolha o método:</h4>
+                <div id="paymentMethodsStep">
+                    <h4 style="color:#fff; font-size:0.95rem; margin-bottom:10px; text-align:left;">Escolha o método de pagamento:</h4>
                     <div class="payment-options">
                         <div class="payment-option-card" onclick="selectPaymentMethod('paypal')">
                             <i class="fa-brands fa-paypal" style="color: #0070ba;"></i>
@@ -1677,32 +1665,13 @@
             `;
         }
 
-        // Função integrada para redirecionamento real ao Stripe
-        function proceedToRealCheckout() {
-            const token = localStorage.getItem('discord_token');
-            if (!token) {
-                alert('Tens de fazer login com o Discord para avançar com o pagamento!');
-                closeCartModal();
-                document.getElementById('loginModal').classList.add('active');
-                return;
-            }
-
-            // Simulação de redirecionamento para o checkout seguro do Stripe (pode substituir pelo link da API real do Stripe)
-            alert('A redirecionar para o portal de pagamento seguro do Stripe...');
-            
-            // Simula o sucesso após retorno do pagamento
-            setTimeout(() => {
-                finalizeCartPurchase('Stripe (Cartão)');
-            }, 1000);
-        }
-
         function removeFromCart(index) {
             cart.splice(index, 1);
             localStorage.setItem('store_cart', JSON.stringify(cart));
             renderCartModal();
         }
 
-        function proceedToCheckoutMethods() {
+        function selectPaymentMethod(method) {
             const token = localStorage.getItem('discord_token');
             if (!token) {
                 alert('Tens de fazer login com o Discord para avançar com o pagamento!');
@@ -1711,11 +1680,6 @@
                 return;
             }
 
-            document.getElementById('cartActionsStep').style.display = 'none';
-            document.getElementById('paymentMethodsStep').style.display = 'block';
-        }
-
-        function selectPaymentMethod(method) {
             const detailsContainer = document.getElementById('paymentDetailsContainer');
             document.getElementById('paymentMethodsStep').style.display = 'none';
             detailsContainer.style.display = 'block';
@@ -1725,8 +1689,8 @@
             if (method === 'paypal') {
                 detailsContainer.innerHTML = `
                     <div class="instruction-box">
-                        <h4><i class="fa-brands fa-paypal" style="color: #0070ba;"></i> Redirecionamento PayPal</h4>
-                        <p>Vais concluir o pagamento seguro de <span class="highlight-data">${total}</span>.</p>
+                        <h4><i class="fa-brands fa-paypal" style="color: #0070ba;"></i> Pagamento PayPal</h4>
+                        <p>Vais concluir o pagamento seguro de <span class="highlight-data">${total}</span> através da sua conta PayPal.</p>
                     </div>
                     <button class="btn-confirm-payment" onclick="finalizeCartPurchase('PayPal')">Confirmar Pagamento PayPal</button>
                 `;
@@ -1746,6 +1710,7 @@
                     <div class="instruction-box">
                         <h4><i class="fa-solid fa-building-columns" style="color: #10b981;"></i> Transferência Bancária</h4>
                         <p>IBAN: <span class="highlight-data">PT50 0000 0000 0000 0000 0001 9</span></p>
+                        <p style="margin-top: 6px;">Montante: <span class="highlight-data">${total}</span></p>
                     </div>
                     <button class="btn-confirm-payment" onclick="finalizeCartPurchase('Transferência Bancária')">Já Efetuei a Transferência</button>
                 `;
@@ -1785,14 +1750,13 @@
             updateCartBadge();
 
             closeCartModal();
-            alert(`Pagamento efetuado com sucesso via ${methodName}! Produtos adicionados à tua área.`);
+            alert(`Pagamento registado com sucesso via ${methodName}! Os produtos já estão disponíveis na tua área de cliente.`);
             
             hideAllViews();
             document.getElementById('clientDashboardView').classList.add('active');
             renderClientData();
         }
 
-        // Dropdown do Perfil do Utilizador (Área de Cliente e Sair)
         const userProfileBtn = document.getElementById('userProfileBtn');
         const userDropdown = document.getElementById('userDropdown');
 
@@ -1807,7 +1771,6 @@
             }
         });
 
-        // Navegação de vistas e abas
         const modalLogin = document.getElementById('loginModal');
         document.getElementById('openLoginModal').addEventListener('click', () => modalLogin.classList.add('active'));
         document.getElementById('closeLoginModal').addEventListener('click', () => modalLogin.classList.remove('active'));
@@ -1882,7 +1845,6 @@
             }
         }
 
-        // Botão de Terminar Sessão (Sair)
         document.getElementById('logoutBtn').addEventListener('click', () => {
             localStorage.removeItem('discord_token');
             window.location.reload();
