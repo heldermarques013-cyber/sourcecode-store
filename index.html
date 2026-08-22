@@ -337,6 +337,13 @@
             color: #fff;
         }
 
+        /* Terminal & Infobox Container */
+        .hero-right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
         /* Terminal */
         .hero-terminal {
             background: #0b1120;
@@ -376,6 +383,77 @@
         .terminal-body span {
             color: #60a5fa;
             font-weight: bold;
+        }
+
+        /* Infobox Giria & Fixe */
+        .hero-infobox {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(15, 23, 42, 0.8) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInBox 0.8s ease-out;
+        }
+
+        .hero-infobox::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: #3b82f6;
+        }
+
+        .infobox-icon {
+            background: rgba(59, 130, 246, 0.15);
+            color: #38bdf8;
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .infobox-content h4 {
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .infobox-content h4 span {
+            background: #2563eb;
+            color: #fff;
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .infobox-content p {
+            color: #94a3b8;
+            font-size: 0.82rem;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        @keyframes fadeInBox {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Loja */
@@ -1300,18 +1378,31 @@
                 </div>
             </div>
 
-            <div class="hero-terminal">
-                <div class="terminal-header">
-                    <div class="terminal-dot dot-red"></div>
-                    <div class="terminal-dot dot-yellow"></div>
-                    <div class="terminal-dot dot-green"></div>
-                    <span style="margin-left: 10px; font-size: 0.75rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">sourcecode-core.sh</span>
+            <div class="hero-right-column">
+                <div class="hero-terminal">
+                    <div class="terminal-header">
+                        <div class="terminal-dot dot-red"></div>
+                        <div class="terminal-dot dot-yellow"></div>
+                        <div class="terminal-dot dot-green"></div>
+                        <span style="margin-left: 10px; font-size: 0.75rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">sourcecode-core.sh</span>
+                    </div>
+                    <div class="terminal-body">
+                        <span>$</span> init_secure_environment()<br>
+                        &gt; Loading modules... [OK]<br>
+                        &gt; Encrypting handshake... [SECURE]<br>
+                        &gt; Status: <span>READY FOR PRODUCTION</span>
+                    </div>
                 </div>
-                <div class="terminal-body">
-                    <span>$</span> init_secure_environment()<br>
-                    &gt; Loading modules... [OK]<br>
-                    &gt; Encrypting handshake... [SECURE]<br>
-                    &gt; Status: <span>READY FOR PRODUCTION</span>
+
+                <!-- Nova Infobox Estilizada -->
+                <div class="hero-infobox">
+                    <div class="infobox-icon">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div class="infobox-content">
+                        <h4>Atualização v3.5 <span>Novo</span></h4>
+                        <p>Sistemas otimizados com painel de licenças instantâneo e entrega automatizada via Discord.</p>
+                    </div>
                 </div>
             </div>
         </section>
