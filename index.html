@@ -147,6 +147,30 @@
             transform: translateY(-1px);
         }
 
+        /* Estilo do Utilizador Logado (Perfil e Foto do Discord) */
+        .user-profile {
+            display: none; /* Só fica visível após o login bem-sucedido */
+            align-items: center;
+            gap: 10px;
+            background: #0f172a;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 6px 14px 6px 6px;
+            border-radius: 30px;
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .user-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
         /* Hero Section */
         .hero-split {
             max-width: 1200px;
@@ -381,9 +405,17 @@
                 <i class="fa-solid fa-cart-shopping"></i>
                 <div class="cart-badge">0</div>
             </div>
+            
+            <!-- Botão de Login Normal -->
             <button class="login-btn" id="openLoginModal">
                 <i class="fa-solid fa-right-to-bracket"></i> Login
             </button>
+
+            <!-- Perfil do Utilizador (Oculto até efetuar login) -->
+            <div class="user-profile" id="userProfile">
+                <img src="" alt="Avatar" class="user-avatar" id="userAvatar">
+                <span class="user-name" id="userName">Nome</span>
+            </div>
         </div>
     </header>
 
@@ -421,8 +453,8 @@
             <h3>Autenticação</h3>
             <p>Entra na tua conta para gerires as tuas licenças e painel.</p>
             
-            <!-- Substitui o URL '#' no href abaixo pelo link OAuth2 real do teu bot/aplicação do Discord -->
-            <a href="https://discord.com/oauth2/authorize?client_id=1540416706931851274&response_type=code&redirect_uri=file%3A%2F%2F%2FC%3A%2FUsers%2FH%25C3%25A9lder%2520Marques%2FDesktop%2FLoja%2520Site%2Floja.html%23&scope=identify+email">
+            <!-- Link do Discord ajustado para response_type=token -->
+            <a href="https://discord.com/oauth2/authorize?client_id=1540416706931851274&response_type=code&redirect_uri=https%3A%2F%2Fsourcecode-store-git-main-helder6.vercel.app%2F&scope=identify+email" class="discord-login-action">
                 <i class="fa-brands fa-discord"></i> Entrar com o Discord
             </a>
         </div>
@@ -452,6 +484,54 @@
                 modal.classList.remove('active');
             }
         });
+
+        // Script para processar o login do Discord, buscar dados da conta e mostrar a foto
+        window.onload = async () => {
+            const fragment = new URLSearchParams(window.location.hash.slice(1));
+            const accessToken = fragment.get('access_token');
+
+            if (accessToken) {
+                localStorage.setItem('discord_token', accessToken);
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+
+            const token = localStorage.getItem('discord_token');
+
+            if (token) {
+                try {
+                    const response = await fetch('https://discord.com/api/users/@me', {
+                        headers: {
+                            authorization: `Bearer ${token}`,
+                        },
+                    });
+                    
+                    if (response.ok) {
+                        const userData = await response.json();
+                        
+                        // Oculta o botão de login normal
+                        document.getElementById('openLoginModal').style.display = 'none';
+                        
+                        const profileDiv = document.getElementById('userProfile');
+                        const avatarImg = document.getElementById('userAvatar');
+                        const nameSpan = document.getElementById('userName');
+
+                        // Define a foto de perfil do Discord
+                        if (userData.avatar) {
+                            avatarImg.src = `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`;
+                        } else {
+                            avatarImg.src = 'https://cdn.discordapp.com/embed/avatars/0.png';
+                        }
+
+                        nameSpan.textContent = userData.global_name || userData.username;
+                        profileDiv.style.display = 'flex';
+                    } else {
+                        localStorage.removeItem('discord_token');
+                    }
+                } catch (error) {
+                    console.error('Erro ao obter dados do utilizador:', error);
+                }
+            }
+        };
     </script>
 
 </body>
