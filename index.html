@@ -44,24 +44,14 @@
             text-decoration: none;
         }
 
-        .brand-logo-img {
-            height: 36px;
-            width: auto;
-        }
-
         .brand-text {
             font-weight: 900;
             font-size: 1.35rem;
             letter-spacing: 0.5px;
         }
 
-        .brand-text .source-part {
-            color: #ffffff;
-        }
-
-        .brand-text .code-part {
-            color: #3b82f6;
-        }
+        .brand-text .source-part { color: #ffffff; }
+        .brand-text .code-part { color: #3b82f6; }
 
         .nav-menu {
             display: flex;
@@ -77,9 +67,7 @@
             cursor: pointer;
         }
 
-        .nav-menu a:hover, .nav-menu a.active {
-            color: #ffffff;
-        }
+        .nav-menu a:hover, .nav-menu a.active { color: #ffffff; }
 
         .header-actions {
             display: flex;
@@ -101,14 +89,8 @@
             transition: border-color 0.2s;
         }
 
-        .cart-btn-wrapper:hover {
-            border-color: #3b82f6;
-        }
-
-        .cart-btn-wrapper i {
-            color: #ffffff;
-            font-size: 1.1rem;
-        }
+        .cart-btn-wrapper:hover { border-color: #3b82f6; }
+        .cart-btn-wrapper i { color: #ffffff; font-size: 1.1rem; }
 
         .cart-badge {
             position: absolute;
@@ -143,10 +125,7 @@
             transition: background 0.2s, transform 0.2s;
         }
 
-        .login-btn:hover {
-            background: #4752c4;
-            transform: translateY(-1px);
-        }
+        .login-btn:hover { background: #4752c4; transform: translateY(-1px); }
 
         .user-profile-wrapper {
             position: relative;
@@ -162,25 +141,10 @@
             padding: 6px 14px 6px 6px;
             border-radius: 30px;
             cursor: pointer;
-            transition: border-color 0.2s;
         }
 
-        .user-profile:hover {
-            border-color: #3b82f6;
-        }
-
-        .user-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .user-name {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #fff;
-        }
+        .user-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+        .user-name { font-size: 0.9rem; font-weight: 600; color: #fff; }
 
         .user-dropdown {
             position: absolute;
@@ -197,29 +161,11 @@
             z-index: 101;
         }
 
-        .user-dropdown.active {
-            display: flex;
-        }
+        .user-dropdown.active { display: flex; }
 
-        .dropdown-header {
-            padding: 14px 16px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .dropdown-username {
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: #fff;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .dropdown-role {
-            font-size: 0.8rem;
-            color: #94a3b8;
-            margin-top: 2px;
-        }
+        .dropdown-header { padding: 14px 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+        .dropdown-username { font-weight: 700; font-size: 0.95rem; color: #fff; }
+        .dropdown-role { font-size: 0.8rem; color: #94a3b8; margin-top: 2px; }
 
         .dropdown-item {
             display: flex;
@@ -230,37 +176,21 @@
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 500;
-            transition: background 0.2s, color 0.2s;
             background: none;
             border: none;
             width: 100%;
             text-align: left;
             cursor: pointer;
+            transition: background 0.2s;
         }
 
-        .dropdown-item:hover {
-            background: rgba(59, 130, 246, 0.1);
-            color: #fff;
-        }
+        .dropdown-item:hover { background: rgba(59, 130, 246, 0.1); color: #fff; }
+        .dropdown-item.logout { color: #f87171; border-top: 1px solid rgba(255, 255, 255, 0.08); }
 
-        .dropdown-item.logout {
-            color: #f87171;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-        }
+        .main-view, .store-products-view, .client-dashboard-view { display: none; }
+        .main-view.active, .store-products-view.active { display: block; }
 
-        .dropdown-item.logout:hover {
-            background: rgba(239, 68, 68, 0.1);
-            color: #ef4444;
-        }
-
-        .main-view, .store-products-view {
-            display: none;
-        }
-        .main-view.active, .store-products-view.active {
-            display: block;
-        }
-
-        /* Hero Section */
+        /* Hero */
         .hero-split {
             max-width: 1200px;
             margin: 0 auto;
@@ -277,25 +207,11 @@
             font-weight: 900;
             line-height: 1.1;
             margin-bottom: 20px;
-            letter-spacing: -1px;
             color: #ffffff;
         }
 
-        .hero-content h1 .code-highlight {
-            color: #3b82f6;
-        }
-
-        .hero-content p {
-            color: #94a3b8;
-            font-size: 1.05rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-        }
+        .hero-content h1 .code-highlight { color: #3b82f6; }
+        .hero-content p { color: #94a3b8; font-size: 1.05rem; line-height: 1.6; margin-bottom: 30px; }
 
         .btn-main {
             background: linear-gradient(135deg, #2563eb, #1d4ed8);
@@ -307,105 +223,17 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
-            transition: transform 0.2s;
             cursor: pointer;
             border: none;
         }
 
-        .btn-main:hover {
-            transform: translateY(-2px);
-        }
-
-        .btn-alt {
-            background: #0f172a;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #cbd5e1;
-            padding: 12px 24px;
-            border-radius: 6px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: border-color 0.2s;
-            cursor: pointer;
-        }
-
-        .btn-alt:hover {
-            border-color: #3b82f6;
-            color: #fff;
-        }
-
-        /* Terminal */
-        .hero-terminal {
-            background: #0b1120;
-            border: 1px solid rgba(59, 130, 246, 0.25);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
-        }
-
-        .terminal-header {
-            background: #0f172a;
-            padding: 12px 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border-bottom: 1px solid rgba(59, 130, 246, 0.15);
-        }
-
-        .terminal-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-
-        .dot-red { background: #ef4444; }
-        .dot-yellow { background: #f59e0b; }
-        .dot-green { background: #10b981; }
-
-        .terminal-body {
-            padding: 20px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: #93c5fd;
-            line-height: 1.7;
-        }
-
-        .terminal-body span {
-            color: #60a5fa;
-            font-weight: bold;
-        }
-
         /* Loja */
-        .store-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 50px 6%;
-            width: 100%;
-        }
+        .store-container { max-width: 1200px; margin: 0 auto; padding: 50px 6%; width: 100%; }
+        .store-header { margin-bottom: 40px; }
+        .store-header h2 { font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
+        .store-header p { color: #94a3b8; }
 
-        .store-header {
-            margin-bottom: 40px;
-        }
-
-        .store-header h2 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-
-        .store-header p {
-            color: #94a3b8;
-        }
-
-        .store-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-        }
+        .store-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
 
         .store-card {
             background: #0b1120;
@@ -415,13 +243,9 @@
             display: flex;
             flex-direction: column;
             transition: transform 0.2s, border-color 0.2s;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
         }
 
-        .store-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(59, 130, 246, 0.4);
-        }
+        .store-card:hover { transform: translateY(-4px); border-color: rgba(59, 130, 246, 0.4); }
 
         .store-card-img {
             width: 100%;
@@ -434,41 +258,11 @@
             font-size: 2.5rem;
         }
 
-        .store-card-body {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            flex-grow: 1;
-        }
-
-        .store-card-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 8px;
-        }
-
-        .store-card-desc {
-            font-size: 0.85rem;
-            color: #94a3b8;
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
-
-        .store-card-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: auto;
-        }
-
-        .store-card-price {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: #3b82f6;
-            font-family: 'JetBrains Mono', monospace;
-        }
+        .store-card-body { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
+        .store-card-title { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+        .store-card-desc { font-size: 0.85rem; color: #94a3b8; margin-bottom: 20px; }
+        .store-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
+        .store-card-price { font-size: 1.2rem; font-weight: 800; color: #3b82f6; font-family: 'JetBrains Mono', monospace; }
 
         .btn-buy {
             background: #2563eb;
@@ -482,21 +276,10 @@
             transition: background 0.2s;
         }
 
-        .btn-buy:hover {
-            background: #1d4ed8;
-        }
+        .btn-buy:hover { background: #1d4ed8; }
 
         /* Área do Cliente */
-        .client-dashboard-view {
-            display: none;
-            min-height: calc(100vh - 75px);
-            background-color: #030712;
-        }
-
-        .client-dashboard-view.active {
-            display: grid;
-            grid-template-columns: 260px 1fr;
-        }
+        .client-dashboard-view.active { display: grid; grid-template-columns: 260px 1fr; min-height: calc(100vh - 75px); }
 
         .client-sidebar {
             background: #060b19;
@@ -507,43 +290,12 @@
             gap: 25px;
         }
 
-        .client-user-mini {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
+        .client-user-mini { display: flex; align-items: center; gap: 12px; padding-bottom: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+        .client-user-mini img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; }
+        .client-user-info .c-name { font-weight: 700; font-size: 0.95rem; color: #fff; }
+        .client-user-info .c-role { font-size: 0.75rem; color: #3b82f6; background: rgba(59, 130, 246, 0.1); padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 3px; }
 
-        .client-user-mini img {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .client-user-info .c-name {
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: #fff;
-        }
-
-        .client-user-info .c-role {
-            font-size: 0.75rem;
-            color: #3b82f6;
-            background: rgba(59, 130, 246, 0.1);
-            padding: 2px 8px;
-            border-radius: 10px;
-            display: inline-block;
-            margin-top: 3px;
-        }
-
-        .client-nav {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
+        .client-nav { display: flex; flex-direction: column; gap: 8px; }
         .client-nav-item {
             display: flex;
             align-items: center;
@@ -554,36 +306,18 @@
             font-size: 0.9rem;
             font-weight: 600;
             border-radius: 10px;
-            transition: all 0.2s;
             background: none;
             border: none;
             width: 100%;
             text-align: left;
             cursor: pointer;
         }
+        .client-nav-item:hover { color: #fff; background: rgba(255, 255, 255, 0.03); }
+        .client-nav-item.active { color: #ffffff; background: #1e293b; border-left: 4px solid #3b82f6; }
 
-        .client-nav-item:hover {
-            color: #fff;
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        .client-nav-item.active {
-            color: #ffffff;
-            background: #1e293b;
-            border-left: 4px solid #3b82f6;
-        }
-
-        .client-content {
-            padding: 40px;
-            max-width: 1100px;
-        }
-
-        .client-tab-pane {
-            display: none;
-        }
-        .client-tab-pane.active {
-            display: block;
-        }
+        .client-content { padding: 40px; max-width: 1100px; }
+        .client-tab-pane { display: none; }
+        .client-tab-pane.active { display: block; }
 
         .client-banner {
             background: linear-gradient(135deg, #111c33 0%, #0b1329 100%);
@@ -594,77 +328,21 @@
             align-items: center;
             gap: 20px;
             margin-bottom: 35px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        .client-banner-icon {
-            width: 55px;
-            height: 55px;
-            background: #2563eb;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
-        }
+        .client-banner-icon { width: 55px; height: 55px; background: #2563eb; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; }
+        .client-banner-text h2 { font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: 5px; }
+        .client-banner-text p { color: #94a3b8; font-size: 0.9rem; }
 
-        .client-banner-text h2 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 5px;
-        }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; }
+        .no-products { grid-column: 1 / -1; text-align: center; padding: 50px 20px; background: #0b1120; border: 1px dashed rgba(59, 130, 246, 0.2); border-radius: 14px; color: #64748b; }
+        .no-products i { font-size: 2.5rem; margin-bottom: 12px; color: #3b82f6; }
 
-        .client-banner-text p {
-            color: #94a3b8;
-            font-size: 0.9rem;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 25px;
-        }
-
-        .no-products {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 50px 20px;
-            background: #0b1120;
-            border: 1px dashed rgba(59, 130, 246, 0.2);
-            border-radius: 14px;
-            color: #64748b;
-        }
-
-        .no-products i {
-            font-size: 2.5rem;
-            margin-bottom: 12px;
-            color: #3b82f6;
-        }
-
-        .no-products p {
-            font-size: 0.95rem;
-        }
-
-        .client-product-card {
-            background: #0b1120;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 12px;
-            padding: 18px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .client-product-card h4 {
-            color: #fff;
-            font-size: 1rem;
-        }
+        .client-product-card { background: #0b1120; border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+        .client-product-card h4 { color: #fff; font-size: 1rem; }
 
         .btn-download-file {
-            background: #3b82f6;
+            background: #10b981;
             color: white;
             border: none;
             padding: 8px;
@@ -677,583 +355,56 @@
             justify-content: center;
             gap: 6px;
             text-decoration: none;
+            transition: background 0.2s;
         }
-
-        .btn-download-file.disabled {
-            background: #1e293b;
-            color: #64748b;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
-        .invoices-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .invoice-item {
-            background: #0b1120;
-            border: 1px solid rgba(59, 130, 246, 0.15);
-            border-radius: 12px;
-            padding: 18px 22px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .invoice-info h4 {
-            color: #fff;
-            font-size: 0.95rem;
-            margin-bottom: 4px;
-        }
-
-        .invoice-info span {
-            color: #94a3b8;
-            font-size: 0.8rem;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .invoice-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .invoice-price {
-            color: #3b82f6;
-            font-weight: 800;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.05rem;
-        }
-
-        .invoice-status-paid {
-            background: rgba(16, 185, 129, 0.1);
-            color: #10b981;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.78rem;
-            font-weight: 700;
-        }
-
-        .invoice-status-pending {
-            background: rgba(245, 158, 11, 0.1);
-            color: #f59e0b;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.78rem;
-            font-weight: 700;
-        }
-
-        .licenses-grid-top {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-bottom: 35px;
-        }
-
-        .panel-box {
-            background: #0b1120;
-            border: 1px solid rgba(59, 130, 246, 0.18);
-            border-radius: 16px;
-            padding: 28px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .panel-header-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .panel-header-flex h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #fff;
-            position: relative;
-            padding-left: 12px;
-        }
-
-        .panel-header-flex h3::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 4px;
-            bottom: 4px;
-            width: 4px;
-            background: #3b82f6;
-            border-radius: 4px;
-        }
-
-        .btn-panel-copy {
-            background: transparent;
-            border: none;
-            color: #94a3b8;
-            font-size: 0.82rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: color 0.2s;
-        }
-
-        .btn-panel-copy:hover {
-            color: #fff;
-        }
-
-        .code-snippet-box {
-            background: #030712;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 16px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.82rem;
-            color: #60a5fa;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .form-group-license {
-            margin-bottom: 15px;
-        }
-
-        .form-group-license label {
-            display: block;
-            font-size: 0.82rem;
-            color: #94a3b8;
-            margin-bottom: 6px;
-            font-weight: 600;
-        }
-
-        .input-with-icon {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .input-with-icon input {
-            width: 100%;
-            background: #030712;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 8px;
-            padding: 11px 14px;
-            color: #fff;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .input-with-icon input:focus {
-            border-color: #3b82f6;
-        }
-
-        .input-with-icon i {
-            position: absolute;
-            right: 14px;
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
-        .btn-save-config {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-            margin-top: 20px;
-        }
-
-        .detail-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            font-size: 0.88rem;
-        }
-
-        .detail-row:last-child {
-            border-bottom: none;
-            margin-bottom: 15px;
-        }
-
-        .detail-label {
-            color: #94a3b8;
-        }
-
-        .detail-value {
-            color: #fff;
-            font-weight: 600;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-        }
-
-        .status-badge-active {
-            color: #10b981;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-badge-active::before {
-            content: '';
-            width: 7px;
-            height: 7px;
-            background: #10b981;
-            border-radius: 50%;
-            box-shadow: 0 0 8px #10b981;
-        }
-
-        .btn-revalidate {
-            background: #1e293b;
-            color: #cbd5e1;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            width: 100%;
-            padding: 11px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.88rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
+        .btn-download-file:hover { background: #059669; }
 
         /* Modais */
         .modal-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(2, 6, 23, 0.85);
             backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
         }
-
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
 
         .modal-box {
-            background: #0b1120;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            padding: 35px;
-            border-radius: 18px;
-            width: 100%;
-            max-width: 520px;
-            text-align: center;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
-            position: relative;
+            background: #0b1120; border: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 35px; border-radius: 18px; width: 100%; max-width: 520px; text-align: center; position: relative;
         }
-
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            color: #64748b;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
+        .modal-close { position: absolute; top: 15px; right: 15px; background: none; border: none; color: #64748b; font-size: 1.2rem; cursor: pointer; }
 
         .discord-login-action {
-            background: #5865F2;
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 14px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            cursor: pointer;
-            text-decoration: none;
-            margin-top: 15px;
+            background: #5865F2; color: white; border: none; width: 100%; padding: 14px;
+            border-radius: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+            gap: 10px; cursor: pointer; text-decoration: none; margin-top: 15px;
         }
 
-        .cart-modal-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
-
-        .cart-modal-header h3 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #fff;
-            margin: 0;
-        }
-
-        .cart-modal-items-badge {
-            background: #1e293b;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            color: #38bdf8;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 3px 10px;
-            border-radius: 20px;
-        }
-
-        .cart-empty-state-box {
-            background: #060b19;
-            border: 1px solid rgba(59, 130, 246, 0.15);
-            border-radius: 14px;
-            padding: 40px 25px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .cart-empty-icon {
-            font-size: 2.8rem;
-            color: #3b82f6;
-            margin-bottom: 18px;
-        }
-
-        .cart-empty-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 8px;
-        }
-
-        .cart-empty-desc {
-            font-size: 0.85rem;
-            color: #94a3b8;
-            line-height: 1.5;
-            margin-bottom: 24px;
-            max-width: 340px;
-        }
-
-        .btn-go-to-store {
-            background: transparent;
-            border: 1px solid rgba(59, 130, 246, 0.4);
-            color: #38bdf8;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.88rem;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s;
-        }
-
-        .btn-go-to-store:hover {
-            background: rgba(59, 130, 246, 0.1);
-            border-color: #3b82f6;
-            color: #fff;
-        }
-
-        .cart-items-list {
-            max-height: 250px;
-            overflow-y: auto;
-            margin-bottom: 20px;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .cart-item-row {
-            background: #030712;
-            padding: 12px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .cart-item-info h5 {
-            color: #fff;
-            font-size: 0.9rem;
-        }
-
-        .cart-item-info span {
-            color: #3b82f6;
-            font-family: 'JetBrains Mono';
-            font-size: 0.85rem;
-        }
-
-        .btn-remove-item {
-            background: none;
-            border: none;
-            color: #ef4444;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-
-        .checkout-product-summary {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #030712;
-            padding: 14px 18px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            border: 1px solid rgba(255,255,255,0.05);
-            font-weight: 700;
-        }
-
-        .checkout-product-summary .price {
-            color: #3b82f6;
-            font-family: 'JetBrains Mono';
-            font-size: 1.1rem;
-        }
-
-        .payment-options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 15px;
-            text-align: left;
-        }
-
-        .payment-option-card {
-            background: #030712;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 10px;
-            padding: 14px 18px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            transition: all 0.2s;
-        }
-
-        .payment-option-card:hover {
-            border-color: #3b82f6;
-            background: rgba(59, 130, 246, 0.05);
-        }
-
-        .payment-option-card i {
-            font-size: 1.4rem;
-            color: #3b82f6;
-            width: 25px;
-            text-align: center;
-        }
-
-        .payment-option-info h5 {
-            color: #fff;
-            font-size: 0.95rem;
-            margin-bottom: 2px;
-        }
-
-        .payment-option-info p {
-            color: #94a3b8;
-            font-size: 0.78rem;
-            margin: 0;
-        }
-
-        .instruction-box {
-            background: #030712;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: left;
-            margin-top: 15px;
-        }
-
-        .instruction-box h4 {
-            color: #fff;
-            font-size: 1rem;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .instruction-box p {
-            font-size: 0.85rem;
-            color: #cbd5e1;
-            margin-bottom: 8px;
-        }
-
-        .highlight-data {
-            font-family: 'JetBrains Mono', monospace;
-            color: #38bdf8;
-            background: rgba(56, 189, 248, 0.1);
-            padding: 2px 6px;
-            border-radius: 4px;
-        }
+        .checkout-product-summary { display: flex; justify-content: space-between; align-items: center; background: #030712; padding: 14px 18px; border-radius: 10px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.05); font-weight: 700; }
+        .checkout-product-summary .price { color: #3b82f6; font-family: 'JetBrains Mono'; font-size: 1.1rem; }
 
         .btn-confirm-payment {
-            background: #2563eb;
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: bold;
-            margin-top: 20px;
-            cursor: pointer;
-            transition: background 0.2s;
+            background: #2563eb; color: white; border: none; width: 100%; padding: 12px;
+            border-radius: 8px; font-weight: bold; margin-top: 20px; cursor: pointer;
         }
+        .btn-confirm-payment:hover { background: #1d4ed8; }
 
-        .btn-confirm-payment:hover {
-            background: #1d4ed8;
-        }
-
-        footer {
-            padding: 25px 8%;
-            background-color: #010409;
-            border-top: 1px solid rgba(59, 130, 246, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            color: #64748b;
-        }
+        footer { padding: 25px 8%; background-color: #010409; border-top: 1px solid rgba(59, 130, 246, 0.1); display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: #64748b; }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <a href="#" class="brand" id="logoHomeBtn">
-            <img src="logo.png" alt="SC Store" class="brand-logo-img">
             <div class="brand-text">
                 <span class="source-part">SOURCE</span><span class="code-part">CODE</span>
             </div>
         </a>
         <nav class="nav-menu" id="publicNav">
-            <a href="#" class="active" id="navHome">Inicio</a>
+            <a href="#" class="active" id="navHome">Início</a>
             <a href="#" id="navStoreProducts">Produtos</a>
-            <a href="#">Termos de Serviço</a>
-            <a href="#">Parcerias</a>
         </nav>
         <div class="header-actions">
             <div class="cart-btn-wrapper" id="openCartModal" title="Ver Carrinho">
@@ -1265,13 +416,11 @@
                 <i class="fa-solid fa-right-to-bracket"></i> Login
             </button>
 
-            <!-- Utilizador Logado -->
             <div class="user-profile-wrapper" id="userProfileWrapper">
                 <div class="user-profile" id="userProfileBtn">
                     <img src="" alt="Avatar" class="user-avatar" id="userAvatar">
                     <span class="user-name" id="userName">Nome</span>
                 </div>
-
                 <div class="user-dropdown" id="userDropdown">
                     <div class="dropdown-header">
                         <div class="dropdown-username" id="dropdownUsername">Cliente</div>
@@ -1288,82 +437,50 @@
         </div>
     </header>
 
-    <!-- Vista Principal -->
+    <!-- Início -->
     <div class="main-view active" id="mainView">
         <section class="hero-split">
             <div class="hero-content">
                 <h1>Arquitetura de elite para <span class="code-highlight">desenvolvedores.</span></h1>
-                <p>Ferramentas construídas do zero com foco total em performance, segurança e design utilitário em azul e branco.</p>
+                <p>Ferramentas com entrega automática imediata pós-pagamento via gateway seguro.</p>
                 <div class="hero-buttons">
                     <button class="btn-main" id="exploreBtn">Explorar Sistema <i class="fa-solid fa-arrow-right"></i></button>
-                    <a href="#" class="btn-alt"><i class="fa-brands fa-discord"></i> Suporte</a>
-                </div>
-            </div>
-
-            <div class="hero-terminal">
-                <div class="terminal-header">
-                    <div class="terminal-dot dot-red"></div>
-                    <div class="terminal-dot dot-yellow"></div>
-                    <div class="terminal-dot dot-green"></div>
-                    <span style="margin-left: 10px; font-size: 0.75rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">sourcecode-core.sh</span>
-                </div>
-                <div class="terminal-body">
-                    <span>$</span> init_secure_environment()<br>
-                    &gt; Loading modules... [OK]<br>
-                    &gt; Encrypting handshake... [SECURE]<br>
-                    &gt; Status: <span>READY FOR PRODUCTION</span>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- Vista da Loja -->
+    <!-- Loja -->
     <div class="store-products-view" id="storeProductsView">
         <div class="store-container">
             <div class="store-header">
-                <h2>Catálogo de Scripts & Módulos</h2>
-                <p>Adicione ferramentas ao carrinho e escolha o seu método de pagamento preferido.</p>
+                <h2>Catálogo Automático</h2>
+                <p>Adiciona ao carrinho e conclui o pagamento com entrega instantânea.</p>
             </div>
-
             <div class="store-grid">
                 <div class="store-card">
                     <div class="store-card-img"><i class="fa-solid fa-shield-cat"></i></div>
                     <div class="store-card-body">
                         <div>
                             <h3 class="store-card-title">SC-Core Protection System</h3>
-                            <p class="store-card-desc">Sistema avançado de segurança e criptografia para scripts FiveM.</p>
+                            <p class="store-card-desc">Sistema avançado de segurança e criptografia.</p>
                         </div>
                         <div class="store-card-footer">
                             <span class="store-card-price">14.99€</span>
-                            <button class="btn-buy" onclick="addToCart('SC-Core Protection System', 14.99)">Adicionar ao Carrinho</button>
+                            <button class="btn-buy" onclick="addToCart('SC-Core Protection System', 14.99)">Adicionar</button>
                         </div>
                     </div>
                 </div>
-
                 <div class="store-card">
                     <div class="store-card-img"><i class="fa-solid fa-gauge-high"></i></div>
                     <div class="store-card-body">
                         <div>
                             <h3 class="store-card-title">Advanced Admin HUD</h3>
-                            <p class="store-card-desc">Painel administrativo ultra-otimizado com telemetria em tempo real.</p>
+                            <p class="store-card-desc">Painel administrativo ultra-otimizado.</p>
                         </div>
                         <div class="store-card-footer">
                             <span class="store-card-price">24.99€</span>
-                            <button class="btn-buy" onclick="addToCart('Advanced Admin HUD', 24.99)">Adicionar ao Carrinho</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="store-card">
-                    <div class="store-card-img"><i class="fa-solid fa-car-tunnel"></i></div>
-                    <div class="store-card-body">
-                        <div>
-                            <h3 class="store-card-title">Garage System v3</h3>
-                            <p class="store-card-desc">Sistema de garagens modernas com suporte a múltiplas propriedades.</p>
-                        </div>
-                        <div class="store-card-footer">
-                            <span class="store-card-price">19.99€</span>
-                            <button class="btn-buy" onclick="addToCart('Garage System v3', 19.99)">Adicionar ao Carrinho</button>
+                            <button class="btn-buy" onclick="addToCart('Advanced Admin HUD', 24.99)">Adicionar</button>
                         </div>
                     </div>
                 </div>
@@ -1378,23 +495,20 @@
                 <img src="" alt="Avatar" id="clientAvatarMini">
                 <div class="client-user-info">
                     <div class="c-name" id="clientNameMini">Cliente</div>
-                    <div class="c-role">Cliente</div>
+                    <div class="c-role">Cliente VIP</div>
                 </div>
             </div>
             <nav class="client-nav">
-                <button class="client-nav-item" data-target="tab-products"><i class="fa-solid fa-box"></i> Produtos</button>
-                <button class="client-nav-item active" data-target="tab-licenses"><i class="fa-solid fa-key"></i> Licenças</button>
-                <button class="client-nav-item" data-target="tab-invoices"><i class="fa-solid fa-file-invoice-dollar"></i> Faturas</button>
+                <button class="client-nav-item active" data-target="tab-products"><i class="fa-solid fa-box"></i> Meus Produtos</button>
             </nav>
         </aside>
-
         <main class="client-content">
-            <div class="client-tab-pane" id="tab-products">
+            <div class="client-tab-pane active" id="tab-products">
                 <div class="client-banner">
                     <div class="client-banner-icon"><i class="fa-solid fa-box-open"></i></div>
                     <div class="client-banner-text">
-                        <h2>Seus Produtos</h2>
-                        <p>Gerencie e baixe todos os produtos adquiridos (disponíveis após confirmação do pagamento)</p>
+                        <h2>Produtos Desbloqueados Automaticamente</h2>
+                        <p>O teu acesso fica disponível instantaneamente após a confirmação do pagamento.</p>
                     </div>
                 </div>
                 <div class="products-grid" id="clientProductsGrid">
@@ -1404,202 +518,47 @@
                     </div>
                 </div>
             </div>
-
-            <div class="client-tab-pane active" id="tab-licenses">
-                <div class="licenses-grid-top">
-                    <div class="panel-box">
-                        <div class="panel-header-flex">
-                            <h3>Configuração da Licença</h3>
-                            <button class="btn-panel-copy" onclick="copySnippet()"><i class="fa-solid fa-copy"></i> Copiar</button>
-                        </div>
-                        <div class="code-snippet-box" id="codeSnippetBox">
-                            configLicense = {<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;["User"] = "745441462472147007",<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;["Key"] = "71M-L3K-I4E-VDB-RFMAPPER"<br>
-                            }
-                        </div>
-                        <div class="form-group-license">
-                            <label>IP do Servidor</label>
-                            <div class="input-with-icon">
-                                <input type="text" value="127.0.0.1" id="serverIpInput">
-                                <i class="fa-solid fa-globe"></i>
-                            </div>
-                        </div>
-                        <div class="form-group-license">
-                            <label>Porta do Servidor</label>
-                            <div class="input-with-icon">
-                                <input type="text" value="22003" id="serverPortInput">
-                            </div>
-                        </div>
-                        <button class="btn-save-config" onclick="saveServerConfig()"><i class="fa-solid fa-floppy-disk"></i> Salvar Configurações</button>
-                    </div>
-
-                    <div class="panel-box">
-                        <div class="panel-header-flex">
-                            <h3>Detalhes da Licença</h3>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Usuário:</span>
-                            <span class="detail-value" id="detailUser">Cliente</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Chave da Licença:</span>
-                            <span class="detail-value" id="detailKey">71M-L3K-I4E-VDB-RFMAPPER</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">IP Configurado:</span>
-                            <span class="detail-value" id="detailIp">127.0.0.1</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Porta Configurada:</span>
-                            <span class="detail-value" id="detailPort">22003</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Status da Conta:</span>
-                            <span class="detail-value status-badge-active">Ativa</span>
-                        </div>
-                        <button class="btn-revalidate" onclick="revalidateLicense()"><i class="fa-solid fa-rotate"></i> Revalidar Licença</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="client-tab-pane" id="tab-invoices">
-                <div class="client-banner">
-                    <div class="client-banner-icon" style="background: #f59e0b;"><i class="fa-solid fa-file-invoice-dollar"></i></div>
-                    <div class="client-banner-text">
-                        <h2>Faturas & Histórico</h2>
-                        <p>Consulte o registo de todas as suas compras e estados de pagamento</p>
-                    </div>
-                </div>
-                <div class="invoices-container" id="invoicesContainer">
-                    <div class="no-products" id="noInvoicesMsg">
-                        <i class="fa-solid fa-receipt"></i>
-                        <p>Ainda não existem faturas registadas.</p>
-                    </div>
-                </div>
-            </div>
         </main>
     </div>
 
-    <!-- Modal de Login -->
+    <!-- Modal Login -->
     <div class="modal-overlay" id="loginModal">
         <div class="modal-box">
             <button class="modal-close" id="closeLoginModal"><i class="fa-solid fa-xmark"></i></button>
             <h3>Autenticação</h3>
-            <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 25px;">Entra na tua conta para gerires as tuas licenças e painel.</p>
+            <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 25px;">Entra com o Discord para associar as licenças à tua conta.</p>
             <a href="https://discord.com/oauth2/authorize?client_id=1540416706931851274&response_type=token&redirect_uri=https%3A%2F%2Fsourcecode-store-git-main-helder6.vercel.app%2F&scope=identify+email" class="discord-login-action">
                 <i class="fa-brands fa-discord"></i> Entrar com o Discord
             </a>
         </div>
     </div>
 
-    <!-- Modal do Carrinho -->
+    <!-- Modal Carrinho -->
     <div class="modal-overlay" id="cartModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeCartModal()"><i class="fa-solid fa-xmark"></i></button>
-            
-            <div class="cart-modal-header">
-                <h3>Seu Carrinho</h3>
-                <span class="cart-modal-items-badge" id="cartModalItemsBadge">0 items</span>
-            </div>
-
-            <div id="cartDynamicContent"></div>
+            <h3>Seu Carrinho</h3>
+            <div id="cartDynamicContent" style="margin-top: 20px;"></div>
         </div>
     </div>
 
     <footer>
         <p>&copy; 2026 SourceCode Store. Todos os direitos reservados.</p>
-        <p>Design Exclusivo v3.5</p>
     </footer>
 
     <script>
-        let currentDiscordId = "745441462472147007";
-        let currentUsername = "Cliente";
         let cart = JSON.parse(localStorage.getItem('store_cart')) || [];
-
-        function generateUniqueKey() {
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-            let part1 = '', part2 = '', part3 = '', part4 = '';
-            for(let i=0; i<3; i++) part1 += chars.charAt(Math.floor(Math.random() * chars.length));
-            for(let i=0; i<3; i++) part2 += chars.charAt(Math.floor(Math.random() * chars.length));
-            for(let i=0; i<3; i++) part3 += chars.charAt(Math.floor(Math.random() * chars.length));
-            for(let i=0; i<3; i++) part4 += chars.charAt(Math.floor(Math.random() * chars.length));
-            return `${part1}-${part2}-${part3}-${part4}-KEY`;
-        }
-
-        function getClientLicenseData(discordId, username) {
-            let storageKey = 'user_license_' + discordId;
-            let licenseData = JSON.parse(localStorage.getItem(storageKey));
-
-            if (!licenseData) {
-                licenseData = {
-                    user: discordId,
-                    username: username,
-                    key: generateUniqueKey(),
-                    ip: "127.0.0.1",
-                    port: "22003",
-                    status: "Ativa"
-                };
-                localStorage.setItem(storageKey, JSON.stringify(licenseData));
-            } else {
-                licenseData.username = username;
-                localStorage.setItem(storageKey, JSON.stringify(licenseData));
-            }
-            return licenseData;
-        }
-
-        function updateLicenseUI(data) {
-            document.getElementById('detailUser').textContent = data.username;
-            document.getElementById('detailKey').textContent = data.key;
-            document.getElementById('detailIp').textContent = data.ip;
-            document.getElementById('detailPort').textContent = data.port;
-            document.getElementById('serverIpInput').value = data.ip;
-            document.getElementById('serverPortInput').value = data.port;
-            
-            document.getElementById('codeSnippetBox').innerHTML = `
-                configLicense = {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;["User"] = "${data.user}",<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;["Key"] = "${data.key}"<br>
-                }
-            `;
-        }
-
-        function saveServerConfig() {
-            let storageKey = 'user_license_' + currentDiscordId;
-            let licenseData = JSON.parse(localStorage.getItem(storageKey)) || getClientLicenseData(currentDiscordId, currentUsername);
-            licenseData.ip = document.getElementById('serverIpInput').value;
-            licenseData.port = document.getElementById('serverPortInput').value;
-            localStorage.setItem(storageKey, JSON.stringify(licenseData));
-            updateLicenseUI(licenseData);
-            alert('Configurações salvas com sucesso!');
-        }
-
-        function revalidateLicense() {
-            let storageKey = 'user_license_' + currentDiscordId;
-            let licenseData = JSON.parse(localStorage.getItem(storageKey)) || getClientLicenseData(currentDiscordId, currentUsername);
-            licenseData.key = generateUniqueKey();
-            localStorage.setItem(storageKey, JSON.stringify(licenseData));
-            updateLicenseUI(licenseData);
-            alert('Licença revalidada com sucesso!');
-        }
-
-        let clientData = JSON.parse(localStorage.getItem('client_purchases')) || {
-            products: [],
-            invoices: []
-        };
+        let clientProducts = JSON.parse(localStorage.getItem('client_automatic_products')) || [];
 
         function addToCart(name, price) {
             cart.push({ name, price });
             localStorage.setItem('store_cart', JSON.stringify(cart));
             updateCartBadge();
-            alert(`"${name}" foi adicionado ao carrinho!`);
+            alert(`"${name}" adicionado ao carrinho!`);
         }
 
         function updateCartBadge() {
-            const badge = document.getElementById('cartBadge');
-            badge.textContent = cart.length;
-            const modalBadge = document.getElementById('cartModalItemsBadge');
-            if(modalBadge) modalBadge.textContent = `${cart.length} items`;
+            document.getElementById('cartBadge').textContent = cart.length;
         }
 
         document.getElementById('openCartModal').addEventListener('click', () => {
@@ -1612,188 +571,68 @@
         }
 
         function renderCartModal() {
-            updateCartBadge();
             const container = document.getElementById('cartDynamicContent');
-
             if (cart.length === 0) {
-                container.innerHTML = `
-                    <div class="cart-empty-state-box">
-                        <div class="cart-empty-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-                        <div class="cart-empty-title">Seu carrinho está vazio</div>
-                        <div class="cart-empty-desc">Explore nossa loja e adicione produtos incríveis para começar sua jornada!</div>
-                        <button class="btn-go-to-store" onclick="closeCartModal(); hideAllViews(); storeProductsView.classList.add('active');">
-                            <i class="fa-solid fa-arrow-left"></i> Ir para a Loja
-                        </button>
-                    </div>
-                `;
+                container.innerHTML = `<p style="color: #94a3b8;">O carrinho está vazio.</p>`;
                 return;
             }
 
-            let total = 0;
-            let itemsHtml = `<div class="cart-items-list">`;
-            cart.forEach((item, index) => {
-                total += item.price;
-                itemsHtml += `
-                    <div class="cart-item-row">
-                        <div class="cart-item-info">
-                            <h5>${item.name}</h5>
-                            <span>${item.price.toFixed(2)}€</span>
-                        </div>
-                        <button class="btn-remove-item" onclick="removeFromCart(${index})"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                `;
-            });
-            itemsHtml += `</div>`;
-
+            let total = cart.reduce((acc, item) => acc + item.price, 0).toFixed(2);
             container.innerHTML = `
-                ${itemsHtml}
                 <div class="checkout-product-summary">
-                    <span>Total a Pagar:</span>
-                    <span class="price">${total.toFixed(2)}€</span>
+                    <span>Total:</span>
+                    <span class="price">${total}€</span>
                 </div>
-                <div id="paymentMethodsStep">
-                    <h4 style="color:#fff; font-size:0.95rem; margin-bottom:10px; text-align:left;">Escolha o método de pagamento:</h4>
-                    <div class="payment-options">
-                        <div class="payment-option-card" onclick="selectPaymentMethod('paypal')">
-                            <i class="fa-brands fa-paypal" style="color: #0070ba;"></i>
-                            <div class="payment-option-info">
-                                <h5>PayPal</h5>
-                                <p>Pagamento seguro via conta ou cartão.</p>
-                            </div>
-                        </div>
-                        <div class="payment-option-card" onclick="selectPaymentMethod('mbway')">
-                            <i class="fa-solid fa-mobile-screen-button" style="color: #ff6600;"></i>
-                            <div class="payment-option-info">
-                                <h5>MB Way</h5>
-                                <p>Autorização rápida na app do telemóvel.</p>
-                            </div>
-                        </div>
-                        <div class="payment-option-card" onclick="selectPaymentMethod('transfer')">
-                            <i class="fa-solid fa-building-columns" style="color: #10b981;"></i>
-                            <div class="payment-option-info">
-                                <h5>Transferência Bancária</h5>
-                                <p>Dados de IBAN para pagamento manual.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="paymentDetailsContainer" style="display: none;"></div>
+                <button class="btn-confirm-payment" onclick="simulateInstantCheckout()">
+                    Pagar Automaticamente (Simular Gateway Seguro)
+                </button>
             `;
         }
 
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            localStorage.setItem('store_cart', JSON.stringify(cart));
-            renderCartModal();
-        }
-
-        function selectPaymentMethod(method) {
+        // Simulação do comportamento de gateway automático (Stripe/PayPal)
+        function simulateInstantCheckout() {
             const token = localStorage.getItem('discord_token');
             if (!token) {
-                alert('Tens de fazer login com o Discord para avançar com o pagamento!');
+                alert('Faz login com o Discord antes de finalizar a compra!');
                 closeCartModal();
                 document.getElementById('loginModal').classList.add('active');
                 return;
             }
 
-            const detailsContainer = document.getElementById('paymentDetailsContainer');
-            document.getElementById('paymentMethodsStep').style.display = 'none';
-            detailsContainer.style.display = 'block';
-
-            let total = cart.reduce((acc, item) => acc + item.price, 0).toFixed(2) + '€';
-
-            if (method === 'paypal') {
-                detailsContainer.innerHTML = `
-                    <div class="instruction-box">
-                        <h4><i class="fa-brands fa-paypal" style="color: #0070ba;"></i> Pagamento PayPal</h4>
-                        <p>Envie o montante de <span class="highlight-data">${total}</span> para o nosso email PayPal: <span class="highlight-data">payments@sourcecode.store</span></p>
-                        <p style="margin-top:8px; font-size:0.78rem; color:#94a3b8;">Após efetuar o pagamento, clique no botão abaixo para submeter o pedido para validação.</p>
-                    </div>
-                    <button class="btn-confirm-payment" onclick="finalizeCartPurchase('PayPal')">Já Enviei o Pagamento (Submeter Pedido)</button>
-                `;
-            } else if (method === 'mbway') {
-                detailsContainer.innerHTML = `
-                    <div class="instruction-box">
-                        <h4><i class="fa-solid fa-mobile-screen-button" style="color: #ff6600;"></i> Instruções MB Way</h4>
-                        <p>Envie <span class="highlight-data">${total}</span> para o número: <span class="highlight-data">912 345 678</span></p>
-                        <div class="form-group-license" style="margin-top: 10px;">
-                            <label style="font-size:0.78rem; color:#94a3b8; margin-bottom:4px; display:block;">O seu telemóvel MB Way:</label>
-                            <input type="text" id="mbwayPhoneInput" placeholder="Ex: 912345678" style="width:100%; background:#030712; border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:10px; color:#fff; font-family:'JetBrains Mono';">
-                        </div>
-                    </div>
-                    <button class="btn-confirm-payment" onclick="validateMbWayAndPay()">Submeter Pedido MB Way</button>
-                `;
-            } else if (method === 'transfer') {
-                detailsContainer.innerHTML = `
-                    <div class="instruction-box">
-                        <h4><i class="fa-solid fa-building-columns" style="color: #10b981;"></i> Transferência Bancária</h4>
-                        <p>IBAN: <span class="highlight-data">PT50 0000 0000 0000 0000 0001 9</span></p>
-                        <p style="margin-top: 6px;">Montante: <span class="highlight-data">${total}</span></p>
-                        <p style="margin-top:8px; font-size:0.78rem; color:#94a3b8;">Submeta o pedido após realizar a transferência para a validação manual.</p>
-                    </div>
-                    <button class="btn-confirm-payment" onclick="finalizeCartPurchase('Transferência Bancária')">Já Efetuei a Transferência</button>
-                `;
-            }
-        }
-
-        function validateMbWayAndPay() {
-            const phoneInput = document.getElementById('mbwayPhoneInput').value.trim();
-            if (!phoneInput || phoneInput.length < 9) {
-                alert('Por favor, insere um número de telemóvel válido com pelo menos 9 dígitos.');
-                return;
-            }
-            finalizeCartPurchase('MB Way');
-        }
-
-        function finalizeCartPurchase(methodName) {
-            const invoiceId = 'INV-' + Math.floor(100000 + Math.random() * 900000);
-            const currentDate = new Date().toLocaleDateString('pt-PT');
-            let total = cart.reduce((acc, item) => acc + item.price, 0).toFixed(2) + '€';
-
+            // O gateway processa e retorna automaticamente com sucesso
             cart.forEach(item => {
-                clientData.products.push({ name: item.name, status: 'Pendente' });
+                clientProducts.push({ name: item.name });
             });
 
-            clientData.invoices.push({ 
-                id: invoiceId, 
-                name: `Compra de ${cart.length} produto(s)`, 
-                price: total, 
-                date: currentDate,
-                method: methodName,
-                status: 'Pendente'
-            });
-
-            localStorage.setItem('client_purchases', JSON.stringify(clientData));
-            
+            localStorage.setItem('client_automatic_products', JSON.stringify(clientProducts));
             cart = [];
             localStorage.removeItem('store_cart');
             updateCartBadge();
-
             closeCartModal();
-            alert(`Pedido submetido com sucesso! O pagamento via ${methodName} encontra-se em análise. O acesso aos produtos será libertado após confirmação.`);
+
+            alert('Pagamento aprovado automaticamente pelo sistema de pagamentos! A redirecionar para a Área do Cliente...');
             
             hideAllViews();
             document.getElementById('clientDashboardView').classList.add('active');
-            renderClientData();
+            renderClientProducts();
         }
 
-        const userProfileBtn = document.getElementById('userProfileBtn');
-        const userDropdown = document.getElementById('userDropdown');
-
-        userProfileBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            userDropdown.classList.toggle('active');
-        });
-
-        window.addEventListener('click', () => {
-            if (userDropdown.classList.contains('active')) {
-                userDropdown.classList.remove('active');
+        function renderClientProducts() {
+            const grid = document.getElementById('clientProductsGrid');
+            if (clientProducts.length > 0) {
+                grid.innerHTML = '';
+                clientProducts.forEach(prod => {
+                    grid.innerHTML += `
+                        <div class="client-product-card">
+                            <h4><i class="fa-solid fa-box" style="color: #3b82f6;"></i> ${prod.name}</h4>
+                            <a href="#" class="btn-download-file" onclick="alert('A descarregar ficheiro seguro de ${prod.name}...')">
+                                <i class="fa-solid fa-download"></i> Descarregar Ficheiro
+                            </a>
+                        </div>
+                    `;
+                });
             }
-        });
-
-        const modalLogin = document.getElementById('loginModal');
-        document.getElementById('openLoginModal').addEventListener('click', () => modalLogin.classList.add('active'));
-        document.getElementById('closeLoginModal').addEventListener('click', () => modalLogin.classList.remove('active'));
+        }
 
         const mainView = document.getElementById('mainView');
         const storeProductsView = document.getElementById('storeProductsView');
@@ -1809,109 +648,38 @@
         document.getElementById('navHome').addEventListener('click', (e) => { e.preventDefault(); hideAllViews(); mainView.classList.add('active'); });
         document.getElementById('exploreBtn').addEventListener('click', (e) => { e.preventDefault(); hideAllViews(); storeProductsView.classList.add('active'); });
         document.getElementById('navStoreProducts').addEventListener('click', (e) => { e.preventDefault(); hideAllViews(); storeProductsView.classList.add('active'); });
-        
         document.getElementById('openClientArea').addEventListener('click', (e) => {
             e.preventDefault();
             hideAllViews();
             clientDashboardView.classList.add('active');
-            renderClientData();
+            renderClientProducts();
         });
-
-        const clientNavItems = document.querySelectorAll('.client-nav-item');
-        const clientTabPanes = document.querySelectorAll('.client-tab-pane');
-
-        clientNavItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const targetId = item.getAttribute('data-target');
-                clientNavItems.forEach(nav => nav.classList.toggle('active', nav.getAttribute('data-target') === targetId));
-                clientTabPanes.forEach(pane => pane.classList.toggle('active', pane.id === targetId));
-            });
-        });
-
-        function renderClientData() {
-            const grid = document.getElementById('clientProductsGrid');
-            const invoicesContainer = document.getElementById('invoicesContainer');
-
-            if (clientData.products.length > 0) {
-                grid.innerHTML = '';
-                clientData.products.forEach(prod => {
-                    grid.innerHTML += `
-                        <div class="client-product-card">
-                            <h4><i class="fa-solid fa-box" style="color: #3b82f6;"></i> ${prod.name}</h4>
-                            <a href="#" class="btn-download-file disabled">
-                                <i class="fa-solid fa-clock"></i> A Aguardar Confirmação
-                            </a>
-                        </div>
-                    `;
-                });
-            }
-
-            if (clientData.invoices.length > 0) {
-                invoicesContainer.innerHTML = '';
-                clientData.invoices.forEach(inv => {
-                    invoicesContainer.innerHTML += `
-                        <div class="invoice-item">
-                            <div class="invoice-info">
-                                <h4>${inv.name}</h4>
-                                <span>ID: ${inv.id} • Data: ${inv.date} • ${inv.method}</span>
-                            </div>
-                            <div class="invoice-right">
-                                <span class="invoice-price">${inv.price}</span>
-                                <span class="invoice-status-pending">Pendente</span>
-                            </div>
-                        </div>
-                    `;
-                });
-            }
-        }
 
         document.getElementById('logoutBtn').addEventListener('click', () => {
             localStorage.removeItem('discord_token');
             window.location.reload();
         });
 
+        const modalLogin = document.getElementById('loginModal');
+        document.getElementById('openLoginModal').addEventListener('click', () => modalLogin.classList.add('active'));
+        document.getElementById('closeLoginModal').addEventListener('click', () => modalLogin.classList.remove('active'));
+
         window.addEventListener('DOMContentLoaded', async () => {
             updateCartBadge();
+            renderClientProducts();
+            
             const hash = window.location.hash.substring(1);
             const params = new URLSearchParams(hash);
             const accessToken = params.get('access_token');
-
             if (accessToken) {
                 localStorage.setItem('discord_token', accessToken);
                 window.history.replaceState(null, '', window.location.pathname);
             }
 
-            const token = localStorage.getItem('discord_token');
-            if (token) {
-                try {
-                    const response = await fetch('https://discord.com/api/users/@me', {
-                        headers: { authorization: `Bearer ${token}` }
-                    });
-                    if (response.ok) {
-                        const userData = await response.json();
-                        document.getElementById('openLoginModal').style.display = 'none';
-                        document.getElementById('userProfileWrapper').style.display = 'block';
-
-                        let avatarUrl = userData.avatar ? `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png?size=128` : 'https://cdn.discordapp.com/embed/avatars/0.png';
-                        document.getElementById('userAvatar').src = avatarUrl;
-                        document.getElementById('clientAvatarMini').src = avatarUrl;
-
-                        currentUsername = userData.global_name || userData.username;
-                        currentDiscordId = userData.id;
-
-                        document.getElementById('userName').textContent = currentUsername;
-                        document.getElementById('dropdownUsername').textContent = currentUsername;
-                        document.getElementById('clientNameMini').textContent = currentUsername;
-
-                        let licenseData = getClientLicenseData(currentDiscordId, currentUsername);
-                        updateLicenseUI(licenseData);
-                        renderClientData();
-                    }
-                } catch (e) {
-                    localStorage.removeItem('discord_token');
-                }
+            if (localStorage.getItem('discord_token')) {
+                document.getElementById('openLoginModal').style.display = 'none';
+                document.getElementById('userProfileWrapper').style.display = 'block';
             }
-            updateLicenseUI(getClientLicenseData(currentDiscordId, currentUsername));
         });
     </script>
 </body>
