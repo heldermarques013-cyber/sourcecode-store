@@ -227,12 +227,6 @@
             color: #fff;
         }
 
-        .dropdown-item.active-item {
-            background: rgba(59, 130, 246, 0.15);
-            color: #3b82f6;
-            border-left: 3px solid #3b82f6;
-        }
-
         .dropdown-item.logout {
             color: #f87171;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -369,7 +363,7 @@
             font-weight: bold;
         }
 
-        /* === LOJA DE PRODUTOS (PÁGINA PÚBLICA) === */
+        /* === LOJA DE PRODUTOS === */
         .store-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -719,6 +713,26 @@
             border-radius: 6px;
             font-size: 0.78rem;
             font-weight: 700;
+        }
+
+        .btn-download-invoice {
+            background: #1e293b;
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn-download-invoice:hover {
+            background: #38bdf8;
+            color: #030712;
         }
 
         /* Licenças */
@@ -1140,7 +1154,7 @@
         </section>
     </div>
 
-    <!-- Vista da Loja de Produtos (Quando clica em "Produtos" no menu superior) -->
+    <!-- Vista da Loja de Produtos -->
     <div class="store-products-view" id="storeProductsView">
         <div class="store-container">
             <div class="store-header">
@@ -1379,11 +1393,12 @@
     </footer>
 
     <script>
-        // Gestão de Dados do Utilizador (Salvo no localStorage para simulação)
         let clientData = JSON.parse(localStorage.getItem('client_purchases')) || {
             products: [],
             invoices: []
         };
+
+        let currentUsername = "Cliente";
 
         const modal = document.getElementById('loginModal');
         const openBtn = document.getElementById('openLoginModal');
@@ -1403,7 +1418,6 @@
 
         window.addEventListener('click', () => userDropdown.classList.remove('active'));
 
-        // Navegação entre Vistas Principais (Home, Loja e Área do Cliente)
         const mainView = document.getElementById('mainView');
         const storeProductsView = document.getElementById('storeProductsView');
         const clientDashboardView = document.getElementById('clientDashboardView');
@@ -1433,7 +1447,6 @@
             renderClientData();
         });
 
-        // Abas da Área do Cliente
         const clientNavItems = document.querySelectorAll('.client-nav-item');
         const clientTabPanes = document.querySelectorAll('.client-tab-pane');
 
@@ -1450,7 +1463,6 @@
             item.addEventListener('click', () => switchTab(item.getAttribute('data-target')));
         });
 
-        // Simular Compra de Produto
         function buyProduct(productName, productPrice) {
             const token = localStorage.getItem('discord_token');
             if (!token) {
@@ -1459,11 +1471,9 @@
                 return;
             }
 
-            // Gerar dados da fatura e produto
             const invoiceId = 'INV-' + Math.floor(100000 + Math.random() * 900000);
             const currentDate = new Date().toLocaleDateString('pt-PT');
 
-            // Adicionar aos dados do cliente
             clientData.products.push({ name: productName });
             clientData.invoices.push({ id: invoiceId, name: productName, price: productPrice, date: currentDate });
 
@@ -1471,21 +1481,16 @@
 
             alert(`Compra de "${productName}" efetuada com sucesso! Fatura gerada na tua Área do Cliente.`);
             
-            // Redirecionar para a Área do Cliente -> Faturas
             hideAllViews();
             clientDashboardView.classList.add('active');
             switchTab('tab-invoices');
             renderClientData();
         }
 
-        // Renderizar Produtos e Faturas dinamicamente
         function renderClientData() {
             const grid = document.getElementById('clientProductsGrid');
-            const noProductsMsg = document.getElementById('noProductsMsg');
             const invoicesContainer = document.getElementById('invoicesContainer');
-            const noInvoicesMsg = document.getElementById('noInvoicesMsg');
 
-            // Renderizar Produtos
             if (clientData.products.length > 0) {
                 grid.innerHTML = '';
                 clientData.products.forEach(prod => {
@@ -1500,7 +1505,6 @@
                 });
             }
 
-            // Renderizar Faturas
             if (clientData.invoices.length > 0) {
                 invoicesContainer.innerHTML = '';
                 clientData.invoices.forEach(inv => {
@@ -1513,11 +1517,252 @@
                             <div class="invoice-right">
                                 <span class="invoice-price">${inv.price}</span>
                                 <span class="invoice-status">Pago</span>
+                                <button class="btn-download-invoice" onclick="downloadInvoicePaper('${inv.id}', '${inv.name}', '${inv.price}', '${inv.date}')">
+                                    <i class="fa-solid fa-file-arrow-down"></i> Baixar Fatura
+                                </button>
                             </div>
                         </div>
                     `;
                 });
             }
+        }
+
+        // Função para abrir a fatura no formato de "Papel A4" impressor / PDF
+        function downloadInvoicePaper(invoiceId, productName, productPrice, invoiceDate) {
+            const printWindow = window.open('', '_blank');
+            
+            const invoiceHTML = `
+                <!DOCTYPE html>
+                <html lang="pt">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Fatura - ${invoiceId}</title>
+                    <style>
+                        body {
+                            background: #555;
+                            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                            color: #333;
+                            margin: 0;
+                            padding: 40px;
+                            display: flex;
+                            justify-content: center;
+                        }
+                        .invoice-sheet {
+                            background: #fff;
+                            width: 210mm;
+                            min-height: 297mm;
+                            padding: 20mm;
+                            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+                            box-sizing: border-box;
+                        }
+                        .invoice-header {
+                            display: flex;
+                            justify-content: space-between;
+                            border-bottom: 2px solid #0f172a;
+                            padding-bottom: 20px;
+                            margin-bottom: 30px;
+                        }
+                        .store-info h2 {
+                            margin: 0;
+                            color: #0f172a;
+                            font-size: 24px;
+                        }
+                        .store-info p {
+                            margin: 4px 0 0;
+                            font-size: 13px;
+                            color: #666;
+                        }
+                        .invoice-meta {
+                            text-align: right;
+                        }
+                        .invoice-meta h1 {
+                            margin: 0;
+                            color: #2563eb;
+                            font-size: 22px;
+                        }
+                        .invoice-meta p {
+                            margin: 4px 0 0;
+                            font-size: 13px;
+                            color: #666;
+                        }
+                        .client-section {
+                            margin-bottom: 30px;
+                            background: #f8fafc;
+                            padding: 15px;
+                            border-radius: 6px;
+                            border-left: 4px solid #2563eb;
+                        }
+                        .client-section h3 {
+                            margin: 0 0 5px 0;
+                            font-size: 14px;
+                            color: #0f172a;
+                        }
+                        .client-section p {
+                            margin: 0;
+                            font-size: 13px;
+                            color: #475569;
+                        }
+                        table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            margin-bottom: 30px;
+                        }
+                        th, td {
+                            padding: 12px;
+                            text-align: left;
+                            border-bottom: 1px solid #e2e8f0;
+                            font-size: 14px;
+                        }
+                        th {
+                            background: #0f172a;
+                            color: #fff;
+                            font-weight: 600;
+                        }
+                        td {
+                            color: #334155;
+                        }
+                        .text-right {
+                            text-align: right;
+                        }
+                        .invoice-total {
+                            display: flex;
+                            justify-content: flex-end;
+                            margin-bottom: 50px;
+                        }
+                        .total-box {
+                            width: 250px;
+                            background: #f8fafc;
+                            padding: 15px;
+                            border-radius: 6px;
+                            border: 1px solid #e2e8f0;
+                        }
+                        .total-row {
+                            display: flex;
+                            justify-content: space-between;
+                            margin-bottom: 8px;
+                            font-size: 14px;
+                        }
+                        .total-row.final {
+                            font-weight: bold;
+                            color: #2563eb;
+                            font-size: 16px;
+                            border-top: 1px solid #cbd5e1;
+                            padding-top: 8px;
+                            margin-top: 8px;
+                        }
+                        .invoice-footer {
+                            text-align: center;
+                            border-top: 1px solid #e2e8f0;
+                            padding-top: 20px;
+                            font-size: 12px;
+                            color: #94a3b8;
+                        }
+                        @media print {
+                            body {
+                                background: none;
+                                padding: 0;
+                            }
+                            .invoice-sheet {
+                                box-shadow: none;
+                                width: 100%;
+                                padding: 0;
+                            }
+                            .no-print {
+                                display: none;
+                            }
+                        }
+                        .print-btn-bar {
+                            text-align: center;
+                            margin-bottom: 20px;
+                        }
+                        .btn-print {
+                            background: #2563eb;
+                            color: white;
+                            border: none;
+                            padding: 10px 20px;
+                            border-radius: 6px;
+                            font-size: 14px;
+                            font-weight: bold;
+                            cursor: pointer;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div style="width: 210mm;">
+                        <div class="print-btn-bar no-print">
+                            <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Guardar como PDF</button>
+                        </div>
+                        <div class="invoice-sheet">
+                            <div class="invoice-header">
+                                <div class="store-info">
+                                    <h2>SOURCECODE STORE</h2>
+                                    <p>Plataforma de Licenciamento & Software</p>
+                                    <p>NIF: 500000000</p>
+                                </div>
+                                <div class="invoice-meta">
+                                    <h1>FATURA</h1>
+                                    <p><strong>Nº:</strong> ${invoiceId}</p>
+                                    <p><strong>Data:</strong> ${invoiceDate}</p>
+                                </div>
+                            </div>
+
+                            <div class="client-section">
+                                <h3>Dados do Comprador:</h3>
+                                <p><strong>Cliente:</strong> ${currentUsername}</p>
+                                <p><strong>Método de Pagamento:</strong> Processado via Gateway Digital</p>
+                            </div>
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Descrição do Produto / Serviço</th>
+                                        <th class="text-right">Qtd</th>
+                                        <th class="text-right">Preço Unitário</th>
+                                        <th class="text-right">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong>${productName}</strong><br>
+                                            <small style="color: #64748b;">Licença de uso vitalícia e atualizações incluídas.</small>
+                                        </td>
+                                        <td class="text-right">1</td>
+                                        <td class="text-right">${productPrice}</td>
+                                        <td class="text-right">${productPrice}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="invoice-total">
+                                <div class="total-box">
+                                    <div class="total-row">
+                                        <span>Subtotal:</span>
+                                        <span>${productPrice}</span>
+                                    </div>
+                                    <div class="total-row">
+                                        <span>IVA (0%):</span>
+                                        <span>0.00€</span>
+                                    </div>
+                                    <div class="total-row final">
+                                        <span>Total Final:</span>
+                                        <span>${productPrice}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="invoice-footer">
+                                <p>Processamento eletrónico de furação simplificada • Obrigado pela preferência!</p>
+                                <p>SourceCode Store © 2026 - Todos os direitos reservados</p>
+                            </div>
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `;
+
+            printWindow.document.write(invoiceHTML);
+            printWindow.document.close();
         }
 
         function copySnippet() {
@@ -1533,7 +1778,6 @@
             window.location.reload();
         });
 
-        // Inicialização do Login por Discord
         window.addEventListener('DOMContentLoaded', async () => {
             const hash = window.location.hash.substring(1);
             const params = new URLSearchParams(hash);
@@ -1572,11 +1816,11 @@
                         avatarImg.src = avatarUrl;
                         clientAvatarMini.src = avatarUrl;
 
-                        const displayName = userData.global_name || userData.username;
-                        nameSpan.textContent = displayName;
-                        dropdownUsername.textContent = displayName;
-                        clientNameMini.textContent = displayName;
-                        detailUser.textContent = displayName;
+                        currentUsername = userData.global_name || userData.username;
+                        nameSpan.textContent = currentUsername;
+                        dropdownUsername.textContent = currentUsername;
+                        clientNameMini.textContent = currentUsername;
+                        detailUser.textContent = currentUsername;
                         
                         profileWrapper.style.display = 'block';
                         renderClientData();
