@@ -476,6 +476,14 @@
             max-width: 1000px;
         }
 
+        /* Abas Internas da Área do Cliente */
+        .client-tab-pane {
+            display: none;
+        }
+        .client-tab-pane.active {
+            display: block;
+        }
+
         .client-banner {
             background: linear-gradient(135deg, #111c33 0%, #0b1329 100%);
             border: 1px solid rgba(59, 130, 246, 0.2);
@@ -519,7 +527,7 @@
             gap: 25px;
         }
 
-        /* Mensagem para quando não houver produtos */
+        /* Mensagens de estado vazio */
         .no-products {
             grid-column: 1 / -1;
             text-align: center;
@@ -599,6 +607,97 @@
 
         .btn-download:hover {
             background: #2563eb;
+        }
+
+        /* Estilo da Tabela / Lista de Licenças */
+        .licenses-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .license-card {
+            background: #0b1120;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .license-info h4 {
+            font-size: 1rem;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .license-key-box {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+            padding: 6px 12px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 1px dashed rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-copy {
+            background: #1e293b;
+            color: #cbd5e1;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn-copy:hover {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .protection-guide {
+            margin-top: 30px;
+            background: #0b1120;
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .protection-guide h4 {
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .protection-guide p {
+            color: #94a3b8;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .protection-guide pre {
+            background: #030712;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: #60a5fa;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow-x: auto;
         }
 
         /* Modal */
@@ -791,31 +890,87 @@
                 </div>
             </div>
             <nav class="client-nav">
-                <button class="client-nav-item active"><i class="fa-solid fa-box"></i> Produtos</button>
-                <button class="client-nav-item"><i class="fa-solid fa-key"></i> Licenças</button>
-                <button class="client-nav-item"><i class="fa-solid fa-file-invoice-dollar"></i> Faturas</button>
+                <button class="client-nav-item active" data-target="tab-products"><i class="fa-solid fa-box"></i> Produtos</button>
+                <button class="client-nav-item" data-target="tab-licenses"><i class="fa-solid fa-key"></i> Licenças</button>
+                <button class="client-nav-item" data-target="tab-invoices"><i class="fa-solid fa-file-invoice-dollar"></i> Faturas</button>
             </nav>
         </aside>
 
         <!-- Conteúdo -->
         <main class="client-content">
-            <div class="client-banner">
-                <div class="client-banner-icon">
-                    <i class="fa-solid fa-box-open"></i>
+            
+            <!-- ABA 1: PRODUTOS -->
+            <div class="client-tab-pane active" id="tab-products">
+                <div class="client-banner">
+                    <div class="client-banner-icon">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+                    <div class="client-banner-text">
+                        <h2>Seus Produtos</h2>
+                        <p>Gerencie e baixe todos os produtos adquiridos</p>
+                    </div>
                 </div>
-                <div class="client-banner-text">
-                    <h2>Seus Produtos</h2>
-                    <p>Gerencie e baixe todos os produtos adquiridos</p>
+
+                <div class="products-grid" id="clientProductsGrid">
+                    <div class="no-products">
+                        <i class="fa-solid fa-box-archive"></i>
+                        <p>Ainda não tens nenhum produto adquirido.</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="products-grid" id="clientProductsGrid">
-                <!-- Os produtos comprados aparecerão dinamicamente aqui -->
-                <div class="no-products">
-                    <i class="fa-solid fa-box-archive"></i>
-                    <p>Ainda não tens nenhum produto adquirido.</p>
+            <!-- ABA 2: LICENÇAS -->
+            <div class="client-tab-pane" id="tab-licenses">
+                <div class="client-banner">
+                    <div class="client-banner-icon" style="background: #4f46e5;">
+                        <i class="fa-solid fa-key"></i>
+                    </div>
+                    <div class="client-banner-text">
+                        <h2>Suas Licenças & Proteção</h2>
+                        <p>Copie a sua chave de acesso para configurar dentro do script</p>
+                    </div>
+                </div>
+
+                <div class="licenses-container" id="clientLicensesList">
+                    <!-- Licença de Exemplo (ficará dinâmica depois) -->
+                    <div class="license-card">
+                        <div class="license-info">
+                            <h4>Sistema de Proteção Geral</h4>
+                            <span class="license-key-box" id="key-sample">SC-KEY-98F2A1-PROTECTED</span>
+                        </div>
+                        <button class="btn-copy" onclick="copyKey('SC-KEY-98F2A1-PROTECTED')">
+                            <i class="fa-solid fa-copy"></i> Copiar Chave
+                        </button>
+                    </div>
+                </div>
+
+                <div class="protection-guide">
+                    <h4><i class="fa-solid fa-shield-halved" style="color: #3b82f6;"></i> Como configurar no script?</h4>
+                    <p>Aceda ao ficheiro de configuração do script descarregado (ex: <code>config.lua</code>) e insira os seus dados de utilizador e chave de licença exatamente como no exemplo abaixo:</p>
+                    <pre>Config = {}
+Config.ClientUser = "helderm."
+Config.LicenseKey = "SC-KEY-98F2A1-PROTECTED"</pre>
                 </div>
             </div>
+
+            <!-- ABA 3: FATURAS -->
+            <div class="client-tab-pane" id="tab-invoices">
+                <div class="client-banner">
+                    <div class="client-banner-icon" style="background: #10b981;">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                    </div>
+                    <div class="client-banner-text">
+                        <h2>Faturas & Histórico</h2>
+                        <p>Consulte o registo de todas as suas compras e pagamentos</p>
+                    </div>
+                </div>
+
+                <div class="no-products">
+                    <i class="fa-solid fa-receipt"></i>
+                    <p>Ainda não existem faturas registadas.</p>
+                </div>
+            </div>
+
         </main>
     </div>
 
@@ -871,6 +1026,28 @@
                 userDropdown.classList.remove('active');
             }
         });
+
+        // Navegação entre Abas na Área do Cliente
+        const clientNavItems = document.querySelectorAll('.client-nav-item');
+        const clientTabPanes = document.querySelectorAll('.client-tab-pane');
+
+        clientNavItems.forEach(item => {
+            item.addEventListener('click', () => {
+                clientNavItems.forEach(nav => nav.classList.remove('active'));
+                clientTabPanes.forEach(pane => pane.classList.remove('active'));
+
+                item.classList.add('active');
+                const targetId = item.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        // Função para Copiar Chave
+        function copyKey(keyText) {
+            navigator.clipboard.writeText(keyText).then(() => {
+                alert('Chave de licença copiada com sucesso!');
+            });
+        }
 
         // Navegação entre Início e Área do Cliente
         const mainView = document.getElementById('mainView');
