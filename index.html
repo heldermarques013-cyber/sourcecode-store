@@ -453,8 +453,8 @@
             <h3>Autenticação</h3>
             <p>Entra na tua conta para gerires as tuas licenças e painel.</p>
             
-            <!-- Link do Discord ajustado para response_type=token -->
-            <a href="https://discord.com/oauth2/authorize?client_id=1540416706931851274&response_type=code&redirect_uri=https%3A%2F%2Fsourcecode-store-git-main-helder6.vercel.app%2F&scope=identify+email" class="discord-login-action">
+            <!-- Link corrigido para response_type=token -->
+            <a href="https://discord.com/oauth2/authorize?client_id=1540416706931851274&response_type=token&redirect_uri=https%3A%2F%2Fsourcecode-store-git-main-helder6.vercel.app%2F&scope=identify+email" class="discord-login-action">
                 <i class="fa-brands fa-discord"></i> Entrar com o Discord
             </a>
         </div>
@@ -485,14 +485,15 @@
             }
         });
 
-        // Script para processar o login do Discord, buscar dados da conta e mostrar a foto
-        window.onload = async () => {
-            const fragment = new URLSearchParams(window.location.hash.slice(1));
-            const accessToken = fragment.get('access_token');
+        // Script robusto para capturar o token e mostrar a foto
+        window.addEventListener('DOMContentLoaded', async () => {
+            const hash = window.location.hash.substring(1);
+            const params = new URLSearchParams(hash);
+            const accessToken = params.get('access_token');
 
             if (accessToken) {
                 localStorage.setItem('discord_token', accessToken);
-                window.history.replaceState({}, document.title, window.location.pathname);
+                window.history.replaceState(null, '', window.location.pathname);
             }
 
             const token = localStorage.getItem('discord_token');
@@ -508,16 +509,14 @@
                     if (response.ok) {
                         const userData = await response.json();
                         
-                        // Oculta o botão de login normal
                         document.getElementById('openLoginModal').style.display = 'none';
                         
                         const profileDiv = document.getElementById('userProfile');
                         const avatarImg = document.getElementById('userAvatar');
                         const nameSpan = document.getElementById('userName');
 
-                        // Define a foto de perfil do Discord
                         if (userData.avatar) {
-                            avatarImg.src = `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`;
+                            avatarImg.src = `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png?size=128`;
                         } else {
                             avatarImg.src = 'https://cdn.discordapp.com/embed/avatars/0.png';
                         }
@@ -531,7 +530,7 @@
                     console.error('Erro ao obter dados do utilizador:', error);
                 }
             }
-        };
+        });
     </script>
 
 </body>
