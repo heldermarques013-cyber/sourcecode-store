@@ -519,6 +519,27 @@
             gap: 25px;
         }
 
+        /* Mensagem para quando não houver produtos */
+        .no-products {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 50px 20px;
+            background: #0b1120;
+            border: 1px dashed rgba(59, 130, 246, 0.2);
+            border-radius: 14px;
+            color: #64748b;
+        }
+
+        .no-products i {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            color: #3b82f6;
+        }
+
+        .no-products p {
+            font-size: 0.95rem;
+        }
+
         .product-card {
             background: #0b1120;
             border: 1px solid rgba(59, 130, 246, 0.15);
@@ -788,23 +809,11 @@
                 </div>
             </div>
 
-            <div class="products-grid">
-                <!-- Produto 1 -->
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1555680202-c86f0e12f086?w=500&auto=format&fit=crop&q=60" alt="Departamento de Policia LS" class="product-card-img">
-                    <div class="product-card-body">
-                        <div class="product-card-title">Departamento de Polícia LS</div>
-                        <a href="#" class="btn-download"><i class="fa-solid fa-download"></i> Baixar</a>
-                    </div>
-                </div>
-
-                <!-- Produto 2 -->
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=500&auto=format&fit=crop&q=60" alt="Hospital LS" class="product-card-img">
-                    <div class="product-card-body">
-                        <div class="product-card-title">Hospital LS</div>
-                        <a href="#" class="btn-download"><i class="fa-solid fa-download"></i> Baixar</a>
-                    </div>
+            <div class="products-grid" id="clientProductsGrid">
+                <!-- Os produtos comprados aparecerão dinamicamente aqui -->
+                <div class="no-products">
+                    <i class="fa-solid fa-box-archive"></i>
+                    <p>Ainda não tens nenhum produto adquirido.</p>
                 </div>
             </div>
         </main>
