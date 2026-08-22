@@ -55,13 +55,8 @@
             letter-spacing: 0.5px;
         }
 
-        .brand-text .source-part {
-            color: #ffffff;
-        }
-
-        .brand-text .code-part {
-            color: #3b82f6;
-        }
+        .brand-text .source-part { color: #ffffff; }
+        .brand-text .code-part { color: #3b82f6; }
 
         .nav-menu {
             display: flex;
@@ -337,14 +332,13 @@
             color: #fff;
         }
 
-        /* Terminal & Infobox Container */
+        /* Terminal & Infobox */
         .hero-right-column {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        /* Terminal */
         .hero-terminal {
             background: #0b1120;
             border: 1px solid rgba(59, 130, 246, 0.25);
@@ -385,7 +379,7 @@
             font-weight: bold;
         }
 
-        /* NOVA INFOBOX MODERNA E BONITA */
+        /* Infobox Holográfica */
         .hero-infobox {
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 58, 138, 0.3) 100%);
             border: 1px solid rgba(59, 130, 246, 0.35);
@@ -402,7 +396,6 @@
             animation: fadeInBox 0.8s ease-out;
         }
 
-        /* Efeito de brilho subtil no canto */
         .hero-infobox::after {
             content: '';
             position: absolute;
@@ -503,6 +496,114 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* NOTIFICAÇÕES TOAST FUTURÍSTICAS DE CANTO */
+        #toast-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            pointer-events: none;
+        }
+
+        .futuristic-toast {
+            background: rgba(11, 17, 32, 0.88);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 14px;
+            padding: 16px 20px;
+            width: 350px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            pointer-events: auto;
+            transform: translateX(110%);
+            opacity: 0;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+        }
+
+        .futuristic-toast.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .futuristic-toast.hide {
+            transform: translateX(110%);
+            opacity: 0;
+        }
+
+        .toast-content-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .toast-icon-box {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .futuristic-toast.success .toast-icon-box {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .futuristic-toast.error .toast-icon-box {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .futuristic-toast.info .toast-icon-box {
+            background: rgba(59, 130, 246, 0.15);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .toast-texts h5 {
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        .toast-texts p {
+            color: #94a3b8;
+            font-size: 0.82rem;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .toast-progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            width: 100%;
+        }
+
+        .futuristic-toast.success .toast-progress-bar { background: #10b981; box-shadow: 0 0 10px #10b981; }
+        .futuristic-toast.error .toast-progress-bar { background: #ef4444; box-shadow: 0 0 10px #ef4444; }
+        .futuristic-toast.info .toast-progress-bar { background: #3b82f6; box-shadow: 0 0 10px #3b82f6; }
+
+        @keyframes progressShrink {
+            from { width: 100%; }
+            to { width: 0%; }
+        }
+
+        .toast-progress-bar.animate {
+            animation: progressShrink 4s linear forwards;
+        }
+
         /* Loja */
         .store-container {
             max-width: 1200px;
@@ -511,20 +612,9 @@
             width: 100%;
         }
 
-        .store-header {
-            margin-bottom: 40px;
-        }
-
-        .store-header h2 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-
-        .store-header p {
-            color: #94a3b8;
-        }
+        .store-header { margin-bottom: 40px; }
+        .store-header h2 { font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
+        .store-header p { color: #94a3b8; }
 
         .store-grid {
             display: grid;
@@ -567,19 +657,8 @@
             flex-grow: 1;
         }
 
-        .store-card-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 8px;
-        }
-
-        .store-card-desc {
-            font-size: 0.85rem;
-            color: #94a3b8;
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
+        .store-card-title { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+        .store-card-desc { font-size: 0.85rem; color: #94a3b8; margin-bottom: 20px; line-height: 1.4; }
 
         .store-card-footer {
             display: flex;
@@ -607,9 +686,7 @@
             transition: background 0.2s;
         }
 
-        .btn-buy:hover {
-            background: #1d4ed8;
-        }
+        .btn-buy:hover { background: #1d4ed8; }
 
         /* Área do Cliente */
         .client-dashboard-view {
@@ -647,12 +724,7 @@
             object-fit: cover;
         }
 
-        .client-user-info .c-name {
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: #fff;
-        }
-
+        .client-user-info .c-name { font-weight: 700; font-size: 0.95rem; color: #fff; }
         .client-user-info .c-role {
             font-size: 0.75rem;
             color: #3b82f6;
@@ -663,11 +735,7 @@
             margin-top: 3px;
         }
 
-        .client-nav {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
+        .client-nav { display: flex; flex-direction: column; gap: 8px; }
 
         .client-nav-item {
             display: flex;
@@ -687,28 +755,12 @@
             cursor: pointer;
         }
 
-        .client-nav-item:hover {
-            color: #fff;
-            background: rgba(255, 255, 255, 0.03);
-        }
+        .client-nav-item:hover { color: #fff; background: rgba(255, 255, 255, 0.03); }
+        .client-nav-item.active { color: #ffffff; background: #1e293b; border-left: 4px solid #3b82f6; }
 
-        .client-nav-item.active {
-            color: #ffffff;
-            background: #1e293b;
-            border-left: 4px solid #3b82f6;
-        }
-
-        .client-content {
-            padding: 40px;
-            max-width: 1100px;
-        }
-
-        .client-tab-pane {
-            display: none;
-        }
-        .client-tab-pane.active {
-            display: block;
-        }
+        .client-content { padding: 40px; max-width: 1100px; }
+        .client-tab-pane { display: none; }
+        .client-tab-pane.active { display: block; }
 
         .client-banner {
             background: linear-gradient(135deg, #111c33 0%, #0b1329 100%);
@@ -735,17 +787,8 @@
             box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
         }
 
-        .client-banner-text h2 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 5px;
-        }
-
-        .client-banner-text p {
-            color: #94a3b8;
-            font-size: 0.9rem;
-        }
+        .client-banner-text h2 { font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: 5px; }
+        .client-banner-text p { color: #94a3b8; font-size: 0.9rem; }
 
         .products-grid {
             display: grid;
@@ -763,15 +806,8 @@
             color: #64748b;
         }
 
-        .no-products i {
-            font-size: 2.5rem;
-            margin-bottom: 12px;
-            color: #3b82f6;
-        }
-
-        .no-products p {
-            font-size: 0.95rem;
-        }
+        .no-products i { font-size: 2.5rem; margin-bottom: 12px; color: #3b82f6; }
+        .no-products p { font-size: 0.95rem; }
 
         .client-product-card {
             background: #0b1120;
@@ -783,10 +819,7 @@
             gap: 12px;
         }
 
-        .client-product-card h4 {
-            color: #fff;
-            font-size: 1rem;
-        }
+        .client-product-card h4 { color: #fff; font-size: 1rem; }
 
         .btn-download-file {
             background: #3b82f6;
@@ -811,11 +844,7 @@
             pointer-events: none;
         }
 
-        .invoices-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+        .invoices-container { display: flex; flex-direction: column; gap: 12px; }
 
         .invoice-item {
             background: #0b1120;
@@ -827,40 +856,11 @@
             align-items: center;
         }
 
-        .invoice-info h4 {
-            color: #fff;
-            font-size: 0.95rem;
-            margin-bottom: 4px;
-        }
-
-        .invoice-info span {
-            color: #94a3b8;
-            font-size: 0.8rem;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .invoice-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .invoice-price {
-            color: #3b82f6;
-            font-weight: 800;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.05rem;
-        }
-
-        .invoice-status-paid {
-            background: rgba(16, 185, 129, 0.1);
-            color: #10b981;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.78rem;
-            font-weight: 700;
-        }
-
+        .invoice-info h4 { color: #fff; font-size: 0.95rem; margin-bottom: 4px; }
+        .invoice-info span { color: #94a3b8; font-size: 0.8rem; font-family: 'JetBrains Mono', monospace; }
+        .invoice-right { display: flex; align-items: center; gap: 20px; }
+        .invoice-price { color: #3b82f6; font-weight: 800; font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; }
+        
         .invoice-status-pending {
             background: rgba(245, 158, 11, 0.1);
             color: #f59e0b;
@@ -905,9 +905,7 @@
         .panel-header-flex h3::before {
             content: '';
             position: absolute;
-            left: 0;
-            top: 4px;
-            bottom: 4px;
+            left: 0; top: 4px; bottom: 4px;
             width: 4px;
             background: #3b82f6;
             border-radius: 4px;
@@ -926,9 +924,7 @@
             transition: color 0.2s;
         }
 
-        .btn-panel-copy:hover {
-            color: #fff;
-        }
+        .btn-panel-copy:hover { color: #fff; }
 
         .code-snippet-box {
             background: #030712;
@@ -942,24 +938,10 @@
             margin-bottom: 20px;
         }
 
-        .form-group-license {
-            margin-bottom: 15px;
-        }
+        .form-group-license { margin-bottom: 15px; }
+        .form-group-license label { display: block; font-size: 0.82rem; color: #94a3b8; margin-bottom: 6px; font-weight: 600; }
 
-        .form-group-license label {
-            display: block;
-            font-size: 0.82rem;
-            color: #94a3b8;
-            margin-bottom: 6px;
-            font-weight: 600;
-        }
-
-        .input-with-icon {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
+        .input-with-icon { position: relative; display: flex; align-items: center; }
         .input-with-icon input {
             width: 100%;
             background: #030712;
@@ -973,16 +955,8 @@
             transition: border-color 0.2s;
         }
 
-        .input-with-icon input:focus {
-            border-color: #3b82f6;
-        }
-
-        .input-with-icon i {
-            position: absolute;
-            right: 14px;
-            color: #64748b;
-            font-size: 0.9rem;
-        }
+        .input-with-icon input:focus { border-color: #3b82f6; }
+        .input-with-icon i { position: absolute; right: 14px; color: #64748b; font-size: 0.9rem; }
 
         .btn-save-config {
             background: linear-gradient(135deg, #2563eb, #1d4ed8);
@@ -1011,29 +985,11 @@
             font-size: 0.88rem;
         }
 
-        .detail-row:last-child {
-            border-bottom: none;
-            margin-bottom: 15px;
-        }
+        .detail-row:last-child { border-bottom: none; margin-bottom: 15px; }
+        .detail-label { color: #94a3b8; }
+        .detail-value { color: #fff; font-weight: 600; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
 
-        .detail-label {
-            color: #94a3b8;
-        }
-
-        .detail-value {
-            color: #fff;
-            font-weight: 600;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-        }
-
-        .status-badge-active {
-            color: #10b981;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
+        .status-badge-active { color: #10b981; display: inline-flex; align-items: center; gap: 6px; }
         .status-badge-active::before {
             content: '';
             width: 7px;
@@ -1063,10 +1019,7 @@
         /* Modais */
         .modal-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(2, 6, 23, 0.85);
             backdrop-filter: blur(8px);
             display: flex;
@@ -1078,10 +1031,7 @@
             transition: opacity 0.3s ease;
         }
 
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
 
         .modal-box {
             background: #0b1120;
@@ -1097,13 +1047,9 @@
 
         .modal-close {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            color: #64748b;
-            font-size: 1.2rem;
-            cursor: pointer;
+            top: 15px; right: 15px;
+            background: none; border: none;
+            color: #64748b; font-size: 1.2rem; cursor: pointer;
         }
 
         .discord-login-action {
@@ -1132,12 +1078,7 @@
             margin-bottom: 25px;
         }
 
-        .cart-modal-header h3 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #fff;
-            margin: 0;
-        }
+        .cart-modal-header h3 { font-size: 1.5rem; font-weight: 800; color: #fff; margin: 0; }
 
         .cart-modal-items-badge {
             background: #1e293b;
@@ -1160,26 +1101,9 @@
             justify-content: center;
         }
 
-        .cart-empty-icon {
-            font-size: 2.8rem;
-            color: #3b82f6;
-            margin-bottom: 18px;
-        }
-
-        .cart-empty-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 8px;
-        }
-
-        .cart-empty-desc {
-            font-size: 0.85rem;
-            color: #94a3b8;
-            line-height: 1.5;
-            margin-bottom: 24px;
-            max-width: 340px;
-        }
+        .cart-empty-icon { font-size: 2.8rem; color: #3b82f6; margin-bottom: 18px; }
+        .cart-empty-title { font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+        .cart-empty-desc { font-size: 0.85rem; color: #94a3b8; line-height: 1.5; margin-bottom: 24px; max-width: 340px; }
 
         .btn-go-to-store {
             background: transparent;
@@ -1222,23 +1146,11 @@
             border: 1px solid rgba(255,255,255,0.05);
         }
 
-        .cart-item-info h5 {
-            color: #fff;
-            font-size: 0.9rem;
-        }
-
-        .cart-item-info span {
-            color: #3b82f6;
-            font-family: 'JetBrains Mono';
-            font-size: 0.85rem;
-        }
+        .cart-item-info h5 { color: #fff; font-size: 0.9rem; }
+        .cart-item-info span { color: #3b82f6; font-family: 'JetBrains Mono'; font-size: 0.85rem; }
 
         .btn-remove-item {
-            background: none;
-            border: none;
-            color: #ef4444;
-            cursor: pointer;
-            font-size: 0.9rem;
+            background: none; border: none; color: #ef4444; cursor: pointer; font-size: 0.9rem;
         }
 
         .checkout-product-summary {
@@ -1253,18 +1165,10 @@
             font-weight: 700;
         }
 
-        .checkout-product-summary .price {
-            color: #3b82f6;
-            font-family: 'JetBrains Mono';
-            font-size: 1.1rem;
-        }
+        .checkout-product-summary .price { color: #3b82f6; font-family: 'JetBrains Mono'; font-size: 1.1rem; }
 
         .payment-options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 15px;
-            text-align: left;
+            display: flex; flex-direction: column; gap: 12px; margin-top: 15px; text-align: left;
         }
 
         .payment-option-card {
@@ -1284,24 +1188,9 @@
             background: rgba(59, 130, 246, 0.05);
         }
 
-        .payment-option-card i {
-            font-size: 1.4rem;
-            color: #3b82f6;
-            width: 25px;
-            text-align: center;
-        }
-
-        .payment-option-info h5 {
-            color: #fff;
-            font-size: 0.95rem;
-            margin-bottom: 2px;
-        }
-
-        .payment-option-info p {
-            color: #94a3b8;
-            font-size: 0.78rem;
-            margin: 0;
-        }
+        .payment-option-card i { font-size: 1.4rem; color: #3b82f6; width: 25px; text-align: center; }
+        .payment-option-info h5 { color: #fff; font-size: 0.95rem; margin-bottom: 2px; }
+        .payment-option-info p { color: #94a3b8; font-size: 0.78rem; margin: 0; }
 
         .instruction-box {
             background: #030712;
@@ -1313,19 +1202,10 @@
         }
 
         .instruction-box h4 {
-            color: #fff;
-            font-size: 1rem;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            color: #fff; font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
         }
 
-        .instruction-box p {
-            font-size: 0.85rem;
-            color: #cbd5e1;
-            margin-bottom: 8px;
-        }
+        .instruction-box p { font-size: 0.85rem; color: #cbd5e1; margin-bottom: 8px; }
 
         .highlight-data {
             font-family: 'JetBrains Mono', monospace;
@@ -1348,9 +1228,7 @@
             transition: background 0.2s;
         }
 
-        .btn-confirm-payment:hover {
-            background: #1d4ed8;
-        }
+        .btn-confirm-payment:hover { background: #1d4ed8; }
 
         footer {
             padding: 25px 8%;
@@ -1441,7 +1319,7 @@
                     </div>
                 </div>
 
-                <!-- Nova Infobox Moderna e Bonita -->
+                <!-- Infobox Holográfica -->
                 <div class="hero-infobox">
                     <div class="infobox-left">
                         <div class="infobox-icon-box">
@@ -1650,6 +1528,9 @@
         </div>
     </div>
 
+    <!-- Container das Notificações Flutuantes -->
+    <div id="toast-container"></div>
+
     <footer>
         <p>&copy; 2026 SourceCode Store. Todos os direitos reservados.</p>
         <p>Design Exclusivo v3.5</p>
@@ -1659,6 +1540,45 @@
         let currentDiscordId = "745441462472147007";
         let currentUsername = "Cliente";
         let cart = JSON.parse(localStorage.getItem('store_cart')) || [];
+
+        /* SISTEMA DE NOTIFICAÇÃO FUTURÍSTICO (TOAST) */
+        function showToast(title, message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            
+            let iconClass = 'fa-solid fa-circle-check';
+            if (type === 'error') iconClass = 'fa-solid fa-circle-xmark';
+            if (type === 'info') iconClass = 'fa-solid fa-circle-info';
+
+            const toast = document.createElement('div');
+            toast.className = `futuristic-toast ${type}`;
+            
+            toast.innerHTML = `
+                <div class="toast-content-wrapper">
+                    <div class="toast-icon-box">
+                        <i class="${iconClass}"></i>
+                    </div>
+                    <div class="toast-texts">
+                        <h5>${title}</h5>
+                        <p>${message}</p>
+                    </div>
+                </div>
+                <div class="toast-progress-bar animate"></div>
+            `;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+                toast.classList.add('hide');
+                setTimeout(() => {
+                    toast.remove();
+                }, 400);
+            }, 4000);
+        }
 
         function generateUniqueKey() {
             const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -1714,7 +1634,7 @@
             licenseData.port = document.getElementById('serverPortInput').value;
             localStorage.setItem(storageKey, JSON.stringify(licenseData));
             updateLicenseUI(licenseData);
-            alert('Configurações salvas com sucesso!');
+            showToast("Configurações Salvas", "As tuas definições de IP e Porta foram atualizadas com sucesso.", "success");
         }
 
         function revalidateLicense() {
@@ -1723,7 +1643,13 @@
             licenseData.key = generateUniqueKey();
             localStorage.setItem(storageKey, JSON.stringify(licenseData));
             updateLicenseUI(licenseData);
-            alert('Licença revalidada com sucesso!');
+            showToast("Licença Revalidada", "Uma nova chave de licença foi gerada com sucesso.", "success");
+        }
+
+        function copySnippet() {
+            const codeText = `configLicense = {\n    ["User"] = "${currentDiscordId}",\n    ["Key"] = "${document.getElementById('detailKey').textContent}"\n}`;
+            navigator.clipboard.writeText(codeText);
+            showToast("Copiado!", "Snippet de configuração copiado para a área de transferência.", "info");
         }
 
         let clientData = JSON.parse(localStorage.getItem('client_purchases')) || {
@@ -1735,7 +1661,7 @@
             cart.push({ name, price });
             localStorage.setItem('store_cart', JSON.stringify(cart));
             updateCartBadge();
-            alert(`"${name}" foi adicionado ao carrinho!`);
+            showToast("Produto Adicionado", `"${name}" foi adicionado ao seu carrinho com sucesso.`, "success");
         }
 
         function updateCartBadge() {
@@ -1825,17 +1751,19 @@
         }
 
         function removeFromCart(index) {
+            const removedItem = cart[index];
             cart.splice(index, 1);
             localStorage.setItem('store_cart', JSON.stringify(cart));
             renderCartModal();
+            showToast("Item Removido", `"${removedItem.name}" foi removido do carrinho.`, "info");
         }
 
         function selectPaymentMethod(method) {
             const token = localStorage.getItem('discord_token');
             if (!token) {
-                alert('Tens de fazer login com o Discord para avançar com o pagamento!');
                 closeCartModal();
                 document.getElementById('loginModal').classList.add('active');
+                showToast("Erro de Acesso!", "Você precisa estar logado para realizar essa ação.", "error");
                 return;
             }
 
@@ -1882,7 +1810,7 @@
         function validateMbWayAndPay() {
             const phoneInput = document.getElementById('mbwayPhoneInput').value.trim();
             if (!phoneInput || phoneInput.length < 9) {
-                alert('Por favor, insere um número de telemóvel válido com pelo menos 9 dígitos.');
+                showToast("Dados Inválidos", "Por favor, insira um número de telemóvel MB Way válido.", "error");
                 return;
             }
             finalizeCartPurchase('MB Way');
@@ -1913,7 +1841,7 @@
             updateCartBadge();
 
             closeCartModal();
-            alert(`Pedido submetido com sucesso! O pagamento via ${methodName} encontra-se em análise. O acesso aos produtos será libertado após confirmação.`);
+            showToast("Pedido Registado!", `Pagamento via ${methodName} submetido para análise.`, "success");
             
             hideAllViews();
             document.getElementById('clientDashboardView').classList.add('active');
@@ -2022,6 +1950,7 @@
             if (accessToken) {
                 localStorage.setItem('discord_token', accessToken);
                 window.history.replaceState(null, '', window.location.pathname);
+                showToast("Autenticado!", "Sua conta do Discord foi vinculada com sucesso.", "success");
             }
 
             const token = localStorage.getItem('discord_token');
