@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOURCE CODE STORE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: #030712;
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 6%;
+            background: rgba(3, 7, 18, 0.85);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+            backdrop-filter: blur(16px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-logo-img {
+            height: 36px;
+            width: auto;
+        }
+
+        .brand-text {
+            font-weight: 900;
+            font-size: 1.35rem;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-text .source-part {
+            color: #ffffff;
+        }
+
+        .brand-text .code-part {
+            color: #3b82f6;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-menu a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: #ffffff;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cart-btn-wrapper {
+            position: relative;
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .cart-btn-wrapper:hover {
+            border-color: #3b82f6;
+        }
+
+        .cart-btn-wrapper i {
+            color: #ffffff;
+            font-size: 1.1rem;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: #4f46e5;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #030712;
+        }
+
+        .login-btn {
+            background: #5865F2;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .login-btn:hover {
+            background: #4752c4;
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero-split {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 8%;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-content h1 {
+            font-size: 3.8rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            color: #ffffff;
+        }
+
+        .hero-content h1 .code-highlight {
+            color: #3b82f6;
+        }
+
+        .hero-content p {
+            color: #94a3b8;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-main {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .btn-main:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-alt {
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: border-color 0.2s;
+        }
+
+        .btn-alt:hover {
+            border-color: #3b82f6;
+            color: #fff;
+        }
+
+        /* Terminal */
+        .hero-terminal {
+            background: #0b1120;
+            border: 1px solid rgba(59, 130, 246, 0.25);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+        }
+
+        .terminal-header {
+            background: #0f172a;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+        }
+
+        .terminal-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #f59e0b; }
+        .dot-green { background: #10b981; }
+
+        .terminal-body {
+            padding: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #93c5fd;
+            line-height: 1.7;
+        }
+
+        .terminal-body span {
+            color: #60a5fa;
+            font-weight: bold;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-box {
+            background: #0b1120;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 40px;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #64748b;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: #fff;
+        }
+
+        .modal-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .modal-box p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+
+        .discord-login-action {
+            background: #5865F2;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+        }
+
+        .discord-login-action:hover {
+            background: #4752c4;
+        }
+
+        /* Rodapé */
+        footer {
+            padding: 25px 8%;
+            background-color: #010409;
+            border-top: 1px solid rgba(59, 130, 246, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="#" class="brand">
+            <img src="logo.png" alt="SC Store" class="brand-logo-img">
+            <div class="brand-text">
+                <span class="source-part">SOURCE</span><span class="code-part">CODE</span>
+            </div>
+        </a>
+        <nav class="nav-menu">
+            <a href="#" class="active">Inicio</a>
+            <a href="#">Produtos</a>
+            <a href="#">Termos de Serviço</a>
+            <a href="#">Parcerias</a>
+            <a href="#">Metodos de Pagamento</a>
+        </nav>
+        <div class="header-actions">
+            <div class="cart-btn-wrapper" title="Carrinho">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <div class="cart-badge">0</div>
+            </div>
+            <button class="login-btn" id="openLoginModal">
+                <i class="fa-solid fa-right-to-bracket"></i> Login
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-split">
+        <div class="hero-content">
+            <h1>Arquitetura de elite para <span class="code-highlight">desenvolvedores.</span></h1>
+            <p>Ferramentas construídas do zero com foco total em performance, segurança e design utilitário em azul e branco.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn-main">Explorar Sistema <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#" class="btn-alt"><i class="fa-brands fa-discord"></i> Suporte</a>
+            </div>
+        </div>
+
+        <div class="hero-terminal">
+            <div class="terminal-header">
+                <div class="terminal-dot dot-red"></div>
+                <div class="terminal-dot dot-yellow"></div>
+                <div class="terminal-dot dot-green"></div>
+                <span style="margin-left: 10px; font-size: 0.75rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">sourcecode-core.sh</span>
+            </div>
+            <div class="terminal-body">
+                <span>$</span> init_secure_environment()<br>
+                &gt; Loading modules... [OK]<br>
+                &gt; Encrypting handshake... [SECURE]<br>
+                &gt; Status: <span>READY FOR PRODUCTION</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Autenticação -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-box">
+            <button class="modal-close" id="closeLoginModal"><i class="fa-solid fa-xmark"></i></button>
+            <h3>Autenticação</h3>
+            <p>Entra na tua conta para gerires as tuas licenças e painel.</p>
+            
+            <!-- Substitui o URL '#' no href abaixo pelo link OAuth2 real do teu bot/aplicação do Discord -->
+            <a href="https://discord.com/oauth2/authorize?client_id=1540416706931851274&response_type=code&redirect_uri=file%3A%2F%2F%2FC%3A%2FUsers%2FH%25C3%25A9lder%2520Marques%2FDesktop%2FLoja%2520Site%2Floja.html%23&scope=identify+email">
+                <i class="fa-brands fa-discord"></i> Entrar com o Discord
+            </a>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2026 SourceCode Store. Todos os direitos reservados.</p>
+        <p>Design Exclusivo v3.5</p>
+    </footer>
+
+    <script>
+        const modal = document.getElementById('loginModal');
+        const openBtn = document.getElementById('openLoginModal');
+        const closeBtn = document.getElementById('closeLoginModal');
+
+        openBtn.addEventListener('click', () => {
+            modal.classList.add('active');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+    </script>
+
+</body>
+</html>
